@@ -1,45 +1,73 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AlertModalService } from 'src/app/shared/services/alert-modal.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
+import { ToastrService } from 'ngx-toastr';
+import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss'],
 })
-export class SignupComponent implements OnInit {
-  authForm: FormGroup;
+export class SignupComponent extends BaseFormComponent implements OnInit {
   submitted = false;
   returnUrl: string;
   hide = true;
   chide = true;
   constructor(
-    private formBuilder: FormBuilder,
+    private fb: FormBuilder,
+    private location: Location,
     private route: ActivatedRoute,
-    private router: Router
-  ) {}
+    private usuarioService: UsuarioService,
+    private toastr: ToastrService,
+  ) {
+    super();
+  }
   ngOnInit() {
-    this.authForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      email: [
+    this.cadastroForm = this.fb.group({
+      id: [''],
+      nome: [
         '',
-        [Validators.required, Validators.email, Validators.minLength(5)],
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(250),
+        ],
       ],
-      password: ['', Validators.required],
-      cpassword: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      senha: ['', [Validators.required]]
     });
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
-  get f() {
-    return this.authForm.controls;
-  }
-  onSubmit() {
+  // onSubmit() {
+  //   this.submitted = true;
+  //   // stop here if form is invalid
+  //   if (this.authForm.invalid) {
+  //     return;
+  //   } else {
+  //     this.router.navigate(['/admin/dashboard/main']);
+  //   }
+  // }
+
+  submit() {
     this.submitted = true;
-    // stop here if form is invalid
-    if (this.authForm.invalid) {
-      return;
-    } else {
-      this.router.navigate(['/admin/dashboard/main']);
-    }
+    console.log('submit');
+
+    let msgSuccess = 'Cadastro Realizado. OBRIGADO! Enviamos um e-mail para você ativar sua conta. Caso o email não esteja na caixa de entrada, verifique sua caixa de spam/lixo eletrônico.!';
+    let msgError = 'Erro ao cadastrar usuario, tente novamente!';
+
+    this.usuarioService.saveUserCommon(this.cadastroForm.value).subscribe(
+      success => {
+        // this.alertService.showAlertSuccess(msgSuccess);
+        this.toastr.success('OBRIGADO! Enviamos um e-mail para você ativar sua conta. Caso o email não esteja na caixa de entrada, verifique sua caixa de spam/lixo eletrônico.!', 'Cadastro Realizado com Sucesso!')
+        this.location.back();
+      },
+      error => 
+      //this.alertService.showAlertDanger(msgError),
+      this.toastr.error('Ocorreu um erro!', 'Opa :(')  
+    );
   }
 }

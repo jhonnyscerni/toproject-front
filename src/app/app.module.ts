@@ -1,3 +1,4 @@
+import { TokenInterceptor } from './shared/services/interceptors/token.interceptor';
 import { NgModule } from '@angular/core';
 
 import { CoreModule } from './core/core.module';
@@ -13,9 +14,6 @@ import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { RightSidebarComponent } from './layout/right-sidebar/right-sidebar.component';
 import { AuthLayoutComponent } from './layout/app-layout/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './layout/app-layout/main-layout/main-layout.component';
-import { fakeBackendProvider } from './core/interceptor/fake-backend';
-import { ErrorInterceptor } from './core/interceptor/error.interceptor';
-import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import {
   PerfectScrollbarModule,
@@ -25,11 +23,16 @@ import {
 import { ClickOutsideModule } from 'ng-click-outside';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
+import { ErrorInterceptor } from './shared/services/interceptors/error.handler.service';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
   wheelPropagation: false,
 };
+export const httpInterceptorProviders = [
+  { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+];
 
 @NgModule({
   declarations: [
@@ -62,9 +65,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
     },
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    fakeBackendProvider,
+    httpInterceptorProviders
+    // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    // fakeBackendProvider,
   ],
   entryComponents: [],
   bootstrap: [AppComponent],

@@ -7,19 +7,20 @@
     <div class="col-sm-6 auth-form-section">
       <div class="form-section">
         <div class="auth-wrapper">
-          <h2 class="welcome-msg"> Sign Up </h2>
-          <p class="auth-signup-text text-muted">Enter details to create your account</p>
-          <form class="validate-form" [formGroup]="authForm" (ngSubmit)="onSubmit()">
+          <h2 class="welcome-msg"> Crie a sua conta aqui </h2>
+          <p class="auth-signup-text text-muted">Informe os dados para criar sua conta</p>
+          <form novalidate [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
             <div class="row">
               <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>Username</mat-label>
-                  <input matInput formControlName="username" required>
+                  <mat-label>Nome</mat-label>
+                  <input matInput formControlName="nome" required>
                   <mat-icon matSuffix>face</mat-icon>
-                  <mat-error *ngIf="authForm.get('username').hasError('required')">
+                  <!-- <mat-error *ngIf="cadastroForm.get('username').hasError('required')">
                     Username is required
-                  </mat-error>
+                  </mat-error> -->
                 </mat-form-field>
+                <app-error-msg [control]="cadastroForm.get('nome')" label="Nome"></app-error-msg>
               </div>
             </div>
             <div class="row">
@@ -28,38 +29,43 @@
                   <mat-label>Email</mat-label>
                   <input matInput formControlName="email" required>
                   <mat-icon matSuffix>mail</mat-icon>
-                  <mat-error *ngIf="authForm.get('email').hasError('required') || authForm.get('email').touched">
+                  <!-- <mat-error *ngIf="cadastroForm.get('email').hasError('required') || cadastroForm.get('email').touched">
                     Please enter a valid email address
-                  </mat-error>
+                  </mat-error> -->
                 </mat-form-field>
+                <app-error-msg [control]="cadastroForm.get('email')" label="Email"></app-error-msg>
+                <app-campo-control-erro [mostrarErro]="cadastroForm.get('email').status === 'PENDING'"
+                  msgErro="Validando email...">
+                </app-campo-control-erro>
               </div>
             </div>
             <div class="row">
               <div class="col-xl-12col-lg-12 col-md-12 col-sm-12 mb-2">
                 <mat-form-field class="example-full-width" appearance="outline">
-                  <mat-label>Password</mat-label>
-                  <input matInput formControlName="password" [type]="hide ? 'password' : 'text'" required>
+                  <mat-label>Senha</mat-label>
+                  <input matInput formControlName="senha" [type]="hide ? 'password' : 'text'" required>
                   <mat-icon matSuffix (click)="hide = !hide">
                     {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                  <mat-error *ngIf="authForm.get('password').hasError('required')">
+                  <!-- <mat-error *ngIf="cadastroForm.get('password').hasError('required')">
                     Password is required
-                  </mat-error>
+                  </mat-error> -->
                 </mat-form-field>
+                <app-error-msg [control]="cadastroForm.get('senha')" label="Senha"></app-error-msg>
               </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
               <div class="col-xl-12col-lg-12 col-md-12 col-sm-12 mb-2">
                 <mat-form-field class="example-full-width" appearance="outline">
                   <mat-label>Confirm Password</mat-label>
                   <input matInput formControlName="cpassword" [type]="chide ? 'password' : 'text'" required>
                   <mat-icon matSuffix (click)="chide = !chide">
                     {{chide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                  <mat-error *ngIf="authForm.get('cpassword').hasError('required')">
+                  <mat-error *ngIf="cadastroForm.get('cpassword').hasError('required')">
                     Confirm Password is required
                   </mat-error>
                 </mat-form-field>
               </div>
-            </div>
+            </div> -->
             <div class="flex-sb-m w-full  p-b-20">
               <div>
                 <span>Already Registered? <a routerLink="/authentication/signin">
@@ -68,8 +74,8 @@
               </div>
             </div>
             <div class="container-auth-form-btn">
-              <button mat-flat-button color="primary" class="auth-form-btn" [disabled]="!authForm.valid " type="submit">
-                Register
+              <button mat-flat-button color="primary" class="auth-form-btn" [disabled]="!cadastroForm.valid " type="submit">
+                Criar Conta
               </button>
             </div>
           </form>

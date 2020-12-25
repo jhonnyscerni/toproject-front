@@ -95,7 +95,8 @@ export class SigninComponent extends BaseFormComponent implements OnInit {
               this.router.navigate(["/authentication/signin"]);
             }
           }, errorResponse => {
-            this.error = errorResponse;
+            console.log(errorResponse);
+            this.error = errorResponse.error.error_description;
             this.toastr.error('Ocorreu um erro!', 'Opa :(')
             this.errors = ['Usuário e/ou senha incorreto(s).']
             this.submitted = false;

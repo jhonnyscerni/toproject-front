@@ -62,15 +62,15 @@ export class Dashboard2Component implements OnInit {
     this.lineChartOptions = {
       series: [
         {
-          name: "Doctor 1",
+          name: "User 1",
           data: [70, 200, 80, 180, 170, 105, 210],
         },
         {
-          name: "Doctor 2",
+          name: "User 2",
           data: [80, 250, 30, 120, 260, 100, 180],
         },
         {
-          name: "Doctor 3",
+          name: "User 3",
           data: [85, 130, 85, 225, 80, 190, 120],
         },
       ],

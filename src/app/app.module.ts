@@ -24,6 +24,7 @@ import {
 } from 'ngx-perfect-scrollbar';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -47,6 +48,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     HttpClientModule,
     PerfectScrollbarModule,
     ClickOutsideModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-center'
+    }),
 
     // core & shared
     CoreModule,

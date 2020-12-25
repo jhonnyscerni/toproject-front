@@ -22,14 +22,14 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatRadioModule } from '@angular/material/radio';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
-import { DoctorRoutingModule } from './doctor-routing.module';
+import { UserRoutingModule } from './doctor-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [DashboardComponent],
   imports: [
     CommonModule,
-    DoctorRoutingModule,
+    UserRoutingModule,
     chartjsModule,
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
@@ -55,4 +55,4 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     DragDropModule,
   ],
 })
-export class DoctorModule {}
+export class UserModule {}

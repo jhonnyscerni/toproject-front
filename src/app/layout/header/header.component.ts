@@ -9,8 +9,8 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfigService } from 'src/app/config/config.service';
-import { AuthService } from 'src/app/core/service/auth.service';
 import { RightSidebarService } from 'src/app/core/service/rightsidebar.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 const document: any = window.document;
 
 @Component({
@@ -78,14 +78,15 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   ];
   ngOnInit() {
     this.config = this.configService.configData;
-    const userRole = this.authService.currentUserValue.role;
-    this.userImg = this.authService.currentUserValue.img;
+    const userRole = this.authService.getGrupo();
+    // this.userImg = this.authService.getUsuarioAutenticado();
+    this.userImg = "assets/images/user/user1.jpg"
 
     if (userRole === 'Admin') {
       this.homePage = 'admin/dashboard/main';
     } else if (userRole === 'Patient') {
       this.homePage = 'patient/dashboard';
-    } else if (userRole === 'Doctor') {
+    } else if (userRole === 'User') {
       this.homePage = 'doctor/dashboard';
     } else {
       this.homePage = 'admin/dashboard/main';

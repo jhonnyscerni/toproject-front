@@ -4,7 +4,11 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:4200',
+  apiUrl: 'http://localhost:8080',
+  imagensUrl: 'http://localhost:8080',
+  clientId: 'projeto-web',
+  clientSecret: 'web123',
+  obterTokenUrl: '/oauth/token'
 };
 
 /*

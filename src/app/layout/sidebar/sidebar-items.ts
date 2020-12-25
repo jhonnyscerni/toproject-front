@@ -43,7 +43,7 @@ export const ROUTES: RouteInfo[] = [
     ],
   },
 
-  // Doctor Modules
+  // User Modules
   {
     path: '/doctor/dashboard',
     title: 'Dashboard',
@@ -54,7 +54,7 @@ export const ROUTES: RouteInfo[] = [
     groupTitle: false,
     badge: '',
     badgeClass: '',
-    role: ['Doctor'],
+    role: ['User'],
     submenu: [],
   },
 

@@ -1,0 +1,79 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <ul class="breadcrumb breadcrumb-style ">
+            <li class="breadcrumb-item">
+              <h4 class="page-title">Criar Usuários</h4>
+            </li>
+            <li class="breadcrumb-item bcrumb-1">
+              <a routerLink="/admin/dashboard/main">
+                <i class="fas fa-home"></i> Home</a>
+            </li>
+            <li class="breadcrumb-item bcrumb-2">
+              <a href="#" onClick="return false;">Grupos</a>
+            </li>
+            <li class="breadcrumb-item active">Criar Grupo</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="card">
+          <div class="header">
+            <h2><strong></strong> Criar Grupo</h2>
+          </div>
+          <div class="body">
+
+            <!-- Add content here -->
+            <form novalidate [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
+              <div class=" row">
+
+                <div class=" col-md-6">
+                  <div class=" form-group">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                      <mat-label>Nome do Usuário</mat-label>
+                      <input matInput formControlName="nome" required>
+                      <!-- <mat-icon matSuffix>face</mat-icon> -->
+                    </mat-form-field>
+                    <app-error-msg [control]="cadastroForm.get('nome')" label="Nome"></app-error-msg>
+                  </div>
+                </div>
+            </div>
+
+              <div class="form-group text-right">
+                <span>
+                  <!-- [disabled]="!cadastroForm.valid" -->
+                  <button class="btn btn-success" id="registrar" [disabled]="!cadastroForm.valid"
+                    type="submit">Registrar
+                  </button>
+                </span>
+                <span>
+                  <button class="btn" id="cancelar" (click)="resetar()">Limpar
+                  </button>
+                </span>
+                <span>
+                  <!-- [disabled]="!cadastroForm.valid" -->
+                  <button class="btn " id="cancelar" (click)="cancelar()" type="submit">Cancelar
+                  </button>
+                </span>
+              </div>
+
+              <app-form-debug [form]="cadastroForm"></app-form-debug>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+

@@ -14,6 +14,11 @@ const routes: Routes = [
       import('./usuarios/usuarios.module').then((m) => m.UsuariosModule),
   },
   {
+    path: 'grupos',
+    loadChildren: () =>
+      import('./grupos/grupos.module').then((m) => m.GruposModule),
+  },
+  {
     path: "profile",
     component: ProfileComponent
   },

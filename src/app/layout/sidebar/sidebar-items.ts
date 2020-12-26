@@ -41,6 +41,20 @@ export const ROUTES: RouteInfo[] = [
     submenu: [],
   },
 
+  {
+    path: '/admin/grupos',
+    title: 'Grupos',
+    moduleName: 'grupos',
+    iconType: 'material-icons-two-tone',
+    icon: 'home',
+    class: '',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    role: ['Admin'],
+    submenu: [],
+  },
+
 
   // User Modules
   {
@@ -48,7 +62,7 @@ export const ROUTES: RouteInfo[] = [
     title: 'Dashboard',
     moduleName: 'dashboard',
     iconType: 'material-icons-two-tone',
-    icon: 'home',
+    icon: 'user',
     class: '',
     groupTitle: false,
     badge: '',
@@ -63,7 +77,7 @@ export const ROUTES: RouteInfo[] = [
     title: 'Dashboard',
     moduleName: 'dashboard',
     iconType: 'material-icons-two-tone',
-    icon: 'home',
+    icon: 'group',
     class: '',
     groupTitle: false,
     badge: '',

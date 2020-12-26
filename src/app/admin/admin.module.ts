@@ -1,3 +1,4 @@
+import { GruposModule } from './grupos/grupos.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
@@ -31,7 +32,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     HttpClientModule,
     SharedModule,
 
-    UsuariosModule
+    UsuariosModule,
+    GruposModule
   ],
 })
 export class AdminModule {}

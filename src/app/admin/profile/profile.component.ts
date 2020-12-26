@@ -16,6 +16,7 @@ export class ProfileComponent extends BaseFormComponent implements OnInit {
 
   usuario: Usuario = new Usuario()
   idUsuario: number;
+  hide = true;
 
   constructor(
     private authService: AuthService,
@@ -90,7 +91,7 @@ export class ProfileComponent extends BaseFormComponent implements OnInit {
   }
 
   cancelar(){
-    this.router.navigate(['/usuarios/lista'], { relativeTo: this.route });
+    this.router.navigate(['/admin/usuarios/lista'], { relativeTo: this.route });
   }
 
 }

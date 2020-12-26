@@ -13,6 +13,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSortModule } from '@angular/material/sort';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -33,7 +42,18 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     SharedModule,
 
     UsuariosModule,
-    GruposModule
+    GruposModule,
+
+    // MAT
+    MatTableModule,
+    MatPaginatorModule,
+    MatInputModule,
+    MatSnackBarModule,
+    MatDialogModule,
+    MatSortModule,
+    MatDatepickerModule,
+    MatTabsModule,
+    MatCheckboxModule,
   ],
 })
 export class AdminModule {}

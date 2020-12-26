@@ -1,486 +1,168 @@
-<div class=" header pb-6 d-flex align-items-center"
-  style="min-height: 250px; background-image: url(assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
-  <span class=" mask bg-gradient-danger opacity-8"> </span>
-
-  <div class=" container-fluid d-flex align-items-center">
-    <div class=" row">
-      <div class=" col-lg-10 col-md-10">
-        <h1 class=" display-3 text-white">Olá, {{usuario?.nome}}</h1>
-
-        <p class=" text-white mt-0 mb-5">
-          Esta é a sua página de perfil. Você pode ver atualizar informações e verificar seus dados cadastrados no
-          sistema.
-        </p>
-
-        <!-- <a class=" btn btn-neutral" href="javascript:void(0)"> Edit profile </a> -->
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class=" container-fluid mt--6">
-  <div class=" row">
-    <div class=" col-xl-4 order-xl-2">
-      <div class=" card card-profile">
-        <img alt="Image placeholder" class=" card-img-top" src="assets/img/theme/img-1-1000x600.jpg" />
-
-        <div class=" row justify-content-center">
-          <div class=" col-lg-3 order-lg-2">
-            <div class=" card-profile-image">
-              <a href="javascript:void(0)">
-                <img class=" rounded-circle" src="assets/img/theme/team-4.jpg" />
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class=" card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-          <div class=" d-flex justify-content-between">
-            <!-- <a class=" btn btn-sm btn-info mr-4" href="javascript:void(0)">
-              Connect
-            </a>
-
-            <a
-              class=" btn btn-sm btn-default float-right"
-              href="javascript:void(0)"
-            >
-              Message
-            </a> -->
-          </div>
-        </div>
-
-        <div class=" card-body pt-0">
-          <div class=" row">
-            <div class=" col">
-              <div class=" card-profile-stats d-flex justify-content-center">
-                <div>
-                  <!-- <span class=" heading"> 22 </span>
-
-                  <span class=" description"> Friends </span> -->
-                </div>
-
-                <div>
-                  <!-- <span class=" heading"> 10 </span>
-
-                  <span class=" description"> Photos </span> -->
-                </div>
-
-                <div>
-                  <!-- <span class=" heading"> 89 </span>
-
-                  <span class=" description"> Comments </span> -->
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class=" text-center">
-            <h5 class=" h3">
-              {{usuario?.nome}}<span class=" font-weight-light"> </span>
-            </h5>
-
-            <div class=" h5 font-weight-300">
-              <i class=" ni business_briefcase-24 mr-2"> </i> {{usuario?.email}}
-            </div>
-
-            <!-- <div class=" h5 font-weight-300">
-              <i class=" ni location_pin mr-2"> </i> Bucharest, Romania
-            </div>
-
-            <div class=" h5 mt-4">
-              <i class=" ni business_briefcase-24 mr-2"> </i> Solution Manager -
-              Creative Tim Officer
-            </div>
-
-            <div>
-              <i class=" ni education_hat mr-2"> </i> University of Computer
-              Science
-            </div> -->
-          </div>
-        </div>
-      </div>
-
-      <!-- <div class=" card">
-        <div class=" card-header"><h5 class=" h3 mb-0">Progress track</h5></div>
-
-        <div class=" card-body">
-          <ul class=" list-group list-group-flush list my--3">
-            <li class=" list-group-item px-0">
-              <div class=" row align-items-center">
-                <div class=" col-auto">
-                  <a class=" avatar rounded-circle" href="javascript:void(0)">
-                    <img
-                      alt="Image placeholder"
-                      src="assets/img/theme/bootstrap.jpg"
-                    />
-                  </a>
-                </div>
-
-                <div class=" col">
-                  <h5>Argon Design System</h5>
-
-                  <div class=" progress progress-xs mb-0">
-                    <progressbar type="warning" [value]="60"> </progressbar>
-                  </div>
-                </div>
-              </div>
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <ul class="breadcrumb breadcrumb-style ">
+            <li class="breadcrumb-item">
+              <h4 class="page-title">Informações do Usuário</h4>
             </li>
-
-            <li class=" list-group-item px-0">
-              <div class=" row align-items-center">
-                <div class=" col-auto">
-                  <a class=" avatar rounded-circle" href="javascript:void(0)">
-                    <img
-                      alt="Image placeholder"
-                      src="assets/img/theme/angular.jpg"
-                    />
-                  </a>
-                </div>
-
-                <div class=" col">
-                  <h5>Angular Now UI Kit PRO</h5>
-
-                  <div class=" progress progress-xs mb-0">
-                    <progressbar type="success" [value]="100"> </progressbar>
-                  </div>
-                </div>
-              </div>
+            <li class="breadcrumb-item bcrumb-1">
+              <a routerLink="/admin/dashboard/main">
+                <i class="fas fa-home"></i> Home</a>
             </li>
-
-            <li class=" list-group-item px-0">
-              <div class=" row align-items-center">
-                <div class=" col-auto">
-                  <a class=" avatar rounded-circle" href="javascript:void(0)">
-                    <img
-                      alt="Image placeholder"
-                      src="assets/img/theme/sketch.jpg"
-                    />
-                  </a>
-                </div>
-
-                <div class=" col">
-                  <h5>Black Dashboard</h5>
-
-                  <div class=" progress progress-xs mb-0">
-                    <progressbar type="danger" [value]="72"> </progressbar>
-                  </div>
-                </div>
-              </div>
+            <li class="breadcrumb-item bcrumb-2">
+              <a href="#" onClick="return false;">Informações</a>
             </li>
-
-            <li class=" list-group-item px-0">
-              <div class=" row align-items-center">
-                <div class=" col-auto">
-                  <a class=" avatar rounded-circle" href="javascript:void(0)">
-                    <img
-                      alt="Image placeholder"
-                      src="assets/img/theme/react.jpg"
-                    />
-                  </a>
-                </div>
-
-                <div class=" col">
-                  <h5>React Material Dashboard</h5>
-
-                  <div class=" progress progress-xs mb-0">
-                    <progressbar type="info" [value]="90"> </progressbar>
-                  </div>
-                </div>
-              </div>
-            </li>
-
-            <li class=" list-group-item px-0">
-              <div class=" row align-items-center">
-                <div class=" col-auto">
-                  <a class=" avatar rounded-circle" href="javascript:void(0)">
-                    <img
-                      alt="Image placeholder"
-                      src="assets/img/theme/vue.jpg"
-                    />
-                  </a>
-                </div>
-
-                <div class=" col">
-                  <h5>Vue Paper UI Kit PRO</h5>
-
-                  <div class=" progress progress-xs mb-0">
-                    <progressbar type="success" [value]="100"> </progressbar>
-                  </div>
-                </div>
-              </div>
-            </li>
+            <li class="breadcrumb-item active">Usuario</li>
           </ul>
         </div>
-      </div> -->
+      </div>
     </div>
-
-    <div class=" col-xl-8 order-xl-1">
-      <!-- <div class=" row">
-        <div class=" col-lg-6">
-          <div class=" card bg-gradient-info border-0">
-            <div class=" card-body">
-              <div class=" row">
-                <div class=" col">
-                  <h5
-                    class=" card-title text-uppercase text-muted mb-0 text-white"
-                  >
-                    Total traffic
-                  </h5>
-
-                  <span class=" h2 font-weight-bold mb-0 text-white">
-                    350,897
-                  </span>
-                </div>
-
-                <div class=" col-auto">
-                  <div
-                    class=" icon icon-shape bg-white text-dark rounded-circle shadow"
-                  >
-                    <i class=" ni ni-active-40"> </i>
-                  </div>
-                </div>
+    <!-- Your content goes here  -->
+    <div class="row clearfix">
+      <div class="col-lg-4 col-md-12">
+        <div class="card">
+          <div class="m-b-20">
+            <div class="contact-grid">
+              <div class="profile-header bg-dark">
+                <div class="user-name">{{usuario?.nome}}</div>
+                <!-- <div class="name-center">{{usuario?.email}}</div> -->
               </div>
-
-              <p class=" mt-3 mb-0 text-sm">
-                <span class=" text-white mr-2">
-                  <i class=" fa fa-arrow-up"> </i> 3.48%
-                </span>
-
-                <span class=" text-nowrap text-light"> Since last month </span>
+              <img src="assets/images/user/usrbig3.jpg" class="user-img" alt="">
+              <p>
+                {{usuario?.email}}
+                <!-- <br />New York -->
               </p>
+              <div>
+                <!-- <span class="phone">
+                  <i class="material-icons">phone</i>264-625-2583</span> -->
+              </div>
+              <!-- <div class="row">
+                <div class="col-4">
+                  <h5>564</h5>
+                  <small>Following</small>
+                </div>
+                <div class="col-4">
+                  <h5>18k</h5>
+                  <small>Followers</small>
+                </div>
+                <div class="col-4">
+                  <h5>565</h5>
+                  <small>Post</small>
+                </div>
+              </div> -->
             </div>
           </div>
         </div>
-
-        <div class=" col-lg-6">
-          <div class=" card bg-gradient-success border-0">
-            <div class=" card-body">
-              <div class=" row">
-                <div class=" col">
-                  <h5
-                    class=" card-title text-uppercase text-muted mb-0 text-white"
-                  >
-                    Performance
-                  </h5>
-
-                  <span class=" h2 font-weight-bold mb-0 text-white">
-                    49,65%
-                  </span>
-                </div>
-
-                <div class=" col-auto">
-                  <div
-                    class=" icon icon-shape bg-white text-dark rounded-circle shadow"
-                  >
-                    <i class=" ni ni-spaceship"> </i>
-                  </div>
-                </div>
+        <div class="card">
+          <mat-tab-group mat-align-tabs="start">
+            <mat-tab label="Informações">
+              <div class="p-4">
+                <p class="text-default">Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has
+                  been the industry's standard dummy text ever since the 1500s, when an unknown
+                  printer
+                  took a galley of type and scrambled it to make a type specimen book. It has
+                  survived
+                  not only five centuries, but also the leap into electronic typesetting, remaining
+                  essentially
+                  unchanged.</p>
+                <small class="text-muted">Endereço de E-email: </small>
+                <p>{{usuario?.email}}</p>
+                <hr>
+                <small class="text-muted">Phone: </small>
+                <p>+91 1234567890</p>
+                <hr>
               </div>
-
-              <p class=" mt-3 mb-0 text-sm">
-                <span class=" text-white mr-2">
-                  <i class=" fa fa-arrow-up"> </i> 3.48%
-                </span>
-
-                <span class=" text-nowrap text-light"> Since last month </span>
-              </p>
-            </div>
-          </div>
+            </mat-tab>
+          </mat-tab-group>
         </div>
-      </div> -->
-
-      <div class=" card">
-        <div class=" card-header">
-          <div class=" row align-items-center">
-            <div class=" col-8">
-              <h3 class=" mb-0">Editar Conta</h3>
-            </div>
-
-            <!-- <div class=" col-4 text-right">
-              <a class=" btn btn-sm btn-primary" href="javascript:void(0)">
-                Settings
-              </a>
-            </div> -->
-          </div>
-        </div>
-
-        <div class=" card-body">
-          <form novalidate [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
-            <h6 class=" heading-small text-muted mb-4">Informações do Usuário</h6>
-
-            <div class=" pl-lg-4">
-              <div class=" row">
-                <div class=" col-lg-6">
-                  <div class=" form-group">
-                    <label class=" form-control-label" for="nome">
-                      Nome do Usuário
-                    </label>
-
-                    <input class=" form-control" [ngClass]="{'is-invalid':verificaValidTouched('nome') }" id="nome"
-                      placeholder="Nome do Usuário" type="text" formControlName="nome" />
-                    <app-error-msg [control]="cadastroForm.get('nome')" label="Nome"></app-error-msg>
-                    <!--app-campo-control-erro [mostrarErro]="verificaValidTouched('nome')" msgErro="Nome é obrigatório.">
-                         </app-campo-control-erro -->
-                  </div>
-                </div>
-
-                <div class=" col-lg-6">
-                  <div class=" form-group">
-                    <label class=" form-control-label" for="email">
-                      E-mail:
-                    </label>
-
-                    <input class=" form-control" [ngClass]="{'is-invalid':verificaValidTouched('email') }" id="email"
-                      placeholder="E-mail" type="text" formControlName="email" disabled="disabled" />
-                    <app-error-msg [control]="cadastroForm.get('email')" label="Email"></app-error-msg>
-                    <app-campo-control-erro [mostrarErro]="cadastroForm.get('email').status === 'PENDING'"
-                      msgErro="Validando email...">
-                    </app-campo-control-erro>
-                    <!-- <app-campo-control-erro [mostrarErro]="cadastroForm.get('email').status === 'VALID'"
-                          msgErro="Email válido!">
-                        </app-campo-control-erro> -->
-                  </div>
-                </div>
+      </div>
+      <div class="col-lg-8 col-md-12">
+        <div class="card">
+          <mat-tab-group>
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon mr-2">settings</mat-icon>
+                Configuração
+              </ng-template>
+              <div class="header">
+                <h2>
+                  <strong>Configuração</strong> de Cadastro</h2>
               </div>
-
-              <div class=" row">
-                <div class=" col-lg-6">
-                  <div class=" form-group">
-                    <label class=" form-control-label" for="senha">
-                      Senha:
-                    </label>
-
-                    <input class="form-control" placeholder="Senha" type="password" formControlName="senha" name="senha"/>
-                    <app-error-msg [control]="cadastroForm.get('senha')" label="Senha"></app-error-msg>
+              <div class="body">
+                <form novalidate [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
+                  <div class="example-container">
+                    <div class=" form-group">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Nome do Usuário</mat-label>
+                        <input matInput formControlName="nome" required>
+                        <!-- <mat-icon matSuffix>face</mat-icon> -->
+                      </mat-form-field>
+                      <app-error-msg [control]="cadastroForm.get('nome')" label="Nome"></app-error-msg>
+                    </div>
+                    <div class=" form-group">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>E-mail</mat-label>
+                        <input matInput formControlName="email" required>
+                        <!-- <mat-icon matSuffix>face</mat-icon> -->
+                      </mat-form-field>
+                      <app-error-msg [control]="cadastroForm.get('email')" label="Email"></app-error-msg>
+                      <app-campo-control-erro [mostrarErro]="cadastroForm.get('email').status === 'PENDING'"
+                        msgErro="Validando email...">
+                      </app-campo-control-erro>
+                      <!-- <app-campo-control-erro [mostrarErro]="cadastroForm.get('email').status === 'VALID'"
+                                    msgErro="Email válido!">
+                                  </app-campo-control-erro> -->
+                    </div>
+                    <div class=" form-group">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Senha</mat-label>
+                        <input matInput formControlName="senha" [type]="hide ? 'password' : 'text'" required>
+                        <mat-icon matSuffix (click)="hide = !hide">
+                          {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                      </mat-form-field>
+                      <app-error-msg [control]="cadastroForm.get('senha')" label="Senha"></app-error-msg>
+                    </div>
+                    <!-- <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Nome do Usuário</mat-label>
+                        <input matInput formControlName="nome" required>
+                      </mat-form-field>
+                      <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Current Password</mat-label>
+                        <input matInput type="password">
+                      </mat-form-field>
+                      <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>New Password</mat-label>
+                        <input matInput type="password">
+                      </mat-form-field> -->
                   </div>
-                </div>
-
-                <!-- <div class=" col-lg-6">
-                  <div class=" form-group">
-                    <label class=" form-control-label" for="input-last-name">
-                      Last name
-                    </label>
-
-                    <input class=" form-control" id="input-last-name" placeholder="Last name" type="text"
-                      value="Jesse" />
+                  <div class="form-group text-right">
+                    <span>
+                      <!-- [disabled]="!cadastroForm.valid" -->
+                      <button class="btn btn-success" id="registrar" [disabled]="!cadastroForm.valid"
+                        type="submit">Alterar
+                      </button>
+                    </span>
+                    <span>
+                      <button class="btn" id="cancelar" (click)="resetar()">Limpar
+                      </button>
+                    </span>
+                    <span>
+                      <!-- [disabled]="!cadastroForm.valid" -->
+                      <button class="btn " id="cancelar" (click)="cancelar()" type="submit">Cancelar
+                      </button>
+                    </span>
                   </div>
-                </div> -->
+                </form>
               </div>
-
-              <div class="form-group text-right">
-                <span>
-                  <!-- [disabled]="!cadastroForm.valid" -->
-                  <button class="btn btn-success" id="registrar" [disabled]="!cadastroForm.valid"
-                    type="submit">Alterar
-                  </button>
-                </span>
-                <span>
-                  <button class="btn" id="cancelar" (click)="resetar()">Limpar
-                  </button>
-                </span>
-                <span>
-                  <!-- [disabled]="!cadastroForm.valid" -->
-                  <button class="btn " id="cancelar" (click)="cancelar()" type="submit">Cancelar
-                  </button>
-                </span>
-              </div>
-            </div>
-
-            <!-- <hr class=" my-4" />
-
-            <h6 class=" heading-small text-muted mb-4">Contact information</h6>
-
-            <div class=" pl-lg-4">
-              <div class=" row">
-                <div class=" col-md-12">
-                  <div class=" form-group">
-                    <label class=" form-control-label" for="input-address">
-                      Address
-                    </label>
-
-                    <input
-                      class=" form-control"
-                      id="input-address"
-                      placeholder="Home Address"
-                      type="text"
-                      value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div class=" row">
-                <div class=" col-lg-4">
-                  <div class=" form-group">
-                    <label class=" form-control-label" for="input-city">
-                      City
-                    </label>
-
-                    <input
-                      class=" form-control"
-                      id="input-city"
-                      placeholder="City"
-                      type="text"
-                      value="New York"
-                    />
-                  </div>
-                </div>
-
-                <div class=" col-lg-4">
-                  <div class=" form-group">
-                    <label class=" form-control-label" for="input-country">
-                      Country
-                    </label>
-
-                    <input
-                      class=" form-control"
-                      id="input-country"
-                      placeholder="Country"
-                      type="text"
-                      value="United States"
-                    />
-                  </div>
-                </div>
-
-                <div class=" col-lg-4">
-                  <div class=" form-group">
-                    <label class=" form-control-label" for="input-country">
-                      Postal code
-                    </label>
-
-                    <input
-                      class=" form-control"
-                      id="input-postal-code"
-                      placeholder="Postal code"
-                      type="number"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div> -->
-
-            <!-- <hr class=" my-4" />
-
-            <h6 class=" heading-small text-muted mb-4">About me</h6>
-
-            <div class=" pl-lg-4">
-              <div class=" form-group">
-                <label class=" form-control-label"> About Me </label>
-
-                <textarea
-                  class=" form-control"
-                  placeholder="A few words about you ..."
-                  rows="4"
-                >
-                A beautiful premium dashboard for Bootstrap 4.
-                </textarea
-                >
-              </div>
-            </div> -->
-            <app-form-debug [form]="cadastroForm"></app-form-debug>
-          </form>
+            </mat-tab>
+          </mat-tab-group>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
+
+<!-- FIM CONTENT-->

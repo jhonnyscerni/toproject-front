@@ -19,6 +19,11 @@ const routes: Routes = [
       import('./grupos/grupos.module').then((m) => m.GruposModule),
   },
   {
+    path: 'permissoes',
+    loadChildren: () =>
+      import('./permissoes/permissoes.module').then((m) => m.PermissoesModule),
+  },
+  {
     path: "profile",
     component: ProfileComponent
   },

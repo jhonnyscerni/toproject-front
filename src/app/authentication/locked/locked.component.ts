@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/core/service/auth.service';
 import { Role } from 'src/app/core/models/role';
+import { AuthService } from 'src/app/shared/services/auth.service';
 @Component({
   selector: 'app-locked',
   templateUrl: './locked.component.html',
@@ -23,11 +23,12 @@ export class LockedComponent implements OnInit {
     this.authForm = this.formBuilder.group({
       password: ['', Validators.required],
     });
-    this.userImg = this.authService.currentUserValue.img;
+    this.userImg = "";
     this.userFullName =
-      this.authService.currentUserValue.firstName +
-      ' ' +
-      this.authService.currentUserValue.lastName;
+      this.authService.getUsuarioAutenticado() 
+      // +
+      // ' ' +
+      // this.authService.currentUserValue.lastName;
   }
   get f() {
     return this.authForm.controls;
@@ -38,11 +39,11 @@ export class LockedComponent implements OnInit {
     if (this.authForm.invalid) {
       return;
     } else {
-      const role = this.authService.currentUserValue.role;
+      const role = this.authService.getGrupo();
       if (role === Role.All || role === Role.Admin) {
         this.router.navigate(['/admin/dashboard/main']);
       } else if (role === Role.User) {
-        this.router.navigate(['/doctor/dashboard']);
+        this.router.navigate(['/user/dashboard']);
       } else if (role === Role.Patient) {
         this.router.navigate(['/patient/dashboard']);
       } else {

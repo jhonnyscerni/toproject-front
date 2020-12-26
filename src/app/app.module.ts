@@ -24,6 +24,7 @@ import { ClickOutsideModule } from 'ng-click-outside';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { ErrorInterceptor } from './shared/services/interceptors/error.handler.service';
+import { ModalModule } from 'ngx-bootstrap';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -58,6 +59,7 @@ export const httpInterceptorProviders = [
     // core & shared
     CoreModule,
     SharedModule,
+    ModalModule.forRoot(),
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

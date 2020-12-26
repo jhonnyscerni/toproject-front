@@ -22,7 +22,7 @@ const routes: Routes = [
           import('./admin/admin.module').then((m) => m.AdminModule),
       },
       {
-        path: 'doctor',
+        path: 'user',
         canActivate: [AuthGuard],
         data: {
           role: Role.User,
@@ -45,14 +45,6 @@ const routes: Routes = [
         loadChildren: () =>
           import('./extra-pages/extra-pages.module').then(
             (m) => m.ExtraPagesModule
-          ),
-      },
-      {
-        path: 'multilevel',
-        canActivate: [AuthGuard],
-        loadChildren: () =>
-          import('./multilevel/multilevel.module').then(
-            (m) => m.MultilevelModule
           ),
       },
     ],

@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   public config: any = {};
   userImg: string;
   homePage: string;
+  profile: string;
   isNavbarCollapsed = true;
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -84,10 +85,13 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
     if (userRole === 'Admin') {
       this.homePage = 'admin/dashboard/main';
+      this.profile = 'admin/profile'
     } else if (userRole === 'Patient') {
       this.homePage = 'patient/dashboard';
+      this.profile = 'patient/profile'
     } else if (userRole === 'User') {
-      this.homePage = 'doctor/dashboard';
+      this.homePage = 'user/dashboard';
+      this.profile = 'user/patient'
     } else {
       this.homePage = 'admin/dashboard/main';
     }

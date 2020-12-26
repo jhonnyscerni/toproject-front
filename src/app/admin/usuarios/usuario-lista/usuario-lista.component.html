@@ -1,0 +1,153 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <ul class="breadcrumb breadcrumb-style ">
+                        <li class="breadcrumb-item">
+                            <h4 class="page-title">Usuários</h4>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-1">
+                            <a routerLink="/admin/dashboard/main">
+                                <i class="fas fa-home"></i> Home</a>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-2">
+                            <a href="#" onClick="return false;">usuários</a>
+                        </li>
+                        <li class="breadcrumb-item active">lista</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add content here -->
+
+        <!-- Basic Table -->
+
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <!---->
+                    <div class="header">
+                        <h2>
+                            <strong></strong>Filtro de Pesquisa</h2>
+                    </div>
+                    <!-- inicio da Row -->
+                    <div class=" card-body">
+                        <form novalidate [formGroup]="searchForm">
+                            <div class=" row">
+
+                                <div class=" col-md-5">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>Nome</mat-label>
+                                        <input matInput formControlName="nomeControl">
+                                        <mat-icon matSuffix>face</mat-icon>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class=" col-sm-12 col-md-5">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>Email</mat-label>
+                                        <input matInput formControlName="emailControl">
+                                        <mat-icon matSuffix>email</mat-icon>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-md-2 text-center">
+                                    <div>
+                                        <button class="btn btn-success form-control pesquisa"
+                                            (click)="onSearch()">Pesquisar</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2 style="width: 100%; padding-top: 10px">
+                            <strong></strong>Lista de Usuários
+                        </h2>
+                        <div style="float:right">
+                            <button mat-mini-fab color="primary">
+                                <mat-icon class="col-white" routerLink="/admin/usuarios/adicionar">add</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="body table-responsive">
+                        <!--(usuarios$ | async) as usuarios; else loadingError-->
+                        <table class="table" *ngIf="usuarios; else loadingError">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>NOME</th>
+                                    <th>EMAIL</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    *ngFor="let usuario of usuarios | paginate: { itemsPerPage: size,
+                                                                                                    currentPage: page,
+                                                                                                    totalItems: totalElements }">
+                                    <td><span class=" text-muted"> {{ usuario?.id }}</span></td>
+                                    <td><span class=" text-muted"> {{ usuario?.nome }}</span></td>
+                                    <td><span class=" text-muted"> {{ usuario.email }} </span>
+                                    </td>
+                                    <td class=" table-actions">
+                                        <!-- <button mat-icon-button color="accent" class="btn-tbl-edit"
+                                            (click)="onEdit(usuario.id)">
+                                            <mat-icon aria-label="Edit" class="col-white">editar</mat-icon>
+                                        </button>
+                                        <button mat-icon-button color="accent" class="btn-tbl-delete"
+                                            (click)="onDelete(usuario)">
+                                            <mat-icon aria-label="Delete" class="col-white">delete</mat-icon>
+                                        </button> -->
+                                        <a class="table-action" tooltip="Editar usuario" placement="top"
+                                            href="javascript:void(0)" (click)="onEdit(usuario.id)">
+                                            <i class=" fas fa-user-edit"> </i>
+                                        </a>
+                                        <a class=" table-action table-action-delete" tooltip="Deletar usuario"
+                                            placement="top" href="javascript:void(0)" (click)="onDelete(usuario)">
+                                            <i class=" fas fa-trash"> </i>
+                                        </a>
+                                        <a class="table-action" tooltip="Detalhes usuario" placement="top"
+                                            href="javascript:void(0)" (click)="onDetalhe(usuario.id)">
+                                            <i class="fas fa-cogs"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <ng-template #loadingError>
+                            <div *ngIf="error$ | async; else loading">
+                                Erro ao carregar usuarios. Tente novamente mais tarde.
+                            </div>
+                            <ng-template #loading>
+                                <div class=" card-body">
+                                    <div class=" row py-3 align-items-center">
+                                        <div class=" col-sm-9">
+                                            <h4 class=" mb-0">Carregando Usuarios...</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </ng-template>
+                    </div>
+                    <div class="py-4 text-center ngx-pagination">
+                        <pagination-controls previousLabel="Anterior" nextLabel="Próximo" responsive="true"
+                            (pageChange)="handlePageChange($event)">
+                        </pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Fim content here-->
+    </div>
+</section>

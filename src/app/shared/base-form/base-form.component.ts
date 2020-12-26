@@ -12,6 +12,8 @@ export abstract class BaseFormComponent implements OnInit {
 
   errors: any[] = [];
 
+  error = "";
+
   mudancasNaoSalvas: boolean;
 
   constructor() { }

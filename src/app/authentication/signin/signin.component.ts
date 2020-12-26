@@ -13,9 +13,7 @@ import { Usuario } from 'src/app/models/usuario';
 })
 export class SigninComponent extends BaseFormComponent implements OnInit {
   submitted = false;
-  error = "";
   hide = true;
-
   usuario: Usuario;
 
   constructor(
@@ -52,7 +50,7 @@ export class SigninComponent extends BaseFormComponent implements OnInit {
   //             if (role === Role.All || role === Role.Admin) {
   //               this.router.navigate(["/admin/dashboard/main"]);
   //             } else if (role === Role.User) {
-  //               this.router.navigate(["/doctor/dashboard"]);
+  //               this.router.navigate(["/user/dashboard"]);
   //             } else if (role === Role.Patient) {
   //               this.router.navigate(["/patient/dashboard"]);
   //             } else {
@@ -88,7 +86,7 @@ export class SigninComponent extends BaseFormComponent implements OnInit {
             if (role === Role.All || role === Role.Admin) {
               this.router.navigate(["/admin/dashboard/main"]);
             } else if (role === Role.User) {
-              this.router.navigate(["/doctor/dashboard"]);
+              this.router.navigate(["/user/dashboard"]);
             } else if (role === Role.Patient) {
               this.router.navigate(["/patient/dashboard"]);
             } else {
@@ -96,9 +94,10 @@ export class SigninComponent extends BaseFormComponent implements OnInit {
             }
           }, errorResponse => {
             console.log(errorResponse);
-            this.error = errorResponse.error.error_description;
+            // this.error = errorResponse.error.error_description;
+            this.error = "Usuário inexistente ou não ativado ou senha inválida"
             this.toastr.error('Ocorreu um erro!', 'Opa :(')
-            this.errors = ['Usuário e/ou senha incorreto(s).']
+            // this.errors = ['Usuário e/ou senha incorreto(s).']
             this.submitted = false;
           })
 

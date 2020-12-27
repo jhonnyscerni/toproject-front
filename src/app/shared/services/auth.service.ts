@@ -64,7 +64,7 @@ export class AuthService extends BaseService {
   getGrupo() {
     const token = this.obterToken();
     if (token) {
-      const grupo = this.jwtHelper.decodeToken(token).grupo
+      const grupo = this.jwtHelper.decodeToken(token).tipo
       return grupo;
     }
     return null;

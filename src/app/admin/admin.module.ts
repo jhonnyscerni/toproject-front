@@ -1,3 +1,4 @@
+import { PacientesModule } from './pacientes/pacientes.module';
 import { GruposModule } from './grupos/grupos.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -22,6 +23,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ProfissionaisModule } from './profissionais/profissionais.module';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 
     UsuariosModule,
     GruposModule,
+    PacientesModule,
+    ProfissionaisModule,
 
     // MAT
     MatTableModule,

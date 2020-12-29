@@ -1,7 +1,8 @@
 import { Cidade } from './cidade';
 import { Grupo } from './grupo';
+import { Profissional } from './profissional';
 
-export class Profissional {
+export class Paciente {
     id?: number;
     nome?: string;
     email?: string;

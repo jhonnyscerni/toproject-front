@@ -28,9 +28,22 @@ export const ROUTES: RouteInfo[] = [
     submenu: [],
   },
   {
-    path: '/admin/usuarios',
-    title: 'Usuários',
-    moduleName: 'user',
+    path: '/admin/profissionais',
+    title: 'Profissionais',
+    moduleName: 'profissionais',
+    iconType: 'material-icons-two-tone',
+    icon: 'supervised_user_circle',
+    class: '',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    role: ['Admin'],
+    submenu: [],
+  },
+  {
+    path: '/admin/pacientes',
+    title: 'Pacientes',
+    moduleName: 'pacientes',
     iconType: 'material-icons-two-tone',
     icon: 'face',
     class: '',
@@ -40,7 +53,6 @@ export const ROUTES: RouteInfo[] = [
     role: ['Admin'],
     submenu: [],
   },
-
   {
     path: '/admin/grupos',
     title: 'Grupos',

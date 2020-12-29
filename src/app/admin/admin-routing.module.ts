@@ -14,6 +14,16 @@ const routes: Routes = [
       import('./usuarios/usuarios.module').then((m) => m.UsuariosModule),
   },
   {
+    path: 'profissionais',
+    loadChildren: () =>
+      import('./profissionais/profissionais.module').then((m) => m.ProfissionaisModule),
+  },
+  {
+    path: 'pacientes',
+    loadChildren: () =>
+      import('./pacientes/pacientes.module').then((m) => m.PacientesModule),
+  },
+  {
     path: 'grupos',
     loadChildren: () =>
       import('./grupos/grupos.module').then((m) => m.GruposModule),

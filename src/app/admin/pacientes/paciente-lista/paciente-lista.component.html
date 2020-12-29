@@ -1,0 +1,144 @@
+<section class="content">
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <ul class="breadcrumb breadcrumb-style ">
+                        <li class="breadcrumb-item">
+                            <h4 class="page-title">Pacientes</h4>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-1">
+                            <a routerLink="/admin/dashboard/main">
+                                <i class="fas fa-home"></i> Home</a>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-2">
+                            <a href="#" onClick="return false;">Pacientes</a>
+                        </li>
+                        <li class="breadcrumb-item active">Lista</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add content here -->
+
+        <!-- Basic Table -->
+
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <!---->
+                    <div class="header">
+                        <h2>
+                            <strong></strong>Filtro de Pesquisa</h2>
+                    </div>
+                    <!-- inicio da Row -->
+                    <div class=" card-body">
+                        <form novalidate [formGroup]="searchForm">
+                            <div class=" row">
+
+                                <div class=" col-md-5">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>Nome</mat-label>
+                                        <input matInput formControlName="nomeControl">
+                                        <mat-icon matSuffix>face</mat-icon>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class=" col-sm-12 col-md-5">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>Email</mat-label>
+                                        <input matInput formControlName="emailControl">
+                                        <mat-icon matSuffix>email</mat-icon>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-md-2 text-center">
+                                    <div>
+                                        <button class="btn btn-success form-control pesquisa"
+                                            (click)="onSearch()">Pesquisar</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2 style="width: 100%; padding-top: 10px">
+                            <strong></strong>Lista de Pacientes
+                        </h2>
+                        <div style="float:right">
+                            <!-- <button mat-mini-fab color="primary">
+                                <mat-icon class="col-white" routerLink="/admin/pacientes/adicionar">add</mat-icon>
+                            </button> -->
+                        </div>
+                    </div>
+                    <div class="body table-responsive">
+                        <table class="table" *ngIf="pacientes; else loadingError">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>NOME</th>
+                                    <th>EMAIL</th>
+                                    <!-- <th></th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    *ngFor="let paciente of pacientes | paginate: { itemsPerPage: size,
+                                                                                                    currentPage: page,
+                                                                                                    totalItems: totalElements }">
+                                    <td><span class=" text-muted"> {{ paciente?.id }}</span></td>
+                                    <td><span class=" text-muted"> {{ paciente?.nome }}</span></td>
+                                    <td><span class=" text-muted"> {{ paciente.email }} </span>
+                                    </td>
+                                    <!-- <td class=" table-actions">
+                                        <a class="table-action" tooltip="Editar paciente" placement="top"
+                                            href="javascript:void(0)" (click)="onEdit(paciente.id)">
+                                            <i class=" fas fa-user-edit"> </i>
+                                        </a>
+                                        <a class=" table-action table-action-delete" tooltip="Deletar paciente"
+                                            placement="top" href="javascript:void(0)" (click)="onDelete(paciente)">
+                                            <i class=" fas fa-trash"> </i>
+                                        </a>
+                                        <a class="table-action" tooltip="Detalhes paciente" placement="top"
+                                            href="javascript:void(0)" (click)="onDetalhe(paciente.id)">
+                                            <i class="fas fa-cogs"></i>
+                                        </a>
+                                    </td> -->
+                                </tr>
+                            </tbody>
+                        </table>
+                        <ng-template #loadingError>
+                            <div *ngIf="error$ | async; else loading">
+                                Erro ao carregar pacientes. Tente novamente mais tarde.
+                            </div>
+                            <ng-template #loading>
+                                <div class=" card-body">
+                                    <div class=" row py-3 align-items-center">
+                                        <div class=" col-sm-9">
+                                            <h4 class=" mb-0">Carregando Pacientes...</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </ng-template>
+                    </div>
+                    <div class="py-4 text-center ngx-pagination">
+                        <pagination-controls previousLabel="Anterior" nextLabel="Próximo" responsive="true"
+                            (pageChange)="handlePageChange($event)">
+                        </pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Fim content here-->
+    </div>
+</section>

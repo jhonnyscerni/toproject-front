@@ -58,6 +58,7 @@ import { ProfissionaisModule } from './profissionais/profissionais.module';
     MatDatepickerModule,
     MatTabsModule,
     MatCheckboxModule,
+    MatFormFieldModule
   ],
 })
 export class AdminModule {}

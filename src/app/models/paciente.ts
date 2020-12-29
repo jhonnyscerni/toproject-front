@@ -22,5 +22,5 @@ export class Paciente {
     nomeMae?: string;
     nomePai?: string;
     cpfResponsavel?: string;
-    profissional?: Profissional;
+    idPaciente?: number;
 }

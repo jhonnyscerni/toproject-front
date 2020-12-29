@@ -7,11 +7,11 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
   },
-  // {
-  //   path: 'pacientes',
-  //   loadChildren: () =>
-  //     import('./pacientes/pacientes.module').then((m) => m.PacientesModule),
-  // },
+  {
+    path: 'pacientes',
+    loadChildren: () =>
+      import('./profissional-pacientes/profissional-pacientes.module').then((m) => m.ProfissionalPacientesModule),
+  },
   { path: '**', component: Page404Component },
 ];
 

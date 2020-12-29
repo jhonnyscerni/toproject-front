@@ -83,6 +83,20 @@ export const ROUTES: RouteInfo[] = [
     role: ['User'],
     submenu: [],
   },
+  {
+    path: '/user/pacientes',
+    title: 'Pacientes',
+    moduleName: 'pacientes',
+    iconType: 'material-icons-two-tone',
+    icon: 'face',
+    class: '',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    role: ['User'],
+    submenu: [],
+  },
+
 
   // Patient Modules
   {

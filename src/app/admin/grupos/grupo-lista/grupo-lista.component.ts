@@ -39,11 +39,11 @@ export class GrupoListaComponent implements OnInit {
   }
 
   onEdit(id) {
-    this.router.navigate(['/grupos/editar', id], { relativeTo: this.route });
+    this.router.navigate(['/admin/grupos/editar', id], { relativeTo: this.route });
   }
 
   onDetalhe(id) {
-    this.router.navigate(['/grupos/detalhe', id], { relativeTo: this.route });
+    this.router.navigate(['/admin/grupos/detalhe', id], { relativeTo: this.route });
   }
 
 

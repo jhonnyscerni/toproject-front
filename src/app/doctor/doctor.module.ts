@@ -1,3 +1,4 @@
+import { PacientesModule } from './pacientes/pacientes.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
@@ -53,6 +54,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MatTooltipModule,
     MatRadioModule,
     DragDropModule,
+    
+    PacientesModule
   ],
 })
 export class UserModule {}

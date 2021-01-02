@@ -1,14 +1,19 @@
 import { Paciente } from './../../../models/paciente';
 import { Component, OnInit } from '@angular/core';
 import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
-import { Grupo } from 'src/app/models/grupo';
-import { GrupoService } from 'src/app/services/grupo.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PacienteService } from 'src/app/services/paciente.service';
-import { AlertModalService } from 'src/app/shared/services/alert-modal.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Location } from '@angular/common';
+import { NgBrazilValidators } from 'ng-brazil';
+import { StringUtils } from 'src/app/shared/utils/string-utils';
+import { CepConsulta } from 'src/app/models/endereco';
+import { Estado } from 'src/app/models/estado';
+import { Cidade } from 'src/app/models/cidade';
+import { ConsultaCepService } from 'src/app/shared/services/consulta-cep.service';
+import { CidadeService } from 'src/app/services/cidade.service';
+import { EstadoService } from 'src/app/services/estado.service';
 
 @Component({
   selector: 'app-profissional-paciente-form',
@@ -17,28 +22,33 @@ import { Location } from '@angular/common';
 })
 export class ProfissionalPacienteFormComponent extends BaseFormComponent implements OnInit {
 
+  cidade: Cidade;
+  estado: Estado;
   paciente: Paciente;
   idPaciente: number;
   validarEmail: any;
   hide = true;
+  estados: Estado[];
+  cidades: Cidade[];
 
   // grupos: Grupo[];
 
   constructor(
     private fb: FormBuilder,
-    private alertService: AlertModalService,
     private location: Location,
     private route: ActivatedRoute,
     private pacienteService: PacienteService,
     private router: Router,
-    private grupoService: GrupoService,
     private toastr: ToastrService,
+    private consultaCepService: ConsultaCepService,
+    private cidadeService: CidadeService,
+    private estadoService: EstadoService
   ) {
     super();
   }
 
   ngOnInit() {
-    // this.carregarGrupos();
+    this.carregarEstados();
     this.route.params.subscribe((params: any) => {
       const idPaciente = params['idPaciente'];
       if (idPaciente) {
@@ -62,8 +72,25 @@ export class ProfissionalPacienteFormComponent extends BaseFormComponent impleme
       ],
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required]],
+
+      logradouro: ['', [Validators.required]],
+      numero: ['', [Validators.required]],
+      complemento: [''],
+      bairro: ['', [Validators.required]],
+      cep: ['', [Validators.required, NgBrazilValidators.cep]],
+      cidade: this.fb.group({
+        id: ['', Validators.required],
+        estado: this.fb.group({
+          id: ['', Validators.required],
+        }),
+      }),
       // grupos: [''],
     });
+  }
+
+  carregarEstados() {
+    return this.estadoService.list()
+      .subscribe(estados => this.estados = estados);
   }
 
   updateForm(paciente) {
@@ -72,8 +99,59 @@ export class ProfissionalPacienteFormComponent extends BaseFormComponent impleme
       nome: paciente.nome,
       email: paciente.email,
       senha: paciente.senha,
+      logradouro: paciente.logradouro,
+      numero: paciente.numero,
+      complemento: paciente.complemento,
+      bairro: paciente.bairro,
+      cep: paciente.cep,
+      cidade: {
+        id: paciente.cidade.id,
+        estado: {
+          id: paciente.cidade.estado.id,
+        },
+      },
       // grupos: paciente.grupos
     });
+  }
+
+  buscarCidadesEstado(estado: any) {
+    return this.cidadeService.loadByEstadoId(estado)
+      .subscribe(cidades => this.cidades = cidades);
+  }
+
+  buscarCep(cep: string) {
+
+    cep = StringUtils.somenteNumeros(cep);
+    if (cep.length < 8) return;
+
+    this.consultaCepService.consultarCep(cep)
+      .subscribe(
+        cepRetorno => this.preencherEnderecoConsulta(cepRetorno),
+        erro => this.errors.push(erro));
+  }
+
+  preencherEnderecoConsulta(cepConsulta: CepConsulta) {
+    this.cidadeService.loadByNomeESiglaEstado(cepConsulta.localidade, cepConsulta.uf)
+      .subscribe(cidade => {
+        this.cidade = cidade
+        this.cidades = []
+
+        console.log(this.cidade)
+        console.log(this.cidades)
+        this.cidades.push(this.cidade)
+
+        this.cadastroForm.patchValue({
+          logradouro: cepConsulta.logradouro,
+          bairro: cepConsulta.bairro,
+          cep: cepConsulta.cep,
+          cidade: {
+            id: this.cidade.id,
+            estado: {
+              id: this.cidade.estado.id,
+            },
+          }
+        });
+      });
   }
 
   submit() {
@@ -91,16 +169,16 @@ export class ProfissionalPacienteFormComponent extends BaseFormComponent impleme
       success => {
         //this.alertService.showAlertSuccess(msgSuccess);
         this.toastr.success(msgSuccess, 'Informação :)')
-        
+
         this.location.back();
       },
-      error => 
-      //this.alertService.showAlertDanger(msgError),
-      this.toastr.error(msgError, 'Opa :(')  
+      error =>
+        //this.alertService.showAlertDanger(msgError),
+        this.toastr.error(msgError, 'Opa :(')
     );
   }
 
-  cancelar(){
+  cancelar() {
     this.router.navigate(['/user/pacientes/lista'], { relativeTo: this.route });
   }
 
@@ -111,7 +189,7 @@ export class ProfissionalPacienteFormComponent extends BaseFormComponent impleme
 
   compareFn(compared1: { id: number }, compared2: { id: number }) {
     return compared1 && compared2 ? compared1.id === compared2.id : compared1 === compared2;
-}
+  }
 
 
 }

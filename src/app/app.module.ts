@@ -26,6 +26,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { ErrorInterceptor } from './shared/services/interceptors/error.handler.service';
 import { ModalModule } from 'ngx-bootstrap';
 
+import { TextMaskModule } from 'angular2-text-mask';
+import { NgBrazil } from 'ng-brazil'
+import { CustomFormsModule } from 'ng2-validation'
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
   wheelPropagation: false,
@@ -60,6 +64,11 @@ export const httpInterceptorProviders = [
     CoreModule,
     SharedModule,
     ModalModule.forRoot(),
+
+    // Validation
+    TextMaskModule,
+    NgBrazil,
+    CustomFormsModule
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

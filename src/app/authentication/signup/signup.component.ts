@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertModalService } from 'src/app/shared/services/alert-modal.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { ToastrService } from 'ngx-toastr';
 import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
 import { Location } from '@angular/common';
 import { ProfissionalService } from 'src/app/services/profissional.service';
+import { CustomValidators } from 'ng2-validation';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -27,6 +28,10 @@ export class SignupComponent extends BaseFormComponent implements OnInit {
     super();
   }
   ngOnInit() {
+
+    let senha = new FormControl('', [Validators.required, CustomValidators.rangeLength([6, 15])]);
+    let senhaConfirm = new FormControl('', [Validators.required, CustomValidators.rangeLength([6, 15]), CustomValidators.equalTo(senha)]);
+
     this.cadastroForm = this.fb.group({
       id: [''],
       nome: [
@@ -38,7 +43,10 @@ export class SignupComponent extends BaseFormComponent implements OnInit {
         ],
       ],
       email: ['', [Validators.required, Validators.email]],
-      senha: ['', [Validators.required]]
+      senha: ['', [Validators.required]],
+
+      // senha: senha,
+      // confirmPassword: senhaConfirm
     });
     // get return url from route parameters or default to '/'
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -66,9 +74,9 @@ export class SignupComponent extends BaseFormComponent implements OnInit {
         this.toastr.success('OBRIGADO! Enviamos um e-mail para você ativar sua conta. Caso o email não esteja na caixa de entrada, verifique sua caixa de spam/lixo eletrônico.!', 'Cadastro Realizado com Sucesso!')
         this.location.back();
       },
-      error => 
+      error =>
       //this.alertService.showAlertDanger(msgError),
-      this.toastr.error('Ocorreu um erro!', 'Opa :(')  
+      this.toastr.error('Ocorreu um erro!', 'Opa :(')
     );
   }
 }

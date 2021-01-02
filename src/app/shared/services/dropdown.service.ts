@@ -9,11 +9,11 @@ export class DropdownService {
   constructor(private http: HttpClient) {}
 
   getEstadosBr() {
-    return this.http.get<Estado[]>('assets/dados/estadosbr.json');
+    return this.http.get<Estado[]>('assets/data/estadosbr.json');
   }
 
   getCidadesBr() {
-    return this.http.get<Estado[]>('assets/dados/cidades.json');
+    return this.http.get<Estado[]>('assets/data/cidades.json');
   }
 
   getCidades(idEstado: number) {

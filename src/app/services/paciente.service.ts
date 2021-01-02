@@ -7,6 +7,7 @@ import { Page } from '../models/page/page';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Paciente } from '../models/paciente';
+import { CepConsulta } from '../models/endereco';
 
 @Injectable({
   providedIn: 'root'

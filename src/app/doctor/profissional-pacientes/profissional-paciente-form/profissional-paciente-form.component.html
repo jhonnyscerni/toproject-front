@@ -147,37 +147,28 @@
                   </div>
                 </div>
 
-              </div>
-              <div class=" row">
                 <div class="col-md-6" style="padding: 0" formGroupName="cidade">
                   <div class=" col-md-6" style="float: left" formGroupName="estado">
-                    <div class=" form-group">
-                      <label class=" form-control-label" for="estado">
-                  Estado
-                </label>
-
-                      <select class="form-control" id="estado" placeholder="Estado" formControlName="id"
-                  [ngClass]="{'is-invalid':verificaValidTouched('cidade.estado.id') }" (blur)="buscarCidadesEstado($event.target.value)">
-                        <option *ngFor="let estado of estados" [value]="estado.id">{{ estado.nome }}</option>
-                      </select>
-                      <app-error-msg [control]="cadastroForm.get('cidade.estado.id')" label="Estado"></app-error-msg>
-                    </div>
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                      <mat-label>Estado</mat-label>
+                      <mat-select formControlName="id" (valueChange)="buscarCidadesEstado($event)">
+                        <mat-option *ngFor="let estado of estados" [value]="estado.id">{{ estado.nome }}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <app-error-msg [control]="cadastroForm.get('cidade.estado.id')" label="Estado"></app-error-msg>
                   </div>
                   <div class=" col-md-6" style="float: left">
-                    <div class=" form-group">
-                      <label class=" form-control-label" for="cidade">
-                  Cidade
-                </label>
+                    <mat-form-field class="example-full-width mb-3" appearance="outline">
+                      <mat-label>Cidade</mat-label>
 
-                      <select class="form-control" id="cidade" placeholder="Cidade" formControlName="id"
-                  [ngClass]="{'is-invalid':verificaValidTouched('cidade.id') }">
-                        <option *ngFor="let cidade of cidades" [value]="cidade.id">{{ cidade.nome }}</option>
-                      </select>
-
-                      <app-error-msg [control]="cadastroForm.get('cidade.id')" label="Cidade"></app-error-msg>
-                    </div>
+                      <mat-select formControlName="id" [compareWith]="compareFn">
+                        <mat-option *ngFor="let cidade of cidades" [value]="cidade.id">{{ cidade.nome }}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <app-error-msg [control]="cadastroForm.get('cidade.id')" label="Cidade"></app-error-msg>
                   </div>
                 </div>
+
               </div>
 
               <div class="form-group text-right">

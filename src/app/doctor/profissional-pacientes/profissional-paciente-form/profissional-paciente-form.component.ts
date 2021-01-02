@@ -79,6 +79,7 @@ export class ProfissionalPacienteFormComponent extends BaseFormComponent impleme
       bairro: ['', [Validators.required]],
       cep: ['', [Validators.required, NgBrazilValidators.cep]],
       cidade: this.fb.group({
+        nome: [''],
         id: ['', Validators.required],
         estado: this.fb.group({
           id: ['', Validators.required],
@@ -94,29 +95,48 @@ export class ProfissionalPacienteFormComponent extends BaseFormComponent impleme
   }
 
   updateForm(paciente) {
-    this.cadastroForm.patchValue({
-      id: paciente.id,
-      nome: paciente.nome,
-      email: paciente.email,
-      senha: paciente.senha,
-      logradouro: paciente.logradouro,
-      numero: paciente.numero,
-      complemento: paciente.complemento,
-      bairro: paciente.bairro,
-      cep: paciente.cep,
-      cidade: {
-        id: paciente.cidade.id,
-        estado: {
-          id: paciente.cidade.estado.id,
-        },
-      },
-      // grupos: paciente.grupos
-    });
+
+    this.cidadeService.loadByNomeESiglaEstado(paciente.cidade.nome, paciente.cidade.estado.sigla)
+      .subscribe(cidade => {
+        this.cidade = cidade
+        console.log(this.cidade)
+        this.cidades = []
+        this.cidades.push(this.cidade)
+
+        this.cadastroForm.patchValue({
+          id: paciente.id,
+          nome: paciente.nome,
+          email: paciente.email,
+          senha: paciente.senha,
+          logradouro: paciente.logradouro,
+          numero: paciente.numero,
+          complemento: paciente.complemento,
+          bairro: paciente.bairro,
+          cep: paciente.cep,
+          cidade: {
+            id: this.cidade.id,
+            estado: {
+              id: this.cidade.estado.id,
+            },
+          }
+        });
+      });
+
   }
 
   buscarCidadesEstado(estado: any) {
     return this.cidadeService.loadByEstadoId(estado)
-      .subscribe(cidades => this.cidades = cidades);
+      .subscribe(cidades => {
+        this.cidades = cidades
+        this.cadastroForm.patchValue({
+          cidade: {
+            id: this.cidades[0].id,
+            estado: {
+              id: this.cidades[0].estado.id,
+            },
+          }
+        });
+      });
   }
 
   buscarCep(cep: string) {
@@ -135,9 +155,6 @@ export class ProfissionalPacienteFormComponent extends BaseFormComponent impleme
       .subscribe(cidade => {
         this.cidade = cidade
         this.cidades = []
-
-        console.log(this.cidade)
-        console.log(this.cidades)
         this.cidades.push(this.cidade)
 
         this.cadastroForm.patchValue({

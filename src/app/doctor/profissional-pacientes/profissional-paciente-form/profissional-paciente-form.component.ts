@@ -17,10 +17,17 @@ import { EstadoService } from 'src/app/services/estado.service';
 
 import { utilsBr } from 'js-brasil';
 
+import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/utils/format-datepicker';
+import * as moment from 'moment';
 @Component({
   selector: 'app-profissional-paciente-form',
   templateUrl: './profissional-paciente-form.component.html',
-  styleUrls: ['./profissional-paciente-form.component.scss']
+  styleUrls: ['./profissional-paciente-form.component.scss'],
+  providers: [
+    { provide: DateAdapter, useClass: AppDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
+  ]
 })
 export class ProfissionalPacienteFormComponent extends BaseFormComponent implements OnInit {
 
@@ -109,7 +116,8 @@ export class ProfissionalPacienteFormComponent extends BaseFormComponent impleme
         this.cidade = cidade
         this.cidades = []
         this.cidades.push(this.cidade)
-
+        //2021-01-27T03:00:00.000Z
+        paciente.dtNascimento = moment().format("YYYY-MM-DDTHH:MM:SS.000Z")
         console.log(paciente)
         this.cadastroForm.patchValue({
           id: paciente.id,

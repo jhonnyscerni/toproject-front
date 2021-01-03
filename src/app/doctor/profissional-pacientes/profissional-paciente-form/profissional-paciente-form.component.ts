@@ -19,7 +19,6 @@ import { utilsBr } from 'js-brasil';
 
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/utils/format-datepicker';
-import * as moment from 'moment';
 @Component({
   selector: 'app-profissional-paciente-form',
   templateUrl: './profissional-paciente-form.component.html',
@@ -117,7 +116,6 @@ export class ProfissionalPacienteFormComponent extends BaseFormComponent impleme
         this.cidades = []
         this.cidades.push(this.cidade)
         //2021-01-27T03:00:00.000Z
-        paciente.dtNascimento = moment().format("YYYY-MM-DDTHH:MM:SS.000Z")
         console.log(paciente)
         this.cadastroForm.patchValue({
           id: paciente.id,

@@ -20,7 +20,7 @@ import { utilsBr } from 'js-brasil';
 @Component({
   selector: 'app-profissional-paciente-form',
   templateUrl: './profissional-paciente-form.component.html',
-  styleUrls: ['./profissional-paciente-form.component.sass']
+  styleUrls: ['./profissional-paciente-form.component.scss']
 })
 export class ProfissionalPacienteFormComponent extends BaseFormComponent implements OnInit {
 
@@ -76,7 +76,11 @@ export class ProfissionalPacienteFormComponent extends BaseFormComponent impleme
       ],
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required]],
+      sexo: ['', [Validators.required]],
       cpf: ['', [Validators.required, NgBrazilValidators.cpf]],
+      telefone: [''],
+      celular: ['', [Validators.required]],
+      dtNascimento: ['', [Validators.required]],
 
       logradouro: ['', [Validators.required]],
       numero: ['', [Validators.required]],
@@ -84,7 +88,6 @@ export class ProfissionalPacienteFormComponent extends BaseFormComponent impleme
       bairro: ['', [Validators.required]],
       cep: ['', [Validators.required, NgBrazilValidators.cep]],
       cidade: this.fb.group({
-        nome: [''],
         id: ['', Validators.required],
         estado: this.fb.group({
           id: ['', Validators.required],
@@ -104,15 +107,20 @@ export class ProfissionalPacienteFormComponent extends BaseFormComponent impleme
     this.cidadeService.loadByNomeESiglaEstado(paciente.cidade.nome, paciente.cidade.estado.sigla)
       .subscribe(cidade => {
         this.cidade = cidade
-        console.log(this.cidade)
         this.cidades = []
         this.cidades.push(this.cidade)
 
+        console.log(paciente)
         this.cadastroForm.patchValue({
           id: paciente.id,
           nome: paciente.nome,
           email: paciente.email,
           senha: paciente.senha,
+          cpf: paciente.cpf,
+          sexo: paciente.sexo,
+          telefone: paciente.telefone,
+          celular: paciente.celular,
+          dtNascimento: paciente.dtNascimento,
           logradouro: paciente.logradouro,
           numero: paciente.numero,
           complemento: paciente.complemento,

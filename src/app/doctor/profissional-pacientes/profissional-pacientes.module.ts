@@ -12,6 +12,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { profissionalPacientesRoutes } from './profissional-pacientes.routing';
+import { NgBrazil } from 'ng-brazil';
+import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
   imports: [
@@ -28,8 +30,10 @@ import { profissionalPacientesRoutes } from './profissional-pacientes.routing';
     SharedModule,
 
     MatSelectModule,
-    
-    MatFormFieldModule
+
+    MatFormFieldModule,
+    NgBrazil,
+    TextMaskModule,
   ],
   declarations: [ProfissionalPacientesComponent, ProfissionalPacienteListaComponent, ProfissionalPacienteFormComponent],
   exports: [ProfissionalPacientesComponent, ProfissionalPacienteListaComponent, ProfissionalPacienteFormComponent]

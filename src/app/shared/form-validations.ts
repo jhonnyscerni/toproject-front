@@ -24,7 +24,7 @@ export class FormValidations {
     const cep = control.value;
     if (cep && cep !== '') {
       const validacep = /^[0-9]{8}$/;
-      return validacep.test(cep) ? null : { cepInvalido : true };
+      return validacep.test(cep) ? null : { cepInvalido: true };
     }
     return null;
   }
@@ -46,7 +46,7 @@ export class FormValidations {
       }
 
       if (field.value !== formControl.value) {
-        return { equalsTo : otherField };
+        return { equalsTo: otherField };
       }
 
       return null;
@@ -63,7 +63,9 @@ export class FormValidations {
       'cepInvalido': 'CEP inválido.',
       'emailInvalido': 'Email já cadastrado!',
       'equalsTo': 'Campos não são iguais',
-      'pattern': 'Campo inválido'
+      'pattern': 'Campo inválido',
+      'cpf': 'CPF inválido',
+      'cep': 'CEP inválido.',
     };
 
     return config[validatorName];

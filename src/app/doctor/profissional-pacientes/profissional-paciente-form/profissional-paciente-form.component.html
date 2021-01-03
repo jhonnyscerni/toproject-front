@@ -71,7 +71,6 @@
                     <app-error-msg [control]="cadastroForm.get('senha')" label="Senha"></app-error-msg>
                   </div>
                 </div>
-
                 <!-- <div class=" col-md-6">
                   <div class="form-group">
                     <mat-form-field class="example-full-width" appearance="outline">
@@ -86,16 +85,28 @@
                   </div>
                 </div> -->
               </div>
+
+              <div class=" row">
+                <div class=" col-md-6">
+                  <div class=" form-group">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                      <mat-label>Cpf</mat-label>
+                      <input type="text" matInput formControlName="cpf" [textMask]="{mask: MASKS.cpf.textMask}" required>
+                    </mat-form-field>
+                    <app-error-msg [control]="cadastroForm.get('cpf')" label="CPF"></app-error-msg>
+                  </div>
+                </div>
+              </div>
               <!-- ENDERCO -->
               <div class=" row">
                 <div class=" col-md-6">
                   <div class=" form-group">
                     <mat-form-field class="example-full-width" appearance="outline">
                       <mat-label>Cep</mat-label>
-                      <input matInput formControlName="cep" [ngClass]="{'is-invalid':verificaValidTouched('cep') }" (blur)="buscarCep($event.target.value)" required>
+                      <input type="text" matInput formControlName="cep" [textMask]="{mask: MASKS.cep.textMask}" [ngClass]="{'is-invalid':verificaValidTouched('cep') }" (blur)="buscarCep($event.target.value)" required>
                       <!-- <mat-icon matSuffix>face</mat-icon> -->
                     </mat-form-field>
-                    <app-error-msg [control]="cadastroForm.get('cep')" label="Cep"></app-error-msg>
+                    <app-error-msg [control]="cadastroForm.get('cep')" label="CEP"></app-error-msg>
                   </div>
                 </div>
 

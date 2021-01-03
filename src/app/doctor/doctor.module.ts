@@ -52,7 +52,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MatInputModule,
     MatTooltipModule,
     MatRadioModule,
-    DragDropModule
+    DragDropModule,
   ],
 })
-export class UserModule {}
+export class UserModule { }

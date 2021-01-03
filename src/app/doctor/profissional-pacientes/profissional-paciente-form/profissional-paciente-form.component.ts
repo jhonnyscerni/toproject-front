@@ -15,6 +15,8 @@ import { ConsultaCepService } from 'src/app/shared/services/consulta-cep.service
 import { CidadeService } from 'src/app/services/cidade.service';
 import { EstadoService } from 'src/app/services/estado.service';
 
+import { utilsBr } from 'js-brasil';
+
 @Component({
   selector: 'app-profissional-paciente-form',
   templateUrl: './profissional-paciente-form.component.html',
@@ -32,6 +34,8 @@ export class ProfissionalPacienteFormComponent extends BaseFormComponent impleme
   cidades: Cidade[];
 
   // grupos: Grupo[];
+
+  MASKS = utilsBr.MASKS;
 
   constructor(
     private fb: FormBuilder,
@@ -72,6 +76,7 @@ export class ProfissionalPacienteFormComponent extends BaseFormComponent impleme
       ],
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required]],
+      cpf: ['', [Validators.required, NgBrazilValidators.cpf]],
 
       logradouro: ['', [Validators.required]],
       numero: ['', [Validators.required]],

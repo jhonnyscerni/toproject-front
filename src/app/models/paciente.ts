@@ -22,4 +22,5 @@ export class Paciente {
   nomePai?: string;
   cpfResponsavel?: string;
   idPaciente?: number;
+  ativado?: boolean
 }

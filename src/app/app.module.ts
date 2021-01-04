@@ -1,5 +1,5 @@
 import { TokenInterceptor } from './shared/services/interceptors/token.interceptor';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
@@ -39,6 +39,10 @@ export const httpInterceptorProviders = [
   { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
 ];
 
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+registerLocaleData(localePt)
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,7 +80,8 @@ export const httpInterceptorProviders = [
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
     },
-    httpInterceptorProviders
+    httpInterceptorProviders,
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
     // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     // fakeBackendProvider,
@@ -84,4 +89,4 @@ export const httpInterceptorProviders = [
   entryComponents: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

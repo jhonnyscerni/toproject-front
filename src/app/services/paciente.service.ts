@@ -27,4 +27,11 @@ export class PacienteService extends CrudService<Paciente> {
         catchError(super.serviceError));
   }
 
+  listSearchList(params): Observable<Paciente[]> {
+    console.log(params)
+    return this.http.get<Paciente[]>(this.url + "/lista", { params })
+      .pipe(
+        catchError(super.serviceError));
+  }
+
 }

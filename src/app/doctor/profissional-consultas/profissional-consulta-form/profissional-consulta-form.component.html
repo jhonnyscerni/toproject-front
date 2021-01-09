@@ -1,3 +1,149 @@
-<p>
-  profissional-consulta-form works!
-</p>
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <ul class="breadcrumb breadcrumb-style">
+            <li class="breadcrumb-item">
+              <h4 class="page-title">Criar Consulta</h4>
+            </li>
+            <li class="breadcrumb-item bcrumb-1">
+              <a routerLink="/admin/dashboard/main">
+                <i class="fas fa-home"></i> Home</a>
+            </li>
+            <li class="breadcrumb-item bcrumb-2">
+              <a href="#" onClick="return false;">Consultas</a>
+            </li>
+            <li class="breadcrumb-item active">Criar Consulta</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="card">
+          <div class="header">
+            <h2>
+              <strong></strong> Criar Consulta
+            </h2>
+          </div>
+          <div class="body">
+
+            <!-- Add content here -->
+            <form novalidate [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Procedimento</mat-label>
+                    <mat-select formControlName="procedimentoEnum">
+                      <mat-option *ngFor="let procedimento of keys(procedimentoEnum)" [value]="procedimento">
+                        {{procedimentoEnum[procedimento]}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-icon matSuffix>flag</mat-icon>
+                  </mat-form-field>
+                  <!-- <app-error-msg [control]="cadastroForm.get('procedimentoEnum')" label="Procedimento"></app-error-msg> -->
+                </div>
+
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Status</mat-label>
+                    <mat-select formControlName="statusConsultaEnum">
+                      <mat-option *ngFor="let status of keys(statusConsultaEnum)" [value]="status">
+                        {{statusConsultaEnum[status]}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-icon matSuffix>flag</mat-icon>
+                  </mat-form-field>
+                  <!-- <app-error-msg [control]="cadastroForm.get('statusConsultaEnum')" label="status"></app-error-msg> -->
+                </div>
+              </div>
+
+              <div class=" row">
+                <div class=" col-md-6">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Local de Atendimento</mat-label>
+                    <input matInput formControlName="localDeAtendimento">
+                    <!-- <mat-icon matSuffix>face</mat-icon> -->
+                  </mat-form-field>
+                  <app-error-msg [control]="cadastroForm.get('localDeAtendimento')" label="Local de Atendimento"></app-error-msg>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Convenio</mat-label>
+                    <mat-select formControlName="convenioEnum">
+                      <mat-option *ngFor="let convenio of keys(convenioEnum)" [value]="convenio">
+                        {{convenioEnum[convenio]}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-icon matSuffix>flag</mat-icon>
+                  </mat-form-field>
+                  <!-- <app-error-msg [control]="cadastroForm.get('convenioEnum')" label="Convenio"></app-error-msg> -->
+                </div>
+
+                <div class="col-md-6" style="padding: 0" formGroupName="paciente">
+                  <div class="form-group">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                      <mat-label>Pacientes</mat-label>
+                      <mat-select formControlName="id" required [compareWith]="compareFn">
+                        <mat-option *ngFor="let paciente of pacientes" [value]="paciente.id">
+                          {{paciente.nome}}
+                        </mat-option>
+                      </mat-select>
+                      <mat-icon matSuffix>flag</mat-icon>
+                    </mat-form-field>
+                    <!-- <app-error-msg [control]="cadastroForm.get('paciente')" label="Paciente"></app-error-msg> -->
+                  </div>
+                </div>
+              </div>
+
+              <div class=" row">
+                <div class=" col-md-12">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Observações</mat-label>
+                    <input matInput formControlName="observacoes">
+                    <!-- <mat-icon matSuffix>face</mat-icon> -->
+                  </mat-form-field>
+                  <app-error-msg [control]="cadastroForm.get('observacoes')" label="Observações"></app-error-msg>
+                </div>
+              </div>
+              <div class="form-group text-right">
+                <span>
+                  <!-- [disabled]="!cadastroForm.valid" -->
+                  <button class="btn btn-success" id="registrar" [disabled]="!cadastroForm.valid"
+                    type="submit">Registrar
+                  </button>
+                </span>
+                <span>
+                  <button class="btn" id="cancelar" (click)="resetar()">Limpar
+                  </button>
+                </span>
+                <span>
+                  <!-- [disabled]="!cadastroForm.valid" -->
+                  <button class="btn" id="cancelar" (click)="cancelar()" type="submit">Cancelar
+                  </button>
+                </span>
+              </div>
+
+              <app-form-debug [form]="cadastroForm"></app-form-debug>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- <select>
+  <option *ngFor="let status of keys(statusConsultaEnum)" [ngValue]="statusConsultaEnum[status]">{{status}}</option>
+</select>
+
+<select>
+  <option *ngFor="let status of keys(statusConsultaEnum)" [ngValue]="status">{{statusConsultaEnum[status]}}</option>
+</select> -->

@@ -1,6 +1,7 @@
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { ProfissionalConsultaListaComponent } from './profissional-consulta-lista/profissional-consulta-lista.component';
 import { ProfissionalConsultaFormComponent } from './profissional-consulta-form/profissional-consulta-form.component';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProfissionalConsultasComponent } from './profissional-consultas.component';
 import { BsDropdownModule, ProgressbarModule, TooltipModule } from 'ngx-bootstrap';
@@ -34,8 +35,11 @@ import { TextMaskModule } from 'angular2-text-mask';
     MatFormFieldModule,
     NgBrazil,
     TextMaskModule,
+
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
   ],
   declarations: [ProfissionalConsultasComponent, ProfissionalConsultaFormComponent, ProfissionalConsultaListaComponent],
-  exports: [ProfissionalConsultasComponent, ProfissionalConsultaFormComponent, ProfissionalConsultaListaComponent]
+  exports: [ProfissionalConsultasComponent, ProfissionalConsultaFormComponent, ProfissionalConsultaListaComponent],
 })
 export class ProfissionalConsultasModule { }

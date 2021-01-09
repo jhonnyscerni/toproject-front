@@ -8,6 +8,9 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { switchMap, take } from 'rxjs/operators';
 import { EMPTY } from 'rxjs';
 
+import * as Moment from 'moment'; /*  biblioteca de formatação de data/hora */
+Moment.locale('pt-br');
+
 @Component({
   selector: 'app-profissional-consulta-lista',
   templateUrl: './profissional-consulta-lista.component.html',
@@ -124,5 +127,10 @@ export class ProfissionalConsultaListaComponent implements OnInit {
           }
         );
     }
+
+    public dateLayout(dt: any): String {
+      //return Moment(dt).format('dddd, DD [de] MMMM [de] YYYY [às] HH:mm:ss');
+      return Moment(dt).format('DD/MM/YYYY [às] HH:mm:ss');
+  }
 
 }

@@ -77,6 +77,11 @@
                           <thead>
                               <tr>
                                   <th>ID</th>
+                                  <th>Paciente</th>
+                                  <th>Data e Horario da Consulta</th>
+                                  <th>Procedimento</th>
+                                  <th>Local</th>
+                                  <th>Status</th>
                                   <th></th>
                               </tr>
                           </thead>
@@ -86,6 +91,11 @@
                                                                                                   currentPage: page,
                                                                                                   totalItems: totalElements }">
                                   <td><span class=" text-muted"> {{ consulta?.id }}</span></td>
+                                  <td><span class=" text-muted"> {{ consulta?.paciente.nome }}</span></td>
+                                  <td><span class=" text-muted"> {{ dateLayout(consulta?.dataHora) }}</span></td>
+                                  <td><span class=" text-muted"> {{ consulta?.procedimentoEnum }}</span></td>
+                                  <td><span class=" text-muted"> {{ consulta?.localDeAtendimento }}</span></td>
+                                  <td><span class=" text-muted"> {{ consulta?.statusConsultaEnum }}</span></td>
                                   <td class=" table-actions">
                                       <a class="table-action" tooltip="Editar consulta" placement="top"
                                           href="javascript:void(0)" (click)="onEdit(consulta.id)">

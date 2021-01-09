@@ -8,6 +8,11 @@ const routes: Routes = [
     component: DashboardComponent,
   },
   {
+    path: 'compromissos',
+    loadChildren: () =>
+      import('./calendar/calendar.module').then((m) => m.CalendarsModule),
+  },
+  {
     path: 'pacientes',
     loadChildren: () =>
       import('./profissional-pacientes/profissional-pacientes.module').then((m) => m.ProfissionalPacientesModule),

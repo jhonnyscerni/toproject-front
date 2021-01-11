@@ -44,11 +44,13 @@
               </div>
               <div class="col-md-10 col-sm-12">
                 <div class="panel-body">
-                  <full-calendar #calendar defaultView="dayGridMonth" [header]="{
+                  <full-calendar id="calendar" #calendar defaultView="dayGridMonth" [header]="{
                                         left: 'prev,next today',
                                         center: 'title',
                                         right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'  
                                       }" [plugins]="calendarPlugins" [weekends]="calendarWeekends"
+                                      [locales]="locales"
+                                      locale="pt-br"
                     (eventRender)="handleEventRender($event)" (eventClick)="eventClick($event)"
                     [events]="calendarEvents" (dateClick)="addNewEvent()">
                   </full-calendar>

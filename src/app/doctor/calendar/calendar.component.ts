@@ -14,6 +14,9 @@ import { FormDialogComponent } from './dialogs/form-dialog/form-dialog.component
 import { CalendarService } from './calendar.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+import esLocale from '@fullcalendar/core/locales/es';
+import ptLocale from '@fullcalendar/core/locales/pt';
+
 const d = new Date();
 const day = d.getDate();
 const month = d.getMonth();
@@ -26,11 +29,13 @@ const year = d.getFullYear();
 })
 export class CalendarComponent implements OnInit {
   @ViewChild('calendar', { static: false })
+  
   calendar: Calendar | null;
   public addCusForm: FormGroup;
   dialogTitle: string;
   filterOptions = "All";
   calendarData: any;
+  locales = [esLocale, ptLocale];
 
   public filters = [
     { name: 'all', value: 'All', checked: 'true' },
@@ -51,6 +56,28 @@ export class CalendarComponent implements OnInit {
   tempEvents: EventInput[];
   todaysEvents: EventInput[];
 
+  calendarOptions = {
+    locale: 'pt-br',
+    timeFormat: 'HH:mm',
+    editable: true,
+    eventLimit: false,
+    slotLabelFormat: 'HH:mm',
+    allDayText: '24 horas',
+    columnFormat: 'dddd',
+    header: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'month,agendaWeek,agendaDay,listMonth'
+    },
+    buttonText: {
+      today: 'Hoje',
+      month: 'Mês',
+      week: 'Semana',
+      day: 'Hoje',
+      list: 'Lista'
+    },
+  };
+  
   constructor(
     private fb: FormBuilder,
     private dialog: MatDialog,

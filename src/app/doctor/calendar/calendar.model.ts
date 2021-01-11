@@ -6,14 +6,15 @@ export class Calendar {
     startDate: string;
     endDate: string;
     details: string;
+    locale: "pt-br";
 
     constructor(calendar) {
         {
             this.id = calendar.id || this.getRandomID();
             this.title = calendar.title || '';
             this.category = calendar.category || '';
-            this.startDate = formatDate(new Date(), 'yyyy-MM-dd', 'en') || '';
-            this.endDate = formatDate(new Date(), 'yyyy-MM-dd', 'en') || '';
+            this.startDate = formatDate(new Date(), 'yyyy-MM-dd', 'pt') || '';
+            this.endDate = formatDate(new Date(), 'yyyy-MM-dd', 'pt') || '';
             this.details = calendar.details || '';
         }
     }

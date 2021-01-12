@@ -192,6 +192,7 @@ export class CalendarComponent extends BaseFormComponent implements OnInit {
     const calendarEvents = this.calendarEvents.slice();
     const singleEvent = Object.assign({}, calendarEvents[eventIndex]);
     singleEvent.id = calendarData.id;
+    
     // singleEvent.title = calendarData.title;
     // singleEvent.start = calendarData.startDate;
     // // singleEvent.end = calendarData.endDate;
@@ -218,24 +219,6 @@ export class CalendarComponent extends BaseFormComponent implements OnInit {
       horizontalPosition: placementAlign,
       panelClass: colorName,
     });
-  }
-
-
-  getClassNameValue(status) {
-    let className: string;
-
-    if (status === "CONFIRMADO")
-      className = "fc-event-success"
-    else if (status === "AGENDADO")
-      className = "fc-event-warning"
-    else if (status === "ESPERANDO")
-      className = "fc-event-primary"
-    else if (status === "CANCELADO")
-      className = "fc-event-danger"
-    else if (status === "REAGENDADO")
-      className = "fc-event-info"
-
-    return className;
   }
   
 }

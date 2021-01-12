@@ -26,7 +26,7 @@ import { EMPTY } from 'rxjs';
 @Component({
   selector: 'app-form-dialog',
   templateUrl: './form-dialog.component.html',
-  styleUrls: ['./form-dialog.component.sass']
+  styleUrls: ['./form-dialog.component.scss']
 })
 export class FormDialogComponent extends BaseFormComponent {
   action: string;
@@ -41,6 +41,8 @@ export class FormDialogComponent extends BaseFormComponent {
   convenioEnum =  convenioEnum;
 
   pacientes: Paciente[];
+
+  className: any
 
   keys = Object.keys;
 
@@ -94,6 +96,7 @@ export class FormDialogComponent extends BaseFormComponent {
       statusConsultaEnum: [''],
       convenioEnum: ['', [Validators.required]],
       observacoes: ['', [Validators.required]],
+      className : [this.className]
     });
   }
 
@@ -113,7 +116,13 @@ export class FormDialogComponent extends BaseFormComponent {
       procedimentoEnum: consulta.procedimentoEnum,
       statusConsultaEnum: consulta.statusConsultaEnum,
       convenioEnum: consulta.convenioEnum,
-      observacoes: consulta.observacoes
+      observacoes: consulta.observacoes,
+    });
+  }
+
+  atualizarClassName(consulta) {
+    this.cadastroForm.patchValue({
+      className : this.getClassNameValue(consulta)
     });
   }
 
@@ -188,6 +197,21 @@ export class FormDialogComponent extends BaseFormComponent {
 
   compareFn(compared1: { id: number }, compared2: { id: number }) {
     return compared1 && compared2 ? compared1.id === compared2.id : compared1 === compared2;
+  }
+
+  getClassNameValue(status) {    
+    if (status === "CONFIRMADO")
+      this.className = "fc-event-success"
+    else if (status === "ESPERANDO")
+      this.className = "fc-event-warning"
+    else if (status === "AGENDADO")
+      this.className = "fc-event-primary"
+    else if (status === "CANCELADO")
+      this.className = "fc-event-danger"
+    else if (status === "REAGENDADO")
+      this.className = "fc-event-info"
+
+    return this.className;
   }
 
 

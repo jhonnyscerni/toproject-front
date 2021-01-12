@@ -41,7 +41,7 @@
         <div class="col-md-6">
           <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Status</mat-label>
-            <mat-select formControlName="statusConsultaEnum">
+            <mat-select formControlName="statusConsultaEnum" (valueChange)=atualizarClassName($event)>
               <mat-option *ngFor="let status of
                 keys(statusConsultaEnum)" [value]="status">
                 {{statusConsultaEnum[status]}}

@@ -25,4 +25,11 @@ export class ConsultaService extends CrudService<Consulta> {
         catchError(super.serviceError));
   }
 
+  listSearchList(params): Observable<Consulta[]> {
+    console.log(params)
+    return this.http.get<Consulta[]>(this.url + "/lista", { params })
+      .pipe(
+        catchError(super.serviceError));
+  }
+
 }

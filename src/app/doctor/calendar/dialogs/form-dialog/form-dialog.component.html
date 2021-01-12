@@ -13,17 +13,106 @@
     </button>
   </div>
   <div mat-dialog-content>
-    <form class="register-form m-4" [formGroup]="calendarForm">
+    <form class="register-form m-4" [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
-            <mat-label>Title</mat-label>
+            <mat-label>Titulo</mat-label>
             <input matInput formControlName="title" required>
             <mat-icon matSuffix>turned_in_not</mat-icon>
           </mat-form-field>
         </div>
       </div>
       <div class="row">
+        <div class="col-md-6">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Procedimento</mat-label>
+            <mat-select formControlName="procedimentoEnum">
+              <mat-option *ngFor="let procedimento of
+                keys(procedimentoEnum)" [value]="procedimento">
+                {{procedimentoEnum[procedimento]}}
+              </mat-option>
+            </mat-select>
+            <mat-icon matSuffix>flag</mat-icon>
+          </mat-form-field>
+          <!-- <app-error-msg [control]="cadastroForm.get('procedimentoEnum')" label="Procedimento"></app-error-msg> -->
+        </div>
+
+        <div class="col-md-6">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="statusConsultaEnum">
+              <mat-option *ngFor="let status of
+                keys(statusConsultaEnum)" [value]="status">
+                {{statusConsultaEnum[status]}}
+              </mat-option>
+            </mat-select>
+            <mat-icon matSuffix>flag</mat-icon>
+          </mat-form-field>
+          <!-- <app-error-msg [control]="cadastroForm.get('statusConsultaEnum')" label="status"></app-error-msg> -->
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Local de Atendimento</mat-label>
+            <input matInput formControlName="localDeAtendimento">
+            <!-- <mat-icon matSuffix>face</mat-icon> -->
+          </mat-form-field>
+          <!-- <app-error-msg [control]="cadastroForm.get('localDeAtendimento')" label="Local de Atendimento">
+          </app-error-msg> -->
+        </div>
+
+        <div class="col-md-6">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Data Hora da Consulta</mat-label>
+            <input matInput [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" formControlName="dataHora" required>
+            <owl-date-time #dt1></owl-date-time>
+          </mat-form-field>
+          <!-- <app-error-msg [control]="cadastroForm.get('dataHora')" label="Data Hora da Consulta"></app-error-msg> -->
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Convenio</mat-label>
+            <mat-select formControlName="convenioEnum">
+              <mat-option *ngFor="let convenio of keys(convenioEnum)" [value]="convenio">
+                {{convenioEnum[convenio]}}
+              </mat-option>
+            </mat-select>
+            <mat-icon matSuffix>flag</mat-icon>
+          </mat-form-field>
+          <!-- <app-error-msg [control]="cadastroForm.get('convenioEnum')" label="Convenio"></app-error-msg> -->
+        </div>
+
+        <div class="col-md-6" formGroupName="paciente">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Pacientes</mat-label>
+            <mat-select formControlName="id" required [compareWith]="compareFn">
+              <mat-option *ngFor="let paciente of pacientes" [value]="paciente.id">
+                {{paciente.nome}}
+              </mat-option>
+            </mat-select>
+            <mat-icon matSuffix>flag</mat-icon>
+          </mat-form-field>
+          <!-- <app-error-msg [control]="cadastroForm.get('paciente')" label="Paciente"></app-error-msg> -->
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Observações</mat-label>
+            <input matInput formControlName="observacoes">
+            <!-- <mat-icon matSuffix>face</mat-icon> -->
+          </mat-form-field>
+          <!-- <app-error-msg [control]="cadastroForm.get('observacoes')" label="Observações"></app-error-msg> -->
+        </div>
+      </div>
+      <!-- <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Category</mat-label>
@@ -46,8 +135,8 @@
             </mat-select>
           </mat-form-field>
         </div>
-      </div>
-      <div class="row">
+      </div> -->
+      <!-- <div class="row">
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 ">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Start date</mat-label>
@@ -66,26 +155,25 @@
             <owl-date-time #endDate></owl-date-time>
           </mat-form-field>
         </div>
-      </div>
-      <div class="row">
+      </div> -->
+      <!-- <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label>Event Details</mat-label>
             <textarea matInput formControlName="details"></textarea>
           </mat-form-field>
         </div>
-      </div>
+      </div> -->
       <div class="row">
         <div class="col-xl-10 col-lg-10 col-md-12 col-sm-12">
           <div class="example-button-row">
-            <button mat-raised-button color="primary" [type]="submit" [disabled]="!calendarForm.valid"
-              (click)="confirmAdd()">Save</button>
-            <button mat-raised-button color="warn" (click)="dialogRef.close()" tabindex="-1">Cancel</button>
+            <button mat-raised-button color="primary" [type]="submit" [disabled]="!cadastroForm.valid">Salvar</button>
+            <button mat-raised-button color="warn" (click)="dialogRef.close()" tabindex="-1">Cancelar</button>
           </div>
         </div>
         <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12">
           <div class="example-button-row" *ngIf="showDeleteBtn">
-            <button mat-mini-fab aria-label color="warn" (click)="deleteEvent()">
+            <button mat-mini-fab aria-label color="warn" (click)="onDelete()">
               <mat-icon class="font-20">delete</mat-icon>
             </button>
           </div>

@@ -28,11 +28,11 @@
           </div>
           <div class="card-body">
             <div class="row">
-              <div class="col-md-2 col-sm-12 p-l-30">
+              <div class="col-md-2 col-sm-12">
                 <div class="m-b-25">
-                  <button mat-raised-button color="primary" (click)="addNewEvent()">Add Event</button>
+                  <button mat-raised-button color="primary" (click)="addNewEvent()">Adicionar Nova Consulta</button>
                 </div>
-                <h5>My Calendars</h5>
+                <!-- <h5>My Calendars</h5>
                 <div class="filter-container">
                   <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group">
                     <mat-radio-button class="example-radio-button ml-0 filter" *ngFor="let filter of filters"
@@ -40,11 +40,13 @@
                       {{filter.value}}
                     </mat-radio-button>
                   </mat-radio-group>
-                </div>
+                </div> -->
               </div>
-              <div class="col-md-10 col-sm-12">
+            </div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12">
                 <div class="panel-body">
-                  <full-calendar id="calendar" #calendar defaultView="dayGridMonth" [header]="{
+                  <full-calendar #calendar defaultView="dayGridMonth" [header]="{
                                         left: 'prev,next today',
                                         center: 'title',
                                         right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'  

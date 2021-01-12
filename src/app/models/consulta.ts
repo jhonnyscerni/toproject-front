@@ -10,4 +10,12 @@ export class Consulta {
     statusConsultaEnum?: string;
     convenioEnum?: string;
     observacoes?: string;
+    // Integração com FullCalendar
+    start: Date;
+    title: string;
+    className: string;
+
+    constructor() {
+        this.start = this.dataHora
+    }
 }

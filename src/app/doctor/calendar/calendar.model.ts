@@ -6,7 +6,6 @@ export class Calendar {
     startDate: string;
     endDate: string;
     details: string;
-    locale: "pt-br";
 
     constructor(calendar) {
         {

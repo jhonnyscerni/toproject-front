@@ -201,15 +201,16 @@ export class FormDialogComponent extends BaseFormComponent {
 
   getClassNameValue(status) {    
     if (status === "CONFIRMADO")
-      this.className = "fc-event-success"
-    else if (status === "ESPERANDO")
-      this.className = "fc-event-warning"
+       this.className = "fc-event-warning"
     else if (status === "AGENDADO")
-      this.className = "fc-event-primary"
+    this.className = "fc-event-primary"
     else if (status === "CANCELADO")
       this.className = "fc-event-danger"
     else if (status === "REAGENDADO")
       this.className = "fc-event-info"
+      else if (status = "FINALIZADO")
+      this.className = "fc-event-success"
+      
 
     return this.className;
   }

@@ -22,6 +22,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./profissional-consultas/profissional-consultas.module').then((m) => m.ProfissionalConsultasModule),
   },
+  {
+    path: 'atendimentos',
+    loadChildren: () =>
+      import('./profissional-atendimentos/profissional-atendimentos.module').then((m) => m.ProfissionalAtendimentosModule),
+  },
   { path: '**', component: Page404Component },
 ];
 

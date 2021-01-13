@@ -16,6 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgBrazil } from 'ng-brazil';
 import { TextMaskModule } from 'angular2-text-mask';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import { TextMaskModule } from 'angular2-text-mask';
 
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
+    EditorModule
   ],
   declarations: [ProfissionalConsultasComponent, ProfissionalConsultaFormComponent, ProfissionalConsultaListaComponent, ProfissionalAtendimentoAtenderComponent],
   exports: [ProfissionalConsultasComponent, ProfissionalConsultaFormComponent, ProfissionalConsultaListaComponent, ProfissionalAtendimentoAtenderComponent],

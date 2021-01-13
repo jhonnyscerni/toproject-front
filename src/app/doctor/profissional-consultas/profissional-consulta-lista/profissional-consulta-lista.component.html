@@ -102,9 +102,22 @@
                                     <td>
                                         <span class="text-muted">
                                             <button class="btn btn-sm
-                                                btn-primary" (click)="onAtendimento(consulta.id)"> <i class="fa
-                                                    fa-stethoscope" ></i> Atender
+                                                btn-primary"
+                                                *ngIf="consulta?.statusConsultaEnum
+                                                != 'FINALIZADO'"
+                                                (click)="onAtendimento(consulta.id)">
+                                                <i class="fa
+                                                    fa-stethoscope"></i> Atender
                                             </button>
+
+                                            <button class="btn btn-sm
+                                            btn-primary"
+                                            *ngIf="consulta?.statusConsultaEnum
+                                            == 'FINALIZADO'"
+                                            (click)="onAtendimento(consulta.id)" disabled>
+                                            <i class="fa
+                                                fa-stethoscope"></i> Atendido
+                                        </button>
                                         </span>
                                     </td>
                                     <td><span class="text-muted"> {{

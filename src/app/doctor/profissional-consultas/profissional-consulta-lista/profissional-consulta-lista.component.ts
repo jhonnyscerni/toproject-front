@@ -1,3 +1,4 @@
+import { AtendimentoService } from 'src/app/services/atendimento.service';
 import { Consulta } from './../../../models/consulta';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
@@ -9,6 +10,7 @@ import { switchMap, take } from 'rxjs/operators';
 import { EMPTY } from 'rxjs';
 
 import * as Moment from 'moment'; /*  biblioteca de formatação de data/hora */
+import { Atendimento } from 'src/app/models/atendimento';
 Moment.locale('pt-br');
 
 @Component({
@@ -31,12 +33,14 @@ export class ProfissionalConsultaListaComponent implements OnInit {
   page = 1;
   pageElement = 0;
   size = 10
+  atendimento: Atendimento
 
 
   constructor(private router: Router,
     private route: ActivatedRoute,
     private alertService: AlertModalService,
     private consultaService: ConsultaService,
+    private atendimentoService: AtendimentoService,
     private fb: FormBuilder,
     private authService: AuthService) { }
     profissional = this.authService.getUsuarioIdAutenticado();
@@ -81,11 +85,11 @@ export class ProfissionalConsultaListaComponent implements OnInit {
   
       this.consultaService.listSearchPage(params)
         .subscribe(
-          pacientes => { 
-            this.consultas = pacientes.content
-            this.totalElements = pacientes.totalElements
-            this.pageElement = pacientes.number
-            this.size = pacientes.size
+          consultas => { 
+            this.consultas = consultas.content
+            this.totalElements = consultas.totalElements
+            this.pageElement = consultas.number
+            this.size = consultas.size
           },
           error => this.errorMessage
         );

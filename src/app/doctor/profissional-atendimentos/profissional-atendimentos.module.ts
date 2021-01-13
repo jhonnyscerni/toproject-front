@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 
     MatSelectModule,
 
-    MatFormFieldModule
+    MatFormFieldModule,
+    EditorModule
   ],
   declarations: [ProfissionalAtendimentosComponent, ProfissionalAtendimentoFormComponent, ProfissionalAtendimentoListaComponent],
   exports: [ProfissionalAtendimentosComponent, ProfissionalAtendimentoFormComponent, ProfissionalAtendimentoListaComponent]

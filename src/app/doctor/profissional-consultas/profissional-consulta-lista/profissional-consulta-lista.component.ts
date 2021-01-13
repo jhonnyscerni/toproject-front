@@ -106,6 +106,11 @@ export class ProfissionalConsultaListaComponent implements OnInit {
     onDetalhe(id) {
       this.router.navigate(['/user/consultas/detalhe', id], { relativeTo: this.route });
     }
+
+      
+    onAtendimento(id) {
+      this.router.navigate(['/user/consultas/', id, 'atendimento'], { relativeTo: this.route });
+    }
   
     onDelete(consulta) {
       this.consultaSelecionado = consulta;

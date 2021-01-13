@@ -1,3 +1,4 @@
+import { ProfissionalAtendimentoAtenderComponent } from './profissional-atendimento-atender/profissional-atendimento-atender.component';
 import { ProfissionalConsultaListaComponent } from './profissional-consulta-lista/profissional-consulta-lista.component';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthoritiesGuard } from 'src/app/shared/services/authorities.guard';
@@ -24,6 +25,11 @@ export const profissionalConsultasRoutes: Routes = [
         path: "lista", component: ProfissionalConsultaListaComponent,
         canActivate: [AuthoritiesGuard],
         // data: ['SEG_CONSULTAR_CONSULTAS']
+      },
+      {
+        path: ":idConsulta/atendimento", component: ProfissionalAtendimentoAtenderComponent,
+        // canActivate: [AuthoritiesGuard],
+        // data: ['SEG_EDITAR_CONSULTAS']
       },
       { path: "", redirectTo: '/user/consultas/lista', pathMatch: 'full' }
     ]

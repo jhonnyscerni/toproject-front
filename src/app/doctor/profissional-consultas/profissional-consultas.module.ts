@@ -1,3 +1,4 @@
+import { ProfissionalAtendimentoAtenderComponent } from './profissional-atendimento-atender/profissional-atendimento-atender.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { ProfissionalConsultaListaComponent } from './profissional-consulta-lista/profissional-consulta-lista.component';
 import { ProfissionalConsultaFormComponent } from './profissional-consulta-form/profissional-consulta-form.component';
@@ -39,7 +40,7 @@ import { TextMaskModule } from 'angular2-text-mask';
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
   ],
-  declarations: [ProfissionalConsultasComponent, ProfissionalConsultaFormComponent, ProfissionalConsultaListaComponent],
-  exports: [ProfissionalConsultasComponent, ProfissionalConsultaFormComponent, ProfissionalConsultaListaComponent],
+  declarations: [ProfissionalConsultasComponent, ProfissionalConsultaFormComponent, ProfissionalConsultaListaComponent, ProfissionalAtendimentoAtenderComponent],
+  exports: [ProfissionalConsultasComponent, ProfissionalConsultaFormComponent, ProfissionalConsultaListaComponent, ProfissionalAtendimentoAtenderComponent],
 })
 export class ProfissionalConsultasModule { }

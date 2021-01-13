@@ -25,4 +25,15 @@ export class AtendimentoService extends CrudService<AtendimentoService> {
         catchError(super.serviceError));
   }
 
+  atender(record: Atendimento, idConsulta: number) {
+    return this.atenderConsulta(record, idConsulta);
+  }
+
+  private atenderConsulta(record: Atendimento, idConsulta: number): Observable<Atendimento> {
+    return this.http
+      .post(environment.apiUrl + "/consultas/"+ idConsulta + '/atendimentos', record)
+      .pipe(
+        catchError(super.serviceError));
+  }
+
 }

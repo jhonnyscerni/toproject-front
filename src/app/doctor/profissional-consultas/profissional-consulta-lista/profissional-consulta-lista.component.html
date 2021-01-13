@@ -1,141 +1,171 @@
 <section class="content">
-  <div class="container-fluid">
-      <div class="block-header">
-          <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                  <ul class="breadcrumb breadcrumb-style ">
-                      <li class="breadcrumb-item">
-                          <h4 class="page-title">Consultas</h4>
-                      </li>
-                      <li class="breadcrumb-item bcrumb-1">
-                          <a routerLink="/admin/dashboard/main">
-                              <i class="fas fa-home"></i> Home</a>
-                      </li>
-                      <li class="breadcrumb-item bcrumb-2">
-                          <a href="#" onClick="return false;">Consultas</a>
-                      </li>
-                      <li class="breadcrumb-item active">Lista</li>
-                  </ul>
-              </div>
-          </div>
-      </div>
+    <div class="container-fluid">
+        <div class="block-header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <ul class="breadcrumb breadcrumb-style">
+                        <li class="breadcrumb-item">
+                            <h4 class="page-title">Consultas</h4>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-1">
+                            <a routerLink="/admin/dashboard/main">
+                                <i class="fas fa-home"></i> Home</a>
+                        </li>
+                        <li class="breadcrumb-item bcrumb-2">
+                            <a href="#" onClick="return false;">Consultas</a>
+                        </li>
+                        <li class="breadcrumb-item active">Lista</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-      <!-- Add content here -->
+        <!-- Add content here -->
 
-      <!-- Basic Table -->
+        <!-- Basic Table -->
 
-      <div class="row clearfix">
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div class="card">
-                  <!---->
-                  <div class="header">
-                      <h2>
-                          <strong></strong>Filtro de Consultas</h2>
-                  </div>
-                  <!-- inicio da Row -->
-                  <div class=" card-body">
-                      <form novalidate [formGroup]="searchForm">
-                          <div class=" row">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <!---->
+                    <div class="header">
+                        <h2>
+                            <strong></strong>Filtro de Consultas
+                        </h2>
+                    </div>
+                    <!-- inicio da Row -->
+                    <div class="card-body">
+                        <form novalidate [formGroup]="searchForm">
+                            <div class="row">
 
-                              <div class=" col-md-5">
-                                  <mat-form-field class="example-full-width" appearance="outline">
-                                      <mat-label>ID</mat-label>
-                                      <input matInput formControlName="idControl">
-                                      <mat-icon matSuffix>face</mat-icon>
-                                  </mat-form-field>
-                              </div>
+                                <div class="col-md-5">
+                                    <mat-form-field class="example-full-width"
+                                        appearance="outline">
+                                        <mat-label>ID</mat-label>
+                                        <input matInput
+                                            formControlName="idControl">
+                                        <mat-icon matSuffix>face</mat-icon>
+                                    </mat-form-field>
+                                </div>
 
-                              <div class="col-md-2 text-center">
-                                  <div>
-                                      <button class="btn btn-success form-control pesquisa"
-                                          (click)="onSearch()">Pesquisar</button>
-                                  </div>
-                              </div>
+                                <div class="col-md-2 text-center">
+                                    <div>
+                                        <button class="btn btn-success
+                                            form-control pesquisa"
+                                            (click)="onSearch()">Pesquisar</button>
+                                    </div>
+                                </div>
 
-                          </div>
-                      </form>
-                  </div>
-              </div>
-          </div>
-      </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-      <div class="row clearfix">
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <div class="card">
-                  <div class="header">
-                      <h2 style="width: 100%; padding-top: 10px">
-                          <strong></strong>Lista de Consultas
-                      </h2>
-                      <div style="float:right">
-                          <button mat-mini-fab color="primary">
-                              <mat-icon class="col-white" routerLink="/user/consultas/adicionar">add</mat-icon>
-                          </button>
-                      </div>
-                  </div>
-                  <div class="body table-responsive">
-                      <table class="table" *ngIf="consultas; else loadingError">
-                          <thead>
-                              <tr>
-                                  <th>ID</th>
-                                  <th>Paciente</th>
-                                  <th>Data e Horario da Consulta</th>
-                                  <th>Procedimento</th>
-                                  <th>Local</th>
-                                  <th>Status</th>
-                                  <th></th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                              <tr
-                                  *ngFor="let consulta of consultas | paginate: { itemsPerPage: size,
-                                                                                                  currentPage: page,
-                                                                                                  totalItems: totalElements }">
-                                  <td><span class=" text-muted"> {{ consulta?.id }}</span></td>
-                                  <td><span class=" text-muted"> {{ consulta?.paciente.nome }}</span></td>
-                                  <td><span class=" text-muted"> {{ dateLayout(consulta?.dataHora) }}</span></td>
-                                  <td><span class=" text-muted"> {{ consulta?.procedimentoEnum }}</span></td>
-                                  <td><span class=" text-muted"> {{ consulta?.localDeAtendimento }}</span></td>
-                                  <td><span class=" text-muted"> {{ consulta?.statusConsultaEnum }}</span></td>
-                                  <td class=" table-actions">
-                                      <a class="table-action" tooltip="Editar consulta" placement="top"
-                                          href="javascript:void(0)" (click)="onEdit(consulta.id)">
-                                          <i class=" fas fa-user-edit"> </i>
-                                      </a>
-                                      <a class=" table-action table-action-delete" tooltip="Deletar consulta"
-                                          placement="top" href="javascript:void(0)" (click)="onDelete(consulta)">
-                                          <i class=" fas fa-trash"> </i>
-                                      </a>
-                                      <a class="table-action" tooltip="Detalhes consulta" placement="top"
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2 style="width: 100%; padding-top: 10px">
+                            <strong></strong>Lista de Consultas
+                        </h2>
+                        <div style="float:right">
+                            <button mat-mini-fab color="primary">
+                                <mat-icon class="col-white"
+                                    routerLink="/user/consultas/adicionar">add</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="body table-responsive">
+                        <table class="table" *ngIf="consultas; else
+                            loadingError">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th></th>
+                                    <th>Paciente</th>
+                                    <th>Data e Horario da Consulta</th>
+                                    <th>Procedimento</th>
+                                    <th>Local</th>
+                                    <th>Status</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let consulta of consultas |
+                                    paginate: { itemsPerPage: size,
+                                    currentPage: page,
+                                    totalItems: totalElements }">
+                                    <td><span class="text-muted"> {{
+                                            consulta?.id }}</span></td>
+                                    <td>
+                                        <span class="text-muted">
+                                            <button class="btn btn-sm
+                                                btn-primary" (click)="onAtendimento(consulta.id)"> <i class="fa
+                                                    fa-stethoscope" ></i> Atender
+                                            </button>
+                                        </span>
+                                    </td>
+                                    <td><span class="text-muted"> {{
+                                            consulta?.paciente.nome }}</span></td>
+                                    <td><span class="text-muted"> {{
+                                            dateLayout(consulta?.dataHora) }}</span></td>
+                                    <td><span class="text-muted"> {{
+                                            consulta?.procedimentoEnum }}</span></td>
+                                    <td><span class="text-muted"> {{
+                                            consulta?.localDeAtendimento }}</span></td>
+                                    <td><span class="text-muted"> {{
+                                            consulta?.statusConsultaEnum }}</span></td>
+                                    <td class="table-actions">
+                                        <a class="table-action" tooltip="Editar
+                                            consulta" placement="top"
+                                            href="javascript:void(0)"
+                                            (click)="onEdit(consulta.id)">
+                                            <i class="fas fa-user-edit"> </i>
+                                        </a>
+                                        <a class="table-action
+                                            table-action-delete"
+                                            tooltip="Deletar consulta"
+                                            placement="top"
+                                            href="javascript:void(0)"
+                                            (click)="onDelete(consulta)">
+                                            <i class="fas fa-trash"> </i>
+                                        </a>
+                                        <!-- <a class="table-action" tooltip="Detalhes consulta" placement="top"
                                           href="javascript:void(0)" (click)="onDetalhe(consulta.id)">
                                           <i class="fas fa-cogs"></i>
-                                      </a>
-                                  </td>
-                              </tr>
-                          </tbody>
-                      </table>
-                      <ng-template #loadingError>
-                          <div *ngIf="error$ | async; else loading">
-                              Erro ao carregar consultas. Tente novamente mais tarde.
-                          </div>
-                          <ng-template #loading>
-                              <div class=" card-body">
-                                  <div class=" row py-3 align-items-center">
-                                      <div class=" col-sm-9">
-                                          <h4 class=" mb-0">Carregando consultas...</h4>
-                                      </div>
-                                  </div>
-                              </div>
-                          </ng-template>
-                      </ng-template>
-                  </div>
-                  <div class="py-4 text-center ngx-pagination">
-                      <pagination-controls previousLabel="Anterior" nextLabel="Próximo" responsive="true"
-                          (pageChange)="handlePageChange($event)">
-                      </pagination-controls>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <!--Fim content here-->
-  </div>
+                                      </a> -->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <ng-template #loadingError>
+                            <div *ngIf="error$ | async; else loading">
+                                Erro ao carregar consultas. Tente novamente mais
+                                tarde.
+                            </div>
+                            <ng-template #loading>
+                                <div class="card-body">
+                                    <div class="row py-3 align-items-center">
+                                        <div class="col-sm-9">
+                                            <h4 class="mb-0">Carregando
+                                                consultas...</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </ng-template>
+                    </div>
+                    <div class="py-4 text-center ngx-pagination">
+                        <pagination-controls previousLabel="Anterior"
+                            nextLabel="Próximo" responsive="true"
+                            (pageChange)="handlePageChange($event)">
+                        </pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Fim content here-->
+    </div>
 </section>

@@ -9,11 +9,6 @@ export const profissionalAtendimentosRoutes: Routes = [
     path: "",
     children: [
       {
-        path: "consulta/:idConsulta/adicionar", component: ProfissionalAtendimentoFormComponent,
-        canActivate: [AuthoritiesGuard],
-        // data: ['SEG_CADASTRAR_CONSULTAS']
-      },
-      {
         path: "editar/:idAtendimento", component: ProfissionalAtendimentoFormComponent,
         canActivate: [AuthoritiesGuard],
         // data: ['SEG_EDITAR_CONSULTAS']

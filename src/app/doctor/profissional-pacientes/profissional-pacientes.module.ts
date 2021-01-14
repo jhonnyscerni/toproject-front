@@ -14,6 +14,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { profissionalPacientesRoutes } from './profissional-pacientes.routing';
 import { NgBrazil } from 'ng-brazil';
 import { TextMaskModule } from 'angular2-text-mask';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSortModule } from '@angular/material/sort';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   imports: [
@@ -34,6 +43,20 @@ import { TextMaskModule } from 'angular2-text-mask';
     MatFormFieldModule,
     NgBrazil,
     TextMaskModule,
+    
+    // MAT
+    MatTableModule,
+    MatPaginatorModule,
+    MatInputModule,
+    MatSnackBarModule,
+    MatDialogModule,
+    MatSortModule,
+    MatDatepickerModule,
+    MatTabsModule,
+    MatCheckboxModule,
+    MatFormFieldModule    
+
+
   ],
   declarations: [ProfissionalPacientesComponent, ProfissionalPacienteListaComponent, ProfissionalPacienteFormComponent],
   exports: [ProfissionalPacientesComponent, ProfissionalPacienteListaComponent, ProfissionalPacienteFormComponent]

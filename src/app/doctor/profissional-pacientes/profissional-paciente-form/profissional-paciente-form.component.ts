@@ -65,6 +65,7 @@ export class ProfissionalPacienteFormComponent extends BaseFormComponent impleme
         console.log(idPaciente);
         const paciente$ = this.pacienteService.loadByID(idPaciente);
         paciente$.subscribe(paciente => {
+          this.paciente = paciente
           this.updateForm(paciente);
         });
       }

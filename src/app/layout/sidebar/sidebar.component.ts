@@ -109,7 +109,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
          "Ultimo Nome"
       //   this.authService.currentUserValue.lastName;
        //this.userImg = this.authService.currentUserValue.img;
-       this.userImg = "assets/images/user/admin.jpg";
+       this.userImg = "assets/images/user/default-avatar.png";
 
       this.sidebarItems = ROUTES.filter(
         (x) => x.role.indexOf(userRole) !== -1 || x.role.indexOf('All') !== -1
@@ -120,6 +120,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
         this.userType = Role.Patient;
       } else if (userRole === Role.User) {
         this.userType = Role.User;
+      } else if (userRole === Role.Clinic) {
+        this.userType = Role.Clinic;
       } else {
         this.userType = Role.Admin;
       }

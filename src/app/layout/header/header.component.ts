@@ -81,7 +81,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.config = this.configService.configData;
     const userRole = this.authService.getGrupo();
     // this.userImg = this.authService.getUsuarioAutenticado();
-    this.userImg = "assets/images/user/user1.jpg"
+    this.userImg = "assets/images/user/default-avatar.png"
 
     if (userRole === 'Admin') {
       this.homePage = 'admin/dashboard/main';

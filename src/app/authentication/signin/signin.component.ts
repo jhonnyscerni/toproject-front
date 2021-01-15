@@ -89,6 +89,8 @@ export class SigninComponent extends BaseFormComponent implements OnInit {
               this.router.navigate(["/user/dashboard"]);
             } else if (role === Role.Patient) {
               this.router.navigate(["/patient/dashboard"]);
+            } else if (role === Role.Clinic) {
+              this.router.navigate(["/clinic/dashboard"]);
             } else {
               this.router.navigate(["/authentication/signin"]);
             }

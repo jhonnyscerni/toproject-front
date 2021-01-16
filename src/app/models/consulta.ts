@@ -1,3 +1,4 @@
+import { Clinica } from './clinica';
 import { Profissional } from './profissional';
 import { Paciente } from './paciente';
 export class Consulta {
@@ -14,6 +15,7 @@ export class Consulta {
     start: Date;
     title: string;
     className: string;
+    clinica: Clinica;
 
     constructor() {
         this.start = this.dataHora

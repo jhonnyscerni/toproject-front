@@ -22,4 +22,5 @@ export class Profissional {
     complemento?: string;
     bairro?: string;
     cidade?: Cidade;
+    clinicaId?: number;
 }

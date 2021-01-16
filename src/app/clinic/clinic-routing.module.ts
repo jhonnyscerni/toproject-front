@@ -12,6 +12,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./clinica-pacientes/clinica-pacientes.module').then((m) => m.ClinicaPacientesModule),
   },
+  {
+    path: 'profissionais',
+    loadChildren: () =>
+      import('./clinica-profissionais/clinica-profissionais.module').then((m) => m.ClinicaProfissionaisModule),
+  },
   { path: '**', component: Page404Component },
 ];
 

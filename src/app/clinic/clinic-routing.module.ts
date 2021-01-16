@@ -7,11 +7,11 @@ const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
   },
-  // {
-  //   path: 'compromissos',
-  //   loadChildren: () =>
-  //     import('./calendar/calendar.module').then((m) => m.CalendarsModule),
-  // },
+  {
+    path: 'pacientes',
+    loadChildren: () =>
+      import('./clinica-pacientes/clinica-pacientes.module').then((m) => m.ClinicaPacientesModule),
+  },
   { path: '**', component: Page404Component },
 ];
 

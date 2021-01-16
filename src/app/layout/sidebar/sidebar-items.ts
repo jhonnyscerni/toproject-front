@@ -80,6 +80,33 @@ export const ROUTES: RouteInfo[] = [
     submenu: [],
   },
 
+   // Clinic Modules
+   {
+    path: '/clinic/dashboard',
+    title: 'Dashboard',
+    moduleName: 'dashboard',
+    iconType: 'material-icons-two-tone',
+    icon: 'home',
+    class: '',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    role: ['Clinic'],
+    submenu: [],
+  },
+   {
+    path: '/clinic/pacientes',
+    title: 'Pacientes',
+    moduleName: 'pacientes',
+    iconType: 'material-icons-two-tone',
+    icon: 'face',
+    class: '',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    role: ['Clinic'],
+    submenu: [],
+  },
 
   // User Modules
   {

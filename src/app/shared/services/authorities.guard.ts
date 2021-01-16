@@ -32,7 +32,7 @@ export class AuthoritiesGuard implements CanActivate {
         if(!userAuthorities){
             this.navegarAcessoNegado();
         }
-       // console.log("userAuthorities" + userAuthorities)
+        console.log("userAuthorities" + userAuthorities)
       }
 
       return true

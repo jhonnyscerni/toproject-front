@@ -1,0 +1,376 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <ul class="breadcrumb breadcrumb-style">
+            <li class="breadcrumb-item">
+              <h4 class="page-title">Criar Pacientes</h4>
+            </li>
+            <li class="breadcrumb-item bcrumb-1">
+              <a routerLink="/admin/dashboard/main">
+                <i class="fas fa-home"></i> Home</a>
+            </li>
+            <li class="breadcrumb-item bcrumb-2">
+              <a href="#" onClick="return false;">Pacientes</a>
+            </li>
+            <li class="breadcrumb-item active">Criar Paciente</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Your content goes here  -->
+    <div class="row clearfix">
+      <div class="col-lg-3 col-md-12">
+        <div class="card">
+          <div class="m-b-20">
+            <div class="contact-grid">
+              <div class="profile-header bg-dark">
+                <div class="user-name">{{paciente?.nome}}</div>
+                <!-- <div class="name-center">{{paciente?.email}}</div> -->
+              </div>
+              <img src="assets/images/user/default-avatar.png" class="user-img" alt="">
+              <div>
+                <small class="text-muted">Endereço de E-mail: </small>
+                <p>{{paciente?.email}}</p>
+                <!-- <hr> -->
+                <small class="text-muted">Telefone: </small>
+                <p>{{paciente?.telefone}}</p>
+                <!-- <hr> -->
+              </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <mat-tab-group mat-align-tabs="start">
+              <mat-tab label="Dados">
+                <div class="p-4">
+                  <!-- <p class="text-default">Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has
+                  been the industry's standard dummy text ever since the 1500s, when an unknown
+                  printer
+                  took a galley of type and scrambled it to make a type specimen book. It has
+                  survived
+                  not only five centuries, but also the leap into electronic typesetting, remaining
+                  essentially
+                  unchanged.</p> -->
+                  <small class="text-muted">Endereço: </small>
+                  <p>{{paciente?.logradouro}}</p>
+                  <hr>
+                  <small class="text-muted">Cidade: </small>
+                  <p>{{paciente?.cidade.nome}}</p>
+                  <hr>
+                  <small class="text-muted">Bairro: </small>
+                  <p>{{paciente?.bairro}}</p>
+                  <hr>
+                  <small class="text-muted">Estado: </small>
+                  <p>{{paciente?.cidade.estado.sigla}}</p>
+                  <hr>
+                </div>
+              </mat-tab>
+              <!-- <mat-tab label="Skills">
+              <ul class="list-unstyled p-4">
+                <li>
+                  <div>OPD</div>
+                  <div class="progress skill-progress m-b-20">
+                    <div class="progress-bar l-bg-green width-per-45" role="progressbar" aria-valuenow="45"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </li>
+                <li>
+                  <div>Operations</div>
+                  <div class="progress skill-progress m-b-20">
+                    <div class="progress-bar l-bg-orange width-per-38" role="progressbar" aria-valuenow="38"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </li>
+                <li>
+                  <div>Patient Visit</div>
+                  <div class="progress skill-progress m-b-20">
+                    <div class="progress-bar l-bg-cyan width-per-39" role="progressbar" aria-valuenow="39"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </li>
+                <li>
+                  <div>RND</div>
+                  <div class="progress skill-progress m-b-20">
+                    <div class="progress-bar l-bg-purple width-per-70" role="progressbar" aria-valuenow="70"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </li>
+              </ul>
+            </mat-tab> -->
+            </mat-tab-group>
+          </div>
+        </div>
+        <div class="col-lg-9 col-md-12">
+          <div class="card">
+            <mat-tab-group>
+              <mat-tab>
+                <ng-template mat-tab-label>
+                  <mat-icon class="example-tab-icon mr-2">settings</mat-icon>
+                  Informações
+                </ng-template>
+                <div class="body">
+
+                  <!-- Add content here -->
+                  <form novalidate [formGroup]="cadastroForm"
+                    (ngSubmit)="onSubmit()">
+                    <div class="row">
+                      <div class="header">
+                        <h6>
+                          <strong>Dados</strong> de Acesso</h6>
+                      </div>
+                      <div class="col-sm-12 col-md-6">
+                        <mat-form-field class="example-full-width"
+                          appearance="outline">
+                          <mat-label>E-mail</mat-label>
+                          <input matInput formControlName="email" required>
+                          <!-- <mat-icon matSuffix>face</mat-icon> -->
+                        </mat-form-field>
+                        <app-error-msg [control]="cadastroForm.get('email')"
+                          label="Email"></app-error-msg>
+                        <app-campo-control-erro
+                          [mostrarErro]="cadastroForm.get('email').status ===
+                          'PENDING'"
+                          msgErro="Validando email..."></app-campo-control-erro>
+                      </div>
+                      <div class="col-md-6">
+                        <mat-form-field class="example-full-width"
+                          appearance="outline">
+                          <mat-label>Senha</mat-label>
+                          <input matInput formControlName="senha" [type]="hide ?
+                            'password' : 'text'" required>
+                          <mat-icon matSuffix (click)="hide= !hide">
+                            {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </mat-form-field>
+                        <app-error-msg [control]="cadastroForm.get('senha')"
+                          label="Senha"></app-error-msg>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="header">
+                        <h6>
+                          <strong>Dados</strong> Pessoais</h6>
+                      </div>
+                      <div class="col-md-8">
+                        <mat-form-field class="example-full-width"
+                          appearance="outline">
+                          <mat-label>Nome do Paciente</mat-label>
+                          <input matInput formControlName="nome" required>
+                          <!-- <mat-icon matSuffix>face</mat-icon> -->
+                        </mat-form-field>
+                        <app-error-msg [control]="cadastroForm.get('nome')"
+                          label="Nome"></app-error-msg>
+                      </div>
+                      <div class="col-md-4">
+                        <mat-form-field class="example-full-width"
+                          appearance="outline">
+                          <mat-label>Cpf</mat-label>
+                          <input type="text" matInput formControlName="cpf"
+                            [textMask]="{mask: MASKS.cpf.textMask}" required>
+                        </mat-form-field>
+                        <app-error-msg [control]="cadastroForm.get('cpf')"
+                          label="CPF"></app-error-msg>
+                      </div>
+
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-3">
+                        <mat-form-field class="example-full-width"
+                          appearance="outline">
+                          <mat-label>Sexo</mat-label>
+                          <mat-select formControlName="sexo" required>
+                            <mat-option [value]="'Masculino'">
+                              Masculino
+                            </mat-option>
+                            <mat-option [value]="'Feminino'">
+                              Feminino
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        <app-error-msg [control]="cadastroForm.get('sexo')"
+                          label="Sexo"></app-error-msg>
+                      </div>
+                      <div class="col-md-3">
+                        <mat-form-field class="example-full-width"
+                          appearance="outline">
+                          <mat-label>Telefone</mat-label>
+                          <input type="text" matInput formControlName="telefone"
+                            [textMask]="{mask:
+                            MASKS.telefone.textMaskFunction}">
+                        </mat-form-field>
+                        <app-error-msg [control]="cadastroForm.get('telefone')"
+                          label="Telefone"></app-error-msg>
+                      </div>
+
+                      <div class="col-md-3">
+                        <mat-form-field class="example-full-width"
+                          appearance="outline">
+                          <mat-label>Celular</mat-label>
+                          <input type="text" matInput formControlName="celular"
+                            [textMask]="{mask: MASKS.telefone.textMaskFunction}"
+                            required>
+                        </mat-form-field>
+                        <app-error-msg [control]="cadastroForm.get('celular')"
+                          label="Celular"></app-error-msg>
+                      </div>
+                      <div class="col-md-3">
+                        <mat-form-field class="example-full-width"
+                          appearance="outline">
+                          <mat-label>Dt. de Nascimento</mat-label>
+                          <input matInput [matDatepicker]="picker"
+                            formControlName="dtNascimento" required>
+                          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                          <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                        <app-error-msg
+                          [control]="cadastroForm.get('dtNascimento')"
+                          label="Data de Nascimento"></app-error-msg>
+                      </div>
+                    </div>
+
+                    <!-- ENDERCO -->
+                    <div class="row">
+                      <div class="header">
+                        <h6>
+                          <strong>Endereco</strong>
+                        </h6>
+                      </div>
+                      <div class="col-md-3">
+                        <mat-form-field class="example-full-width"
+                          appearance="outline">
+                          <mat-label>Cep</mat-label>
+                          <input type="text" matInput formControlName="cep"
+                            [textMask]="{mask: MASKS.cep.textMask}"
+                            [ngClass]="{'is-invalid':verificaValidTouched('cep')
+                            }" (blur)="buscarCep($event.target.value)" required>
+                          <!-- <mat-icon matSuffix>face</mat-icon> -->
+                        </mat-form-field>
+                        <app-error-msg [control]="cadastroForm.get('cep')"
+                          label="CEP"></app-error-msg>
+                      </div>
+
+                      <div class="col-sm-12 col-md-6">
+                        <mat-form-field class="example-full-width"
+                          appearance="outline">
+                          <mat-label>Logradouro</mat-label>
+                          <input matInput formControlName="logradouro" required>
+                          <!-- <mat-icon matSuffix>face</mat-icon> -->
+                        </mat-form-field>
+                        <app-error-msg
+                          [control]="cadastroForm.get('logradouro')"
+                          label="Logradouro"></app-error-msg>
+                      </div>
+
+                      <div class="col-md-3">
+                        <mat-form-field class="example-full-width"
+                          appearance="outline">
+                          <mat-label>Número</mat-label>
+                          <input matInput formControlName="numero"
+                            [ngClass]="{'is-invalid':verificaValidTouched('numero')
+                            }" required>
+                          <!-- <mat-icon matSuffix>face</mat-icon> -->
+                        </mat-form-field>
+                        <app-error-msg [control]="cadastroForm.get('numero')"
+                          label="Número"></app-error-msg>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-8">
+                        <mat-form-field class="example-full-width"
+                          appearance="outline">
+                          <mat-label>Complemento</mat-label>
+                          <input matInput formControlName="complemento">
+                          <!-- <mat-icon matSuffix>face</mat-icon> -->
+                        </mat-form-field>
+                        <app-error-msg
+                          [control]="cadastroForm.get('complemento')"
+                          label="Complemento"></app-error-msg>
+                      </div>
+                      <div class="col-md-4">
+                        <mat-form-field class="example-full-width"
+                          appearance="outline">
+                          <mat-label>Bairro</mat-label>
+                          <input matInput formControlName="bairro"
+                            [ngClass]="{'is-invalid':verificaValidTouched('bairro')
+                            }" required>
+                          <!-- <mat-icon matSuffix>face</mat-icon> -->
+                        </mat-form-field>
+                        <app-error-msg [control]="cadastroForm.get('bairro')"
+                          label="Bairro"></app-error-msg>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6" style="padding: 0"
+                        formGroupName="cidade">
+                        <div class="col-md-6" style="float: left"
+                          formGroupName="estado">
+                          <mat-form-field class="example-full-width"
+                            appearance="outline">
+                            <mat-label>Estado</mat-label>
+                            <mat-select formControlName="id"
+                              (valueChange)="buscarCidadesEstado($event)"
+                              required>
+                              <mat-option *ngFor="let estado of estados"
+                                [value]="estado.id">{{ estado.nome }}</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                          <app-error-msg
+                            [control]="cadastroForm.get('cidade.estado.id')"
+                            label="Estado"></app-error-msg>
+                        </div>
+                        <div class="col-md-6" style="float: left">
+                          <mat-form-field class="example-full-width"
+                            appearance="outline">
+                            <mat-label>Cidade</mat-label>
+
+                            <mat-select formControlName="id"
+                              [compareWith]="compareFn" required>
+                              <mat-option *ngFor="let cidade of cidades"
+                                [value]="cidade.id">{{ cidade.nome }}</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                          <app-error-msg
+                            [control]="cadastroForm.get('cidade.id')"
+                            label="Cidade"></app-error-msg>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div class="form-group text-right">
+                      <span>
+                        <!-- [disabled]="!cadastroForm.valid" -->
+                        <button class="btn btn-success" id="registrar"
+                          [disabled]="!cadastroForm.valid"
+                          type="submit">Registrar
+                        </button>
+                      </span>
+                      <span>
+                        <button class="btn" id="cancelar" (click)="resetar()">Limpar
+                        </button>
+                      </span>
+                      <span>
+                        <!-- [disabled]="!cadastroForm.valid" -->
+                        <button class="btn"id="cancelar" (click)="cancelar()"
+                          type="submit">Cancelar
+                        </button>
+                      </span>
+                    </div>
+
+                    <app-form-debug [form]="cadastroForm"></app-form-debug>
+                  </form>
+
+                </div>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

@@ -120,6 +120,19 @@ export const ROUTES: RouteInfo[] = [
     role: ['Clinic'],
     submenu: [],
   },
+  {
+    path: '/clinic/consultas',
+    title: 'Consultas',
+    moduleName: 'consultas',
+    iconType: 'material-icons-two-tone',
+    icon: 'content_paste',
+    class: '',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    role: ['Clinic'],
+    submenu: [],
+  },
 
   // User Modules
   {

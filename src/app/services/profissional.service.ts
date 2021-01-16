@@ -25,6 +25,14 @@ export class ProfissionalService extends CrudService<Profissional> {
         catchError(super.serviceError));
   }
 
+  listSearchList(params): Observable<Profissional[]> {
+    console.log(params)
+    return this.http.get<Profissional[]>(this.url + "/lista", { params })
+      .pipe(
+        catchError(super.serviceError));
+  }
+
+
   saveUserCommon(record: Profissional) {
     return this.createUserCommon(record);
   }

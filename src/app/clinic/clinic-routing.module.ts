@@ -17,6 +17,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./clinica-profissionais/clinica-profissionais.module').then((m) => m.ClinicaProfissionaisModule),
   },
+  {
+    path: 'consultas',
+    loadChildren: () =>
+      import('./clinica-consultas/clinica-consultas.module').then((m) => m.ClinicaConsultasModule),
+  },
   { path: '**', component: Page404Component },
 ];
 

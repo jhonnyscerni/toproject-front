@@ -62,7 +62,10 @@ export class ProfissionalConsultaFormComponent extends BaseFormComponent impleme
       if (idConsulta) {
         const consulta$ = this.consultaService.loadByID(idConsulta);
         consulta$.subscribe(consulta => {
-          console.log(consulta)
+          if (consulta.clinica.id != null){
+            this.carregarPacientesClinica(consulta.clinica.id);
+            this.cadastroForm.controls['paciente'].disable();
+          }
           this.updateForm(consulta);
         });
       }
@@ -109,7 +112,7 @@ export class ProfissionalConsultaFormComponent extends BaseFormComponent impleme
     let params = {};
 
     params[`profissionalId`] = this.profissional;
-    
+
     return params;
   }
 
@@ -120,6 +123,24 @@ export class ProfissionalConsultaFormComponent extends BaseFormComponent impleme
             this.pacientes = pacientes
           }
         );
+  }
+
+  getRequestParamsClinica(clinicaId) {
+    let params = {};
+
+    params[`clinicaId`] = clinicaId;
+
+    return params;
+  }
+
+  carregarPacientesClinica(clinicaId) {
+    const params = this.getRequestParamsClinica(clinicaId);
+    return this.pacienteService.listSearchList(params)
+      .subscribe(pacientes => {
+          this.pacientes = pacientes
+          console.log(this.pacientes)
+        }
+      );
   }
 
   submit() {

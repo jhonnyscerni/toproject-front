@@ -22,6 +22,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./clinica-consultas/clinica-consultas.module').then((m) => m.ClinicaConsultasModule),
   },
+  {
+    path: 'atendimentos',
+    loadChildren: () =>
+      import('./clinica-atendimentos/clinica-atendimentos.module').then((m) => m.ClinicaAtendimentosModule),
+  },
   { path: '**', component: Page404Component },
 ];
 

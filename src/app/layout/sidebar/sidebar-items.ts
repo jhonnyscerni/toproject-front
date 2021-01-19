@@ -134,6 +134,20 @@ export const ROUTES: RouteInfo[] = [
     submenu: [],
   },
 
+  {
+    path: '/clinic/atendimentos',
+    title: 'Atendimentos',
+    moduleName: 'atendimentos',
+    iconType: 'material-icons-two-tone',
+    icon: 'work',
+    class: '',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    role: ['Clinic'],
+    submenu: [],
+  },
+
   // User Modules
   {
     path: '/user/dashboard',

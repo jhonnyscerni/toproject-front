@@ -23,6 +23,7 @@ import { switchMap, take } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 import { AlertModalService } from 'src/app/shared/services/alert-modal.service';
 import { EMPTY } from 'rxjs';
+import {Clinica} from "../../../../models/clinica";
 @Component({
   selector: 'app-form-dialog',
   templateUrl: './form-dialog.component.html',
@@ -35,6 +36,7 @@ export class FormDialogComponent extends BaseFormComponent {
   calendar: Consulta;
   showDeleteBtn = false;
   profissional = Profissional
+  clinica = Clinica
 
   statusConsultaEnum = statusConsultaEnum;
   procedimentoEnum =  procedimentoEnum;
@@ -45,6 +47,7 @@ export class FormDialogComponent extends BaseFormComponent {
   className: any
 
   keys = Object.keys;
+
 
   constructor(
     public dialogRef: MatDialogRef<FormDialogComponent>,
@@ -71,7 +74,10 @@ export class FormDialogComponent extends BaseFormComponent {
         if (idConsulta) {
         const consulta$ = this.consultaService.loadByID(idConsulta);
         consulta$.subscribe(consulta => {
-          console.log(consulta)
+          if (consulta.clinica.id != null){
+            this.carregarPacientesClinica(consulta.clinica.id);
+            this.cadastroForm.controls['paciente'].disable();
+          }
           this.updateForm(consulta);
         });
       }
@@ -132,7 +138,7 @@ export class FormDialogComponent extends BaseFormComponent {
     let params = {};
 
     params[`profissionalId`] = this.profissional;
-    
+
     return params;
   }
 
@@ -145,7 +151,25 @@ export class FormDialogComponent extends BaseFormComponent {
           }
     );
   }
-  
+
+  getRequestParamsClinica(clinicaId) {
+    let params = {};
+
+    params[`clinicaId`] = clinicaId;
+
+    return params;
+  }
+
+  carregarPacientesClinica(clinicaId) {
+    const params = this.getRequestParamsClinica(clinicaId);
+    return this.pacienteService.listSearchList(params)
+      .subscribe(pacientes => {
+          this.pacientes = pacientes
+        console.log(this.pacientes)
+        }
+      );
+  }
+
   submit() {
     // emppty stuff
     let msgSuccess = 'Consulta criada com sucesso!';
@@ -199,7 +223,7 @@ export class FormDialogComponent extends BaseFormComponent {
     return compared1 && compared2 ? compared1.id === compared2.id : compared1 === compared2;
   }
 
-  getClassNameValue(status) {    
+  getClassNameValue(status) {
     if (status === "CONFIRMADO")
        this.className = "fc-event-warning"
     else if (status === "AGENDADO")
@@ -210,7 +234,7 @@ export class FormDialogComponent extends BaseFormComponent {
       this.className = "fc-event-info"
       else if (status = "FINALIZADO")
       this.className = "fc-event-success"
-      
+
 
     return this.className;
   }

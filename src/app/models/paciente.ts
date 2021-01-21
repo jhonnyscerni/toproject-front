@@ -24,4 +24,5 @@ export class Paciente {
   idPaciente?: number;
   ativado?: boolean;
   clinicaId?: number;
+  profissionalId?: number;
 }

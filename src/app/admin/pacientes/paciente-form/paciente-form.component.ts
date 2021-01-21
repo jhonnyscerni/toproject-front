@@ -19,6 +19,10 @@ import { utilsBr } from 'js-brasil';
 
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/utils/format-datepicker';
+import {Clinica} from "../../../models/clinica";
+import {ClinicaService} from "../../../services/clinica.service";
+import {Profissional} from "../../../models/profissional";
+import {ProfissionalService} from "../../../services/profissional.service";
 @Component({
   selector: 'app-profissional-paciente-form',
   templateUrl: './paciente-form.component.html',
@@ -39,6 +43,9 @@ export class PacienteFormComponent extends BaseFormComponent implements OnInit {
   estados: Estado[];
   cidades: Cidade[];
 
+  clinicas: Clinica[];
+  profissionais: Profissional[];
+
   // grupos: Grupo[];
 
   MASKS = utilsBr.MASKS;
@@ -52,13 +59,17 @@ export class PacienteFormComponent extends BaseFormComponent implements OnInit {
     private toastr: ToastrService,
     private consultaCepService: ConsultaCepService,
     private cidadeService: CidadeService,
-    private estadoService: EstadoService
+    private estadoService: EstadoService,
+    private clincaService: ClinicaService,
+    private profissionalService: ProfissionalService
   ) {
     super();
   }
 
   ngOnInit() {
     this.carregarEstados();
+    this.carregarClinicas();
+    this.carregarProfissionais();
     this.route.params.subscribe((params: any) => {
       const idPaciente = params['idPaciente'];
       if (idPaciente) {
@@ -94,6 +105,10 @@ export class PacienteFormComponent extends BaseFormComponent implements OnInit {
       complemento: [''],
       bairro: ['', [Validators.required]],
       cep: ['', [Validators.required, NgBrazilValidators.cep]],
+      clinicaId: [''],
+      profissional: this.fb.group({
+        id: ['']
+      }),
       cidade: this.fb.group({
         id: ['', Validators.required],
         estado: this.fb.group({
@@ -108,6 +123,33 @@ export class PacienteFormComponent extends BaseFormComponent implements OnInit {
     return this.estadoService.list()
       .subscribe(estados => this.estados = estados);
   }
+
+  getRequestParams() {
+    let params = {};
+
+    // params[`clinicaId`] = this.clinica;
+
+    return params;
+  }
+
+  carregarClinicas() {
+    const params = this.getRequestParams();
+    return this.clincaService.listSearchList(params)
+      .subscribe(clinicas => {
+          this.clinicas = clinicas
+        }
+      );
+  }
+
+  carregarProfissionais() {
+    const params = this.getRequestParams();
+    return this.profissionalService.listSearchList(params)
+      .subscribe(profissionais => {
+          this.profissionais = profissionais
+        }
+      );
+  }
+
 
   updateForm(paciente) {
 
@@ -133,6 +175,10 @@ export class PacienteFormComponent extends BaseFormComponent implements OnInit {
           complemento: paciente.complemento,
           bairro: paciente.bairro,
           cep: paciente.cep,
+          clinicaId: paciente.clinicaId,
+          profissional: {
+            id: paciente.profissionalId
+          },
           cidade: {
             id: this.cidade.id,
             estado: {

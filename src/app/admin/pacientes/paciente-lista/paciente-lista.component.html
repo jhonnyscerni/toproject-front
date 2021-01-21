@@ -87,6 +87,8 @@
                                     <th>ID</th>
                                     <th>NOME</th>
                                     <th>EMAIL</th>
+                                    <th>CLINICA</th>
+                                    <th>PROFISSIONAL</th>
                                      <th></th>
                                 </tr>
                             </thead>
@@ -97,7 +99,9 @@
                                                                                                     totalItems: totalElements }">
                                     <td><span class=" text-muted"> {{ paciente?.id }}</span></td>
                                     <td><span class=" text-muted"> {{ paciente?.nome }}</span></td>
-                                    <td><span class=" text-muted"> {{ paciente.email }} </span>
+                                  <td><span class=" text-muted"> {{ paciente?.email }} </span></td>
+                                  <td><span class=" text-muted"> {{ paciente?.clinicaId }} </span></td>
+                                    <td><span class=" text-muted"> {{ paciente?.profissionalId }} </span>
                                     </td>
                                     <td class=" table-actions">
                                         <a class="table-action" tooltip="Editar paciente" placement="top"

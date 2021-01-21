@@ -28,19 +28,19 @@ export class AuthoritiesGuard implements CanActivate {
         }
 
         let userAuthorities = authorities.find(x => x === authorized);
-                
+
         if(!userAuthorities){
             this.navegarAcessoNegado();
         }
-        console.log("userAuthorities" + userAuthorities)
+        //console.log("userAuthorities" + userAuthorities)
       }
 
       return true
   }
 
-  
+
   private navegarAcessoNegado() {
     this.router.navigate(['/painel/acesso-negado']);
-}  
-  
+}
+
 }

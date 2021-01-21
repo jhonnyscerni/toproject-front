@@ -1,22 +1,23 @@
-import { AlertModalService } from './../../../shared/services/alert-modal.service';
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { EMPTY } from 'rxjs';
-import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
-import { tap, map, filter, distinctUntilChanged, debounceTime, switchMap, take } from 'rxjs/operators';
-import { PacienteService } from 'src/app/services/paciente.service';
-import { Paciente } from 'src/app/models/paciente';
-@Component({
-  selector: 'app-paciente-lista',
-  templateUrl: './paciente-lista.component.html',
-  styleUrls: ['./paciente-lista.component.scss']
-})
-export class PacienteListaComponent implements OnInit {
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {Clinica} from "../../../models/clinica";
+import {ActivatedRoute, Router} from "@angular/router";
+import {AlertModalService} from "../../../shared/services/alert-modal.service";
+import {switchMap, take} from "rxjs/operators";
+import {EMPTY} from "rxjs";
+import {ClinicaService} from "../../../services/clinica.service";
 
-  pacientes: Paciente[];
+@Component({
+  selector: 'app-clinica-lista',
+  templateUrl: './clinica-lista.component.html',
+  styleUrls: ['./clinica-lista.component.scss']
+})
+export class ClinicaListaComponent implements OnInit {
+
+  clinicas: Clinica[];
   errorMessage: string;
 
-  pacienteSelecionado: Paciente;
+  clinicaSelecionada: Clinica;
 
   searchForm: FormGroup
   nomeControl: FormControl
@@ -28,14 +29,13 @@ export class PacienteListaComponent implements OnInit {
   pageElement = 0;
   size = 10
 
-
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private alertService: AlertModalService,
-    private pacienteService: PacienteService,
-    private fb: FormBuilder) {
-  }
+    private clinicaService: ClinicaService,
+    private fb: FormBuilder
+  ) { }
 
   getRequestParams(pageElement, size) {
     // tslint:disable-next-line:prefer-const
@@ -63,8 +63,7 @@ export class PacienteListaComponent implements OnInit {
     return params;
   }
 
-  ngOnInit() {
-
+  ngOnInit(): void {
     this.nomeControl = this.fb.control('')
     this.emailControl = this.fb.control('')
     this.searchForm = this.fb.group({
@@ -83,13 +82,13 @@ export class PacienteListaComponent implements OnInit {
   onRefresh() {
     const params = this.getRequestParams(this.pageElement, this.size);
 
-    this.pacienteService.listSearchPage(params)
+    this.clinicaService.listSearchPage(params)
       .subscribe(
-        pacientes => {
-          this.pacientes = pacientes.content
-          this.totalElements = pacientes.totalElements
-          this.pageElement = pacientes.number
-          this.size = pacientes.size
+        clinicas => {
+          this.clinicas = clinicas.content
+          this.totalElements = clinicas.totalElements
+          this.pageElement = clinicas.number
+          this.size = clinicas.size
         },
         error => this.errorMessage
       );
@@ -104,31 +103,36 @@ export class PacienteListaComponent implements OnInit {
   }
 
   onEdit(id) {
-    this.router.navigate(['/admin/pacientes/editar', id], { relativeTo: this.route });
+    this.router.navigate(['/admin/clinicas/editar', id], { relativeTo: this.route });
   }
 
   onDetalhe(id) {
-    this.router.navigate(['/admin/pacientes/detalhe', id], { relativeTo: this.route });
+    this.router.navigate(['/admin/clinicas/detalhe', id], { relativeTo: this.route });
   }
 
-  onDelete(paciente) {
-    this.pacienteSelecionado = paciente;
+  onDelete(clinica) {
+    this.clinicaSelecionada = clinica;
     const result$ = this.alertService.showConfirm(
       'Confirmacao',
-      'Tem certeza que deseja remover esse paciente?',
+      'Tem certeza que deseja remover essa Clinica?',
     );
     result$
       .asObservable()
       .pipe(
         take(1),
         switchMap(result =>
-          result ? this.pacienteService.remove(paciente.id) : EMPTY,
+          result ? this.clinicaService.remove(clinica.id) : EMPTY,
         ),
       )
       .subscribe(
         success => {
           this.onRefresh();
-        }
+        },
+        // error => {
+        //   this.alertService.showAlertDanger(
+        //     'Erro ao remover curso. Tente novamente mais tarde.',
+        //   );
+        // },
       );
   }
 

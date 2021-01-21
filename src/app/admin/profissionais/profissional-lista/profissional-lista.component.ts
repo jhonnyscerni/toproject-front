@@ -39,7 +39,7 @@ export class ProfissionalListaComponent implements OnInit {
 
   getRequestParams(pageElement, size) {
     // tslint:disable-next-line:prefer-const
-    console.log(this.nomeControl.value);
+    //console.log(this.nomeControl.value);
     let nome = this.nomeControl.value;
     let email = this.emailControl.value;
     let params = {};
@@ -85,7 +85,7 @@ export class ProfissionalListaComponent implements OnInit {
 
     this.profissionalService.listSearchPage(params)
       .subscribe(
-        profissionais => { 
+        profissionais => {
           this.profissionais = profissionais.content
           this.totalElements = profissionais.totalElements
           this.pageElement = profissionais.number

@@ -14,7 +14,7 @@ import { GrupoService } from '../../../services/grupo.service';
   styleUrls: ['./grupo-form.component.scss']
 })
 export class GrupoFormComponent extends BaseFormComponent implements OnInit {
-  
+
   grupo: Grupo;
   idGrupo: number;
 
@@ -26,7 +26,7 @@ export class GrupoFormComponent extends BaseFormComponent implements OnInit {
     private router: Router,
     private grupoService: GrupoService,
     private toastr: ToastrService,
-  ) { 
+  ) {
     super();
   }
 
@@ -34,7 +34,7 @@ export class GrupoFormComponent extends BaseFormComponent implements OnInit {
     this.route.params.subscribe((params: any) => {
       const idGrupo = params['idGrupo'];
       if (idGrupo) {
-        console.log(idGrupo);
+        //console.log(idGrupo);
         const grupo$ = this.grupoService.loadByID(idGrupo);
         grupo$.subscribe(grupo => {
           this.updateForm(grupo);
@@ -64,12 +64,12 @@ export class GrupoFormComponent extends BaseFormComponent implements OnInit {
   }
 
   submit() {
-    console.log('submit');
+    //console.log('submit');
 
     let msgSuccess = 'Grupo criado com sucesso!';
     let msgError = 'Erro ao criar grupo, tente novamente!';
     if (this.cadastroForm.value.id) {
-      console.log(this.cadastroForm.value);
+      //console.log(this.cadastroForm.value);
       msgSuccess = 'Grupo atualizado com sucesso!';
       msgError = 'Erro ao atualizar grupo, tente novamente!';
     }
@@ -81,7 +81,7 @@ export class GrupoFormComponent extends BaseFormComponent implements OnInit {
         this.toastr.success(msgSuccess, 'Informação :)')
         this.location.back();
       },
-      error => 
+      error =>
       //this.alertService.showAlertDanger(msgError),
       this.toastr.error(msgError, 'Opa :(')
     );

@@ -26,7 +26,7 @@ export class PermissaoFormComponent extends BaseFormComponent implements OnInit 
     private router: Router,
     private permissaoService: PermissaoService,
     private toastr: ToastrService,
-  ) { 
+  ) {
     super();
   }
 
@@ -34,7 +34,7 @@ export class PermissaoFormComponent extends BaseFormComponent implements OnInit 
     this.route.params.subscribe((params: any) => {
       const idPermissao = params['idPermissao'];
       if (idPermissao) {
-        console.log(idPermissao);
+        //console.log(idPermissao);
         const permissao$ = this.permissaoService.loadByID(idPermissao);
         permissao$.subscribe(permissao => {
           this.updateForm(permissao);
@@ -66,12 +66,12 @@ export class PermissaoFormComponent extends BaseFormComponent implements OnInit 
   }
 
   submit() {
-    console.log('submit');
+    //console.log('submit');
 
     let msgSuccess = 'Permissão criada com sucesso!';
     let msgError = 'Erro ao criar permissão, tente novamente!';
     if (this.cadastroForm.value.id) {
-      console.log(this.cadastroForm.value);
+      //console.log(this.cadastroForm.value);
       msgSuccess = 'Permissão atualizado com sucesso!';
       msgError = 'Erro ao atualizar permissão, tente novamente!';
     }
@@ -83,7 +83,7 @@ export class PermissaoFormComponent extends BaseFormComponent implements OnInit 
         this.toastr.success(msgSuccess, 'Informação :)')
         this.location.back();
       },
-      error => 
+      error =>
       //this.alertService.showAlertDanger(msgError),
       this.toastr.error(msgError, 'Opa :(')
     );

@@ -21,14 +21,14 @@ import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { AppDateAdapter, APP_DATE_FORMATS } from 'src/app/shared/utils/format-datepicker';
 @Component({
   selector: 'app-profissional-paciente-form',
-  templateUrl: './profissional-paciente-form.component.html',
-  styleUrls: ['./profissional-paciente-form.component.scss'],
+  templateUrl: './paciente-form.component.html',
+  styleUrls: ['./paciente-form.component.scss'],
   providers: [
     { provide: DateAdapter, useClass: AppDateAdapter },
     { provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS }
   ]
 })
-export class ProfissionalPacienteFormComponent extends BaseFormComponent implements OnInit {
+export class PacienteFormComponent extends BaseFormComponent implements OnInit {
 
   cidade: Cidade;
   estado: Estado;
@@ -216,7 +216,7 @@ export class ProfissionalPacienteFormComponent extends BaseFormComponent impleme
   }
 
   cancelar() {
-    this.router.navigate(['/user/pacientes/lista'], { relativeTo: this.route });
+    this.router.navigate(['/admin/pacientes/lista'], { relativeTo: this.route });
   }
 
   // carregarGrupos() {

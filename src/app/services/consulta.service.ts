@@ -19,14 +19,14 @@ export class ConsultaService extends CrudService<Consulta> {
   }
 
   listSearchPage(params): Observable<Page<Consulta>> {
-    console.log(params)
+    //console.log(params)
     return this.http.get<Page<Consulta>>(this.url, { params })
       .pipe(
         catchError(super.serviceError));
   }
 
   listSearchList(params): Observable<Consulta[]> {
-    console.log(params)
+    //console.log(params)
     return this.http.get<Consulta[]>(this.url + "/lista", { params })
       .pipe(
         catchError(super.serviceError));

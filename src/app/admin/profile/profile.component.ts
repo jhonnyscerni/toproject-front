@@ -53,7 +53,7 @@ export class ProfileComponent extends BaseFormComponent implements OnInit {
         .subscribe(usuario => {
           this.usuario = usuario
           this.updateForm(this.usuario);
-          console.log(this.usuario)
+          //console.log(this.usuario)
         })
   }
 
@@ -68,12 +68,12 @@ export class ProfileComponent extends BaseFormComponent implements OnInit {
   }
 
   submit() {
-    console.log('submit');
+    //console.log('submit');
 
     let msgSuccess;
     let msgError;
     if (this.cadastroForm.value.id) {
-      console.log(this.cadastroForm.value);
+      //console.log(this.cadastroForm.value);
       msgSuccess = 'Usuário atualizado com sucesso!';
       msgError = 'Erro ao atualizar usuario, tente novamente!';
     }
@@ -84,7 +84,7 @@ export class ProfileComponent extends BaseFormComponent implements OnInit {
         this.toastr.success(msgSuccess, 'Informação :)')
         this.location.back();
       },
-      error => 
+      error =>
       //this.alertService.showAlertDanger(msgError),
       this.toastr.error(msgError, 'Opa :(')
     );

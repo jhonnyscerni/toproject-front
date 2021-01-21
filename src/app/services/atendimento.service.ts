@@ -19,7 +19,7 @@ export class AtendimentoService extends CrudService<AtendimentoService> {
   }
 
   listSearchPage(params): Observable<Page<Atendimento>> {
-    console.log(params)
+    //console.log(params)
     return this.http.get<Page<Atendimento>>(this.url, { params })
       .pipe(
         catchError(super.serviceError));

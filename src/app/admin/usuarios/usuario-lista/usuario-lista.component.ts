@@ -41,7 +41,7 @@ export class UsuarioListaComponent implements OnInit {
 
   getRequestParams(pageElement, size) {
     // tslint:disable-next-line:prefer-const
-    console.log(this.nomeControl.value);
+    //console.log(this.nomeControl.value);
     let nome = this.nomeControl.value;
     let email = this.emailControl.value;
     let params = {};
@@ -87,7 +87,7 @@ export class UsuarioListaComponent implements OnInit {
 
     this.usuarioService.listSearchPage(params)
       .subscribe(
-        usuarios => { 
+        usuarios => {
           this.usuarios = usuarios.content
           this.totalElements = usuarios.totalElements
           this.pageElement = usuarios.number

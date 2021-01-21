@@ -58,7 +58,7 @@ export class ClinicaAtendimentoFormComponent extends BaseFormComponent implement
   }
 
   submit() {
-    console.log('submit');
+    //console.log('submit');
 
     let msgSuccess = 'Atendimento atualizado com sucesso!';
     let msgError = 'Erro ao atualizar atendimento, tente novamente!';

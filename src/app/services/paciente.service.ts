@@ -21,14 +21,14 @@ export class PacienteService extends CrudService<Paciente> {
   }
 
   listSearchPage(params): Observable<Page<Paciente>> {
-    console.log(params)
+    //console.log(params)
     return this.http.get<Page<Paciente>>(this.url, { params })
       .pipe(
         catchError(super.serviceError));
   }
 
   listSearchList(params): Observable<Paciente[]> {
-    console.log(params)
+    //console.log(params)
     return this.http.get<Paciente[]>(this.url + "/lista", { params })
       .pipe(
         catchError(super.serviceError));

@@ -15,7 +15,7 @@ import { Location } from '@angular/common';
   styleUrls: ['./profissional-atendimento-atender.component.scss']
 })
 export class ProfissionalAtendimentoAtenderComponent extends BaseFormComponent implements OnInit {
-  
+
   atendimento: Atendimento
   idConsulta: number
   consulta: Consulta
@@ -54,7 +54,7 @@ export class ProfissionalAtendimentoAtenderComponent extends BaseFormComponent i
   }
 
   submit() {
-    console.log('submit');
+    //console.log('submit');
 
     let msgSuccess = 'Atendimento realizado com sucesso!';
     let msgError = 'Erro ao realizar atendimento, tente novamente!';
@@ -64,7 +64,7 @@ export class ProfissionalAtendimentoAtenderComponent extends BaseFormComponent i
         this.toastr.success(msgSuccess, 'Informação :)')
         this.location.back();
       },
-      error => 
+      error =>
       this.toastr.error(msgError, 'Opa :(')
     );
   }

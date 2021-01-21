@@ -12,6 +12,18 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { pacientesRoutes } from './pacientes.routing';
 import { PacienteListaComponent } from './paciente-lista/paciente-lista.component';
 import { PacientesComponent } from './pacientes.component';
+import {PacienteFormComponent} from "./paciente-form/paciente-form.component";
+import {NgBrazil} from "ng-brazil";
+import {TextMaskModule} from "angular2-text-mask";
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatInputModule} from "@angular/material/input";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatSortModule} from "@angular/material/sort";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 
 @NgModule({
@@ -29,12 +41,26 @@ import { PacientesComponent } from './pacientes.component';
     SharedModule,
 
     MatSelectModule,
-    
+
+    MatFormFieldModule,
+    NgBrazil,
+    TextMaskModule,
+
+    // MAT
+    MatTableModule,
+    MatPaginatorModule,
+    MatInputModule,
+    MatSnackBarModule,
+    MatDialogModule,
+    MatSortModule,
+    MatDatepickerModule,
+    MatTabsModule,
+    MatCheckboxModule,
     MatFormFieldModule
-    
+
   ],
-  declarations: [PacientesComponent, PacienteListaComponent],
-  exports:[PacientesComponent, PacienteListaComponent]
+  declarations: [PacientesComponent, PacienteListaComponent, PacienteFormComponent],
+  exports:[PacientesComponent, PacienteListaComponent, PacienteFormComponent]
 })
 export class PacientesModule { }
 

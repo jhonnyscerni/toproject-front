@@ -63,7 +63,7 @@ export class SignupComponent extends BaseFormComponent implements OnInit {
 
   submit() {
     this.submitted = true;
-    console.log('submit');
+    //console.log('submit');
 
     let msgSuccess = 'Cadastro Realizado. OBRIGADO! Enviamos um e-mail para você ativar sua conta. Caso o email não esteja na caixa de entrada, verifique sua caixa de spam/lixo eletrônico.!';
     let msgError = 'Erro ao cadastrar usuario, tente novamente!';

@@ -62,7 +62,7 @@ export class ClinicaPacienteFormComponent extends BaseFormComponent implements O
     this.route.params.subscribe((params: any) => {
       const idPaciente = params['idPaciente'];
       if (idPaciente) {
-        console.log(idPaciente);
+        //console.log(idPaciente);
         const paciente$ = this.pacienteService.loadByID(idPaciente);
         paciente$.subscribe(paciente => {
           this.paciente = paciente
@@ -117,7 +117,7 @@ export class ClinicaPacienteFormComponent extends BaseFormComponent implements O
         this.cidades = []
         this.cidades.push(this.cidade)
         //2021-01-27T03:00:00.000Z
-        console.log(paciente)
+        //console.log(paciente)
         this.cadastroForm.patchValue({
           id: paciente.id,
           nome: paciente.nome,
@@ -192,12 +192,12 @@ export class ClinicaPacienteFormComponent extends BaseFormComponent implements O
   }
 
   submit() {
-    console.log('submit');
+    //console.log('submit');
 
     let msgSuccess = 'Paciente criado com sucesso!';
     let msgError = 'Erro ao criar paciente, tente novamente!';
     if (this.cadastroForm.value.id) {
-      console.log(this.cadastroForm.value);
+      //console.log(this.cadastroForm.value);
       msgSuccess = 'Paciente atualizado com sucesso!';
       msgError = 'Erro ao atualizar paciente, tente novamente!';
     }

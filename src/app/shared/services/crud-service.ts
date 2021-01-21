@@ -12,7 +12,7 @@ export class CrudService<T> extends BaseService {
     search(params): Observable<T[]> {
         return this.http.get<T[]>(this.API_URL, {params})
             .pipe(
-                 tap(console.log),
+                 //tap(console.log),
                 catchError(super.serviceError));
     }
 
@@ -47,12 +47,12 @@ export class CrudService<T> extends BaseService {
     }
 
     save(record: T) {
-        console.log(record);
+        //console.log(record);
         if (record['id']) {
-            console.log('update!')
+            //console.log('update!')
             return this.update(record);
         }
-        console.log('create!')
+        //console.log('create!')
         return this.create(record);
     }
 

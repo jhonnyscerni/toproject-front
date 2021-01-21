@@ -14,7 +14,7 @@ import { EMPTY } from 'rxjs';
 export class PermissaoListaComponent implements OnInit {
 
   permissoes: Permissao[];
-  errorMessage: string; 
+  errorMessage: string;
 
   permissaoSelecionado: Permissao;
 
@@ -35,7 +35,7 @@ export class PermissaoListaComponent implements OnInit {
     this.permissaoService.list()
     .subscribe(
       permissoes => {
-        console.log(permissoes)
+        //console.log(permissoes)
         this.permissoes = permissoes
       },
       error => this.errorMessage

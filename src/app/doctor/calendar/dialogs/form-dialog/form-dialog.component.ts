@@ -165,7 +165,7 @@ export class FormDialogComponent extends BaseFormComponent {
     return this.pacienteService.listSearchList(params)
       .subscribe(pacientes => {
           this.pacientes = pacientes
-        console.log(this.pacientes)
+        //console.log(this.pacientes)
         }
       );
   }
@@ -175,7 +175,7 @@ export class FormDialogComponent extends BaseFormComponent {
     let msgSuccess = 'Consulta criada com sucesso!';
     let msgError = 'Erro ao criar consulta, tente novamente!';
     if (this.cadastroForm.value.id) {
-      console.log(this.cadastroForm.value);
+      //console.log(this.cadastroForm.value);
       msgSuccess = 'Profissional atualizado com sucesso!';
       msgError = 'Erro ao atualizar profissional, tente novamente!';
     }

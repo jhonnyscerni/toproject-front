@@ -65,7 +65,7 @@ export class ClinicaConsultaFormComponent extends BaseFormComponent implements O
       if (idConsulta) {
         const consulta$ = this.consultaService.loadByID(idConsulta);
         consulta$.subscribe(consulta => {
-          console.log(consulta)
+          //console.log(consulta)
           this.updateForm(consulta);
         });
       }
@@ -118,7 +118,7 @@ export class ClinicaConsultaFormComponent extends BaseFormComponent implements O
     let params = {};
 
     params[`clinicaId`] = this.clinica;
-    
+
     return params;
   }
 
@@ -144,7 +144,7 @@ export class ClinicaConsultaFormComponent extends BaseFormComponent implements O
     let msgSuccess = 'Consulta criada com sucesso!';
     let msgError = 'Erro ao criar consulta, tente novamente!';
     if (this.cadastroForm.value.id) {
-      console.log(this.cadastroForm.value);
+      //console.log(this.cadastroForm.value);
       msgSuccess = 'Profissional atualizado com sucesso!';
       msgError = 'Erro ao atualizar profissional, tente novamente!';
     }

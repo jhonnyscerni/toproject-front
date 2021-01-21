@@ -19,14 +19,14 @@ export class ProfissionalService extends CrudService<Profissional> {
   }
 
   listSearchPage(params): Observable<Page<Profissional>> {
-    console.log(params)
+    //console.log(params)
     return this.http.get<Page<Profissional>>(this.url, { params })
       .pipe(
         catchError(super.serviceError));
   }
 
   listSearchList(params): Observable<Profissional[]> {
-    console.log(params)
+    //console.log(params)
     return this.http.get<Profissional[]>(this.url + "/lista", { params })
       .pipe(
         catchError(super.serviceError));

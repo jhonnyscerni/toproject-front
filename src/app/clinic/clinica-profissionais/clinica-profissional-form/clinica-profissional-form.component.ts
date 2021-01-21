@@ -17,7 +17,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./clinica-profissional-form.component.scss']
 })
 export class ClinicaProfissionalFormComponent extends BaseFormComponent implements OnInit {
- 
+
   profissional: Profissional;
   idProfissional: number;
   validarEmail: any;
@@ -40,7 +40,7 @@ export class ClinicaProfissionalFormComponent extends BaseFormComponent implemen
     this.route.params.subscribe((params: any) => {
       const idProfissional = params['idProfissional'];
       if (idProfissional) {
-        console.log(idProfissional);
+        //console.log(idProfissional);
         const profissional$ = this.profissionalService.loadByID(idProfissional);
         profissional$.subscribe(profissional => {
           this.updateForm(profissional);
@@ -75,12 +75,12 @@ export class ClinicaProfissionalFormComponent extends BaseFormComponent implemen
   }
 
   submit() {
-    console.log('submit');
+    //console.log('submit');
 
     let msgSuccess = 'Profissional criado com sucesso!';
     let msgError = 'Erro ao criar profissional, tente novamente!';
     if (this.cadastroForm.value.id) {
-      console.log(this.cadastroForm.value);
+      //console.log(this.cadastroForm.value);
       msgSuccess = 'Profissional atualizado com sucesso!';
       msgError = 'Erro ao atualizar profissional, tente novamente!';
     }
@@ -89,12 +89,12 @@ export class ClinicaProfissionalFormComponent extends BaseFormComponent implemen
       success => {
         //this.alertService.showAlertSuccess(msgSuccess);
         this.toastr.success(msgSuccess, 'Informação :)')
-        
+
         this.location.back();
       },
-      error => 
+      error =>
       //this.alertService.showAlertDanger(msgError),
-      this.toastr.error(msgError, 'Opa :(')  
+      this.toastr.error(msgError, 'Opa :(')
     );
   }
 

@@ -17,6 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { NgBrazil } from 'ng-brazil';
 import { TextMaskModule } from 'angular2-text-mask';
 import { EditorModule } from '@tinymce/tinymce-angular';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   imports: [
@@ -40,7 +41,8 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    EditorModule
+    EditorModule,
+    MatAutocompleteModule
   ],
   declarations: [ProfissionalConsultasComponent, ProfissionalConsultaFormComponent, ProfissionalConsultaListaComponent, ProfissionalAtendimentoAtenderComponent],
   exports: [ProfissionalConsultasComponent, ProfissionalConsultaFormComponent, ProfissionalConsultaListaComponent, ProfissionalAtendimentoAtenderComponent],

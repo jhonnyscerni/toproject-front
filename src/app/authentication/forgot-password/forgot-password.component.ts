@@ -36,7 +36,7 @@ export class ForgotPasswordComponent extends BaseFormComponent implements OnInit
 
   submit() {
     this.usuario = Object.assign({}, this.usuario, this.cadastroForm.value);
-    console.log(this.usuario)
+    //console.log(this.usuario)
 
     this.authService.recuperarLogin(this.usuario)
       .subscribe(response => {

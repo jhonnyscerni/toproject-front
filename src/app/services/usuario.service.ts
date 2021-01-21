@@ -19,7 +19,7 @@ export class UsuarioService extends CrudService<Usuario> {
   }
 
   listSearchPage(params): Observable<Page<Usuario>> {
-    console.log(params)
+    //console.log(params)
     return this.http.get<Page<Usuario>>(this.url, { params })
       .pipe(
         catchError(super.serviceError));

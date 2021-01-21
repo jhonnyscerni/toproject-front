@@ -55,7 +55,7 @@ export class AuthService extends BaseService {
     const token = this.obterToken();
     if (token) {
       const usuario = this.jwtHelper.decodeToken(token).usuario_id
-      console.log(usuario)
+      //console.log(usuario)
       return usuario;
     }
     return null;
@@ -81,7 +81,7 @@ export class AuthService extends BaseService {
   }
 
   // getGrupos() {
-    
+
   //   const token = this.obterToken();
   //   if (token) {
   //     this.grupos = this.jwtHelper.decodeToken(token).grupos

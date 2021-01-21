@@ -44,7 +44,7 @@ export class ClinicaPacienteListaComponent implements OnInit {
 
   getRequestParams(pageElement, size) {
     // tslint:disable-next-line:prefer-const
-    console.log(this.nomeControl.value);
+    //console.log(this.nomeControl.value);
     let nome = this.nomeControl.value;
     let email = this.emailControl.value;
     let params = {};
@@ -66,10 +66,10 @@ export class ClinicaPacienteListaComponent implements OnInit {
     }
 
     params[`clinicaId`] = this.usuarioId;
-    
+
     return params;
   }
-    
+
   ngOnInit() {
     this.nomeControl = this.fb.control('')
     this.emailControl = this.fb.control('')
@@ -91,7 +91,7 @@ export class ClinicaPacienteListaComponent implements OnInit {
 
     this.pacienteService.listSearchPage(params)
       .subscribe(
-        pacientes => { 
+        pacientes => {
           this.pacientes = pacientes.content
           this.totalElements = pacientes.totalElements
           this.pageElement = pacientes.number
@@ -108,7 +108,7 @@ export class ClinicaPacienteListaComponent implements OnInit {
     this.size = 10
     this.onRefresh()
   }
-  
+
   onEdit(id) {
     this.router.navigate(['/clinic/pacientes/editar', id], { relativeTo: this.route });
   }

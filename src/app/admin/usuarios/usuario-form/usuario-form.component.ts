@@ -17,7 +17,7 @@ import { AlertModalService } from '../../../shared/services/alert-modal.service'
   styleUrls: ['./usuario-form.component.scss']
 })
 export class UsuarioFormComponent extends BaseFormComponent implements OnInit {
- 
+
   usuario: Usuario;
   idUsuario: number;
   validarEmail: any;
@@ -42,7 +42,7 @@ export class UsuarioFormComponent extends BaseFormComponent implements OnInit {
     this.route.params.subscribe((params: any) => {
       const idUsuario = params['idUsuario'];
       if (idUsuario) {
-        console.log(idUsuario);
+        //console.log(idUsuario);
         const usuario$ = this.usuarioService.loadByID(idUsuario);
         usuario$.subscribe(usuario => {
           this.updateForm(usuario);
@@ -80,12 +80,12 @@ export class UsuarioFormComponent extends BaseFormComponent implements OnInit {
   }
 
   submit() {
-    console.log('submit');
+    //console.log('submit');
 
     let msgSuccess = 'Usuário criado com sucesso!';
     let msgError = 'Erro ao criar usuario, tente novamente!';
     if (this.cadastroForm.value.id) {
-      console.log(this.cadastroForm.value);
+      //console.log(this.cadastroForm.value);
       msgSuccess = 'Usuário atualizado com sucesso!';
       msgError = 'Erro ao atualizar usuario, tente novamente!';
     }
@@ -94,12 +94,12 @@ export class UsuarioFormComponent extends BaseFormComponent implements OnInit {
       success => {
         //this.alertService.showAlertSuccess(msgSuccess);
         this.toastr.success(msgSuccess, 'Informação :)')
-        
+
         this.location.back();
       },
-      error => 
+      error =>
       //this.alertService.showAlertDanger(msgError),
-      this.toastr.error(msgError, 'Opa :(')  
+      this.toastr.error(msgError, 'Opa :(')
     );
   }
 

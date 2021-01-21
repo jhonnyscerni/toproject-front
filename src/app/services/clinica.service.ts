@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { Page } from '../models/page/page';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import {Profissional} from "../models/profissional";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class ClinicaService extends CrudService<Clinica> {
   }
 
   listSearchPage(params): Observable<Page<Clinica>> {
-    console.log(params)
+    //console.log(params)
     return this.http.get<Page<Clinica>>(this.url, { params })
       .pipe(
         catchError(super.serviceError));
@@ -32,6 +33,13 @@ export class ClinicaService extends CrudService<Clinica> {
   private createUserCommon(record: Clinica): Observable<Clinica> {
     return this.http
       .post(this.url + "/add-usuario-comum", record)
+      .pipe(
+        catchError(super.serviceError));
+  }
+
+  listSearchList(params): Observable<Clinica[]> {
+    //console.log(params)
+    return this.http.get<Clinica[]>(this.url + "/lista", { params })
       .pipe(
         catchError(super.serviceError));
   }

@@ -23,21 +23,21 @@ export abstract class BaseFormComponent implements OnInit {
 
   abstract submit();
 
- 
+
   onSubmit() {
     if (this.cadastroForm.dirty && this.cadastroForm.valid) {
       this.formResult = JSON.stringify(this.cadastroForm.value);
-      console.log(this.formResult);
+      //console.log(this.formResult);
       this.submit();
     } else {
-      console.log('formulario invalido');
-      //this.verificaValidacoesForm(this.cadastroForm);
+      //console.log('formulario invalido');
+      this.verificaValidacoesForm(this.cadastroForm);
     }
   }
 
   verificaValidacoesForm(formGroup: FormGroup | FormArray) {
     Object.keys(formGroup.controls).forEach(campo => {
-      console.log(campo);
+      //console.log(campo);
       const controle = formGroup.get(campo);
       controle.markAsDirty();
       controle.markAsTouched();

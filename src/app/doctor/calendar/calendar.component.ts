@@ -79,7 +79,7 @@ export class CalendarComponent extends BaseFormComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-   
+
     this.listarConsultas();
     // criar FORM
     this.cadastroForm = this.fb.group({
@@ -106,7 +106,7 @@ export class CalendarComponent extends BaseFormComponent implements OnInit {
       .subscribe(
         consultas => {
           this.calendarEvents = consultas
-          
+
         }
       );
   }
@@ -124,7 +124,7 @@ export class CalendarComponent extends BaseFormComponent implements OnInit {
 
       if (result === "submit") {
         this.calendarData = this.calendarService.getDialogData();
-        console.log(this.calendarData)
+        //console.log(this.calendarData)
 
         // this.calendarEvents = this.calendarEvents.concat({ // add new event data. must create new array
         //   id: this.calendarData.id,
@@ -192,7 +192,7 @@ export class CalendarComponent extends BaseFormComponent implements OnInit {
     const calendarEvents = this.calendarEvents.slice();
     const singleEvent = Object.assign({}, calendarEvents[eventIndex]);
     singleEvent.id = calendarData.id;
-    
+
     // singleEvent.title = calendarData.title;
     // singleEvent.start = calendarData.startDate;
     // // singleEvent.end = calendarData.endDate;
@@ -220,6 +220,6 @@ export class CalendarComponent extends BaseFormComponent implements OnInit {
       panelClass: colorName,
     });
   }
-  
+
 }
 

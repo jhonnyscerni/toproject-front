@@ -58,17 +58,17 @@ export class ProfissionalAtendimentoFormComponent extends BaseFormComponent impl
   }
 
   submit() {
-    console.log('submit');
+    //console.log('submit');
 
     let msgSuccess = 'Atendimento atualizado com sucesso!';
     let msgError = 'Erro ao atualizar atendimento, tente novamente!';
-    
+
     this.atendimentoService.save(this.cadastroForm.value).subscribe(
       success => {
         this.toastr.success(msgSuccess, 'Informação :)')
         this.location.back();
       },
-      error => 
+      error =>
       this.toastr.error(msgError, 'Opa :(')
     );
   }

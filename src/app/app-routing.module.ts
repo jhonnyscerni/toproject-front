@@ -5,7 +5,18 @@ import { AuthGuard } from './core/guard/auth.guard';
 import { Role } from './core/models/role';
 import { AuthLayoutComponent } from './layout/app-layout/auth-layout/auth-layout.component';
 import { MainLayoutComponent } from './layout/app-layout/main-layout/main-layout.component';
+import {PresentationComponent} from "./pages/presentation/presentation.component";
 const routes: Routes = [
+
+  {
+    path: "",
+    redirectTo: "home",
+    pathMatch: "full"
+  },
+  {
+    path: "home",
+    component: PresentationComponent
+  },
   {
     path: '',
     component: MainLayoutComponent,

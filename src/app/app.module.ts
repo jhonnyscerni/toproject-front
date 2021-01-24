@@ -41,6 +41,11 @@ export const httpInterceptorProviders = [
 
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import {PresentationModule} from "./pages/presentation/presentation.module";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {RouterModule} from "@angular/router";
+import {BsDropdownModule} from "ngx-bootstrap/dropdown";
+import {CollapseModule} from "ngx-bootstrap/collapse";
 registerLocaleData(localePt)
 
 @NgModule({
@@ -57,12 +62,17 @@ registerLocaleData(localePt)
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    FormsModule,
+    RouterModule,
     HttpClientModule,
     PerfectScrollbarModule,
     ClickOutsideModule,
+    BsDropdownModule.forRoot(),
     ToastrModule.forRoot({
       positionClass: 'toast-top-center'
     }),
+    CollapseModule.forRoot(),
+    ReactiveFormsModule,
 
     // core & shared
     CoreModule,
@@ -72,7 +82,9 @@ registerLocaleData(localePt)
     // Validation
     TextMaskModule,
     NgBrazil,
-    CustomFormsModule
+    CustomFormsModule,
+
+    PresentationModule,
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

@@ -15,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
+import {MatSelectModule} from "@angular/material/select";
 @NgModule({
   declarations: [
     Page500Component,
@@ -24,18 +25,19 @@ import { SharedModule } from '../shared/shared.module';
     LockedComponent,
     ForgotPasswordComponent
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AuthenticationRoutingModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    MatButtonModule,
-    
-    HttpClientModule,
-    SharedModule
-  ]
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AuthenticationRoutingModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatIconModule,
+        MatButtonModule,
+
+        HttpClientModule,
+        SharedModule,
+        MatSelectModule
+    ]
 })
 export class AuthenticationModule {}

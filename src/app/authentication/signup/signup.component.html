@@ -53,6 +53,18 @@
                 <app-error-msg [control]="cadastroForm.get('senha')" label="Senha"></app-error-msg>
               </div>
             </div>
+            <div class="row">
+              <div class="col-xl-12col-lg-12 col-md-12 col-sm-12 mb-2">
+                <mat-form-field class="example-full-width" appearance="outline">
+                  <mat-label>Tipo de Conta</mat-label>
+                  <mat-select [(value)]="tipoConta" required (valueChange)="doSomething($event)">
+                    <mat-option value="USER"> Profissional da Saude </mat-option>
+                    <mat-option value="CLINIC"> Clínica </mat-option>
+                  </mat-select>
+                  <mat-icon matSuffix>flag</mat-icon>
+                </mat-form-field>
+              </div>
+            </div>
             <!-- <div class="row">
               <div class="col-xl-12col-lg-12 col-md-12 col-sm-12 mb-2">
                 <mat-form-field class="example-full-width" appearance="outline">
@@ -68,7 +80,7 @@
             </div> -->
             <div class="flex-sb-m w-full  p-b-20">
               <div>
-                <span>Already Registered? <a routerLink="/authentication/signin">
+                <span>Já tem conta cadastrada ? <a routerLink="/authentication/signin">
                     Login
                   </a></span>
               </div>
@@ -78,22 +90,22 @@
                 Criar Conta
               </button>
             </div>
-          </form>signup
-          <h6 class="social-login-title">OR</h6>
-          <ul class="list-unstyled social-icon mb-0 mt-3">
-            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded">
-                <i class="fab fa-google"></i>
-              </a></li>
-            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded flex-c-m">
-                <i class="fab fa-facebook-f"></i>
-              </a></li>
-            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded">
-                <i class="fab fa-twitter"></i>
-              </a></li>
-            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded">
-                <i class="fab fa-linkedin-in"></i>
-              </a></li>
-          </ul>
+          </form>
+<!--          <h6 class="social-login-title">OR</h6>-->
+<!--          <ul class="list-unstyled social-icon mb-0 mt-3">-->
+<!--            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded">-->
+<!--                <i class="fab fa-google"></i>-->
+<!--              </a></li>-->
+<!--            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded flex-c-m">-->
+<!--                <i class="fab fa-facebook-f"></i>-->
+<!--              </a></li>-->
+<!--            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded">-->
+<!--                <i class="fab fa-twitter"></i>-->
+<!--              </a></li>-->
+<!--            <li class="list-inline-item"><a href="javascript:void(0)" class="rounded">-->
+<!--                <i class="fab fa-linkedin-in"></i>-->
+<!--              </a></li>-->
+<!--          </ul>-->
         </div>
       </div>
     </div>

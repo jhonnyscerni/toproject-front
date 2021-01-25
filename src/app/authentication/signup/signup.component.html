@@ -6,6 +6,12 @@
     </div>
     <div class="col-sm-6 auth-form-section">
       <div class="form-section">
+        <div class="auth-logo">
+          <a class="logo-brand">
+            <img src="../../../assets/images/logo.png" [width]="80" width="" alt="" />
+            <span class="logo-name">Siberius</span>
+          </a>
+        </div>
         <div class="auth-wrapper">
           <h2 class="welcome-msg"> Crie a sua conta aqui </h2>
           <p class="auth-signup-text text-muted">Informe os dados para criar sua conta</p>
@@ -58,7 +64,7 @@
                 <mat-form-field class="example-full-width" appearance="outline">
                   <mat-label>Tipo de Conta</mat-label>
                   <mat-select [(value)]="tipoConta" required (valueChange)="doSomething($event)">
-                    <mat-option value="USER"> Profissional da Saude </mat-option>
+                    <mat-option value="USER"> Profissional da Saúde </mat-option>
                     <mat-option value="CLINIC"> Clínica </mat-option>
                   </mat-select>
                   <mat-icon matSuffix>flag</mat-icon>

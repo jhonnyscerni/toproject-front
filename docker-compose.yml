@@ -1,0 +1,11 @@
+version: '2.1'
+
+services:
+  toproject-front:
+    image: toproject-front
+    build: .
+    ports:
+      - 8081:80
+
+#Comando
+#docker-compose -f "docker-compose.yml" up -d --build

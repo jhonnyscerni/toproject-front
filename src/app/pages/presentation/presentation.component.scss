@@ -104,3 +104,38 @@
   border-radius: 5px;
 }
 
+
+.auth-logo {
+  max-width: 100%;
+  margin-top: auto;
+}
+.logo-brand {
+  float: left;
+  height: auto !important;
+  //padding: 6px 25px;
+  font-size: 18px;
+  line-height: 20px;
+  text-align: center;
+  width: 100%;
+}
+.logo-brand span {
+  line-height: 32px;
+  padding-left: 10px;
+  padding-top: 5px;
+  float: left;
+}
+.logo-brand img {
+  float: left;
+  vertical-align: top;
+}
+
+.auth-wrapper{
+  margin-top: 40px;
+}
+
+.logo-name {
+  color: #FFFFFF;
+  font-size: 32px;
+  font-weight: 400;
+}
+

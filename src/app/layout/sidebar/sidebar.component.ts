@@ -103,27 +103,27 @@ export class SidebarComponent implements OnInit, OnDestroy {
     if (this.authService.isAuthenticated) {
       const userRole = this.authService.getGrupo();
       this.userFullName =
-        this.authService.getUsuarioAutenticado(); 
+        this.authService.getUsuarioAutenticado();
          +
          ' ' +
          "Ultimo Nome"
       //   this.authService.currentUserValue.lastName;
        //this.userImg = this.authService.currentUserValue.img;
-       this.userImg = "assets/images/user/default-avatar.png";
+       this.userImg = "assets/images/user/user-1.jpg";
 
       this.sidebarItems = ROUTES.filter(
         (x) => x.role.indexOf(userRole) !== -1 || x.role.indexOf('All') !== -1
       );
       if (userRole === Role.Admin) {
-        this.userType = Role.Admin;
+        this.userType = "Administrador";
       } else if (userRole === Role.Patient) {
-        this.userType = Role.Patient;
+        this.userType = "Paciente";
       } else if (userRole === Role.User) {
-        this.userType = Role.User;
+        this.userType = "Profissional da Saúde";
       } else if (userRole === Role.Clinic) {
-        this.userType = Role.Clinic;
+        this.userType = "Clínica";
       } else {
-        this.userType = Role.Admin;
+        this.userType = "Administrador";
       }
     }
 

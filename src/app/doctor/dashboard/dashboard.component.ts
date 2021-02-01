@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {
   ChartComponent,
   ApexAxisChartSeries,
@@ -14,6 +14,10 @@ import {
   ApexNonAxisChartSeries,
   ApexFill,
 } from 'ng-apexcharts';
+import {DashboardProfissionalService} from "../../services/dashboard-profissional.service";
+import {AuthService} from "../../shared/services/auth.service";
+
+
 export type areaChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
@@ -47,6 +51,7 @@ export type radialChartOptions = {
   colors: string[];
   plotOptions: ApexPlotOptions;
 };
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -57,7 +62,20 @@ export class DashboardComponent implements OnInit {
   public areaChartOptions: Partial<areaChartOptions>;
   public radialChartOptions: Partial<radialChartOptions>;
   public linechartOptions: Partial<linechartOptions>;
-  constructor() {}
+
+  numberConsultasConfirmadas;
+  numberConsultasAgendadas;
+  numberConsultasFinalizadas;
+  numberTotalPacientesCadastrados;
+  profissionalId;
+
+
+  constructor(
+    private dashboarProfissionalService: DashboardProfissionalService,
+    private authService: AuthService
+  ) {
+    this.profissionalId = this.authService.getUsuarioIdAutenticado();
+  }
 
   // TODO start
   tasks = [
@@ -123,6 +141,44 @@ export class DashboardComponent implements OnInit {
     },
   ];
 
+  getRequestParams() {
+    let params = {};
+    params[`profissionalId`] = this.profissionalId;
+    return params;
+  }
+
+  consultasConfirmadas() {
+    const params = this.getRequestParams();
+    return this.dashboarProfissionalService.countConsultasConfirmadas(params)
+      .subscribe(value => {
+        this.numberConsultasConfirmadas = value
+      });
+  }
+
+  consultasAgendadas() {
+    const params = this.getRequestParams();
+    return this.dashboarProfissionalService.countConsultasAgendadas(params)
+      .subscribe(value => {
+        this.numberConsultasAgendadas = value
+      });
+  }
+
+  consultasFinalizadas() {
+    const params = this.getRequestParams();
+    return this.dashboarProfissionalService.countConsultasFinalizadas(params)
+      .subscribe(value => {
+        this.numberConsultasFinalizadas = value
+      });
+  }
+
+  totalPacienteCadastrador() {
+    const params = this.getRequestParams();
+    return this.dashboarProfissionalService.countPacientesCadastradosAtivado(params)
+      .subscribe(value => {
+        this.numberTotalPacientesCadastrados = value
+      });
+  }
+
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.tasks, event.previousIndex, event.currentIndex);
   }
@@ -130,13 +186,19 @@ export class DashboardComponent implements OnInit {
   toggle(task, nav: any) {
     task.done = !task.done;
   }
+
   // TODO end
 
   ngOnInit() {
     this.chart1();
     this.chart2();
     this.chart3();
+    this.consultasConfirmadas();
+    this.consultasAgendadas();
+    this.consultasFinalizadas();
+    this.totalPacienteCadastrador();
   }
+
   private chart1() {
     this.areaChartOptions = {
       series: [
@@ -195,6 +257,7 @@ export class DashboardComponent implements OnInit {
       },
     };
   }
+
   private chart2() {
     this.radialChartOptions = {
       series: [44, 55, 67],
@@ -226,6 +289,7 @@ export class DashboardComponent implements OnInit {
       labels: ['Face TO Face', 'E-Consult', 'Available'],
     };
   }
+
   private chart3() {
     this.linechartOptions = {
       series: [

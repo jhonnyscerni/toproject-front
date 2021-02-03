@@ -24,35 +24,37 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { UserRoutingModule } from './doctor-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {NgxChartsModule} from "@swimlane/ngx-charts";
 
 @NgModule({
   declarations: [DashboardComponent],
-  imports: [
-    CommonModule,
-    UserRoutingModule,
-    chartjsModule,
-    NgxEchartsModule.forRoot({
-      echarts: () => import('echarts'),
-    }),
-    PerfectScrollbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatDialogModule,
-    NgApexchartsModule,
-    MatPaginatorModule,
-    MatSnackBarModule,
-    MatFormFieldModule,
-    MatSortModule,
-    MatTabsModule,
-    MatMenuModule,
-    MatDatepickerModule,
-    MatTableModule,
-    MatSelectModule,
-    MatCheckboxModule,
-    MatInputModule,
-    MatTooltipModule,
-    MatRadioModule,
-    DragDropModule,
-  ],
+    imports: [
+        CommonModule,
+        UserRoutingModule,
+        chartjsModule,
+        NgxEchartsModule.forRoot({
+            echarts: () => import('echarts'),
+        }),
+        PerfectScrollbarModule,
+        MatIconModule,
+        MatButtonModule,
+        MatDialogModule,
+        NgApexchartsModule,
+        MatPaginatorModule,
+        MatSnackBarModule,
+        MatFormFieldModule,
+        MatSortModule,
+        MatTabsModule,
+        MatMenuModule,
+        MatDatepickerModule,
+        MatTableModule,
+        MatSelectModule,
+        MatCheckboxModule,
+        MatInputModule,
+        MatTooltipModule,
+        MatRadioModule,
+        DragDropModule,
+        NgxChartsModule,
+    ],
 })
 export class UserModule { }

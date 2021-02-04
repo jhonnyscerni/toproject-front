@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { EChartOption } from 'echarts';
 import {
   ChartComponent,
   ApexAxisChartSeries,
@@ -14,6 +14,10 @@ import {
   ApexNonAxisChartSeries,
   ApexFill,
 } from 'ng-apexcharts';
+import {DashboardClinicaService} from "../../services/dashboard-clinica.service";
+import {AuthService} from "../../shared/services/auth.service";
+import {EstatisticaStatus} from "../../models/dto/estatistica-status";
+import {EstatisticaSexo} from "../../models/dto/estatistica-sexo";
 export type areaChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
@@ -57,235 +61,146 @@ export class DashboardComponent implements OnInit {
   public areaChartOptions: Partial<areaChartOptions>;
   public radialChartOptions: Partial<radialChartOptions>;
   public linechartOptions: Partial<linechartOptions>;
-  constructor() {}
 
-  // TODO start
-  tasks = [
-    {
-      id: '1',
-      title: 'Check patient report',
-      done: true,
-      priority: 'High',
-    },
-    {
-      id: '2',
-      title: 'Request for festivle holiday',
-      done: false,
-      priority: 'High',
-    },
-    {
-      id: '3',
-      title: 'Order new medicine stock',
-      done: false,
-      priority: 'Low',
-    },
-    {
-      id: '4',
-      title: 'Remind for lunch in hotel',
-      done: true,
-      priority: 'Normal',
-    },
-    {
-      id: '5',
-      title: 'Conference in london',
-      done: false,
-      priority: 'High',
-    },
-    {
-      id: '6',
-      title: 'Announcement for',
-      done: false,
-      priority: 'Normal',
-    },
-    {
-      id: '7',
-      title: 'call bus driver',
-      done: true,
-      priority: 'High',
-    },
-    {
-      id: '8',
-      title: 'Web service data load issue',
-      done: false,
-      priority: 'High',
-    },
-    {
-      id: '9',
-      title: 'Java compile error',
-      done: false,
-      priority: 'Low',
-    },
-    {
-      id: '10',
-      title: 'Integrate project with spring boot',
-      done: true,
-      priority: 'High',
-    },
-  ];
+  dados: EstatisticaStatus[] = [];
 
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.tasks, event.previousIndex, event.currentIndex);
+  dadosSexo: EstatisticaSexo[] = [];
+
+  numberPacientesAtivo = 0;
+  numberProfissionaisAtivo = 0;
+  numberConsultasTotais = 0;
+  numberConsultasFinalizadas = 0;
+
+  constructor(
+    private dashboarClinicaService: DashboardClinicaService,
+    private authService: AuthService
+  ) {}
+
+  clinicaId = this.authService.getUsuarioIdAutenticado();
+
+  getRequestParams() {
+    let params = {};
+    params[`clinicaId`] = this.clinicaId;
+    return params;
   }
-
-  toggle(task, nav: any) {
-    task.done = !task.done;
-  }
-  // TODO end
 
   ngOnInit() {
-    this.chart1();
-    this.chart2();
-    this.chart3();
+    this.countPacientesAtivo();
+    this.countProfissionaisAtivo();
+    this.countConsultasTotais();
+    this.countConsultasFinalizadas();
+    this.buscarEstatisticaStatus();
+    this.buscarEstatisticaSexo();
   }
-  private chart1() {
-    this.areaChartOptions = {
-      series: [
-        {
-          name: 'New Patients',
-          data: [31, 40, 28, 51, 42, 85, 77],
-        },
-        {
-          name: 'Old Patients',
-          data: [11, 32, 45, 32, 34, 52, 41],
-        },
-      ],
-      chart: {
-        height: 350,
-        type: 'area',
-        toolbar: {
-          show: false,
-        },
-        foreColor: '#9aa0ac',
-      },
-      colors: ['#7D4988', '#66BB6A'],
-      dataLabels: {
-        enabled: false,
-      },
-      stroke: {
-        curve: 'smooth',
-      },
-      xaxis: {
-        type: 'datetime',
-        categories: [
-          '2018-09-19T00:00:00.000Z',
-          '2018-09-19T01:30:00.000Z',
-          '2018-09-19T02:30:00.000Z',
-          '2018-09-19T03:30:00.000Z',
-          '2018-09-19T04:30:00.000Z',
-          '2018-09-19T05:30:00.000Z',
-          '2018-09-19T06:30:00.000Z',
-        ],
-      },
-      legend: {
-        show: true,
-        position: 'top',
-        horizontalAlign: 'center',
-        offsetX: 0,
-        offsetY: 0,
-      },
 
-      tooltip: {
-        theme: 'dark',
-        marker: {
-          show: true,
-        },
-        x: {
-          format: 'dd/MM/yy HH:mm',
-        },
-      },
-    };
+  countPacientesAtivo() {
+    const params = this.getRequestParams();
+    return this.dashboarClinicaService.countPacientesAtivo(params)
+      .subscribe(value => {
+        this.numberPacientesAtivo = value
+      });
   }
-  private chart2() {
-    this.radialChartOptions = {
-      series: [44, 55, 67],
-      chart: {
-        height: 265,
-        type: 'radialBar',
-      },
-      plotOptions: {
-        radialBar: {
-          dataLabels: {
-            name: {
-              fontSize: '22px',
-            },
-            value: {
-              fontSize: '16px',
-            },
-            total: {
-              show: true,
-              label: 'Total',
-              formatter: function (w) {
-                return '249';
-              },
-            },
+
+  countProfissionaisAtivo() {
+    const params = this.getRequestParams();
+    return this.dashboarClinicaService.countProfissionaisAtivo(params)
+      .subscribe(value => {
+        this.numberProfissionaisAtivo = value
+      });
+  }
+
+  countConsultasTotais() {
+    const params = this.getRequestParams();
+    return this.dashboarClinicaService.countConsultasTotais(params)
+      .subscribe(value => {
+        this.numberConsultasTotais = value
+      });
+  }
+
+  countConsultasFinalizadas() {
+    const params = this.getRequestParams();
+    return this.dashboarClinicaService.countConsultasFinalizadas(params)
+      .subscribe(value => {
+        this.numberConsultasFinalizadas = value
+      });
+  }
+
+  buscarEstatisticaStatus() {
+    const params = this.getRequestParams();
+
+    this.dashboarClinicaService.consultaEstatisticaStatus(params)
+      .subscribe(
+        dados => {
+          this.dados = dados
+        }
+      );
+  }
+
+  buscarEstatisticaSexo() {
+    const params = this.getRequestParams();
+
+    this.dashboarClinicaService.consultaEstatisticaSexo(params)
+      .subscribe(
+        dados => {
+          this.dadosSexo = dados
+        }
+      );
+  }
+
+  /* Pie Chart */
+  pie_chart: EChartOption = {
+    tooltip: {
+      trigger: 'item',
+      formatter: '{a} <br/>{b} : {c} ({d}%)'
+    },
+    legend: {
+      data: [
+        'HOMEM',
+        'MULHER',
+      ],
+      textStyle: {
+        color: '#9aa0ac',
+        padding: [0, 5, 0, 5]
+      }
+    },
+
+    series: [
+      {
+        name: 'Dados',
+        type: 'pie',
+        radius: '55%',
+        center: ['50%', '48%'],
+        data: [
+          {
+            value: 335,
+            name: 'HOMEM'
           },
-        },
-      },
-      colors: ['#ffc107', '#3f51b5', '#8bc34a'],
+          {
+            value: 310,
+            name: 'MULHER'
+          }
+        ]
+      }
+    ],
+    color: ['#575B7A', '#DE725C']
+  };
 
-      labels: ['Face TO Face', 'E-Consult', 'Available'],
-    };
-  }
-  private chart3() {
-    this.linechartOptions = {
-      series: [
-        {
-          name: 'Male',
-          data: [44, 55, 57, 56, 61, 58],
-        },
-        {
-          name: 'Female',
-          data: [76, 85, 101, 98, 87, 105],
-        },
-      ],
-      chart: {
-        type: 'bar',
-        height: 350,
-        dropShadow: {
-          enabled: true,
-          color: '#000',
-          top: 18,
-          left: 7,
-          blur: 10,
-          opacity: 0.2,
-        },
-        toolbar: {
-          show: false,
-        },
-        foreColor: '#9aa0ac',
-      },
-      colors: ['#5C9FFB', '#AEAEAE'],
-      plotOptions: {
-        bar: {
-          horizontal: false,
-          columnWidth: '55%',
-          endingShape: 'rounded',
-        },
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      stroke: {
-        show: true,
-        width: 2,
-        colors: ['transparent'],
-      },
-      xaxis: {
-        categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-      },
-      yaxis: {},
-      fill: {
-        opacity: 1,
-      },
-      tooltip: {
-        theme: 'dark',
-        marker: {
-          show: true,
-        },
-        x: {
-          show: true,
-        },
-      },
-    };
-  }
+
+  showXAxis = true;
+  showYAxis = true;
+  gradient = false;
+  showLegend = false;
+  showXAxisLabel = true;
+  showYAxisLabel = true;
+  legendPosition = 'right';
+  timeline = true;
+  colorScheme = {
+    domain: ['#007bff', '#f9483b', '#ff9800', '#53b958','#BF4065']
+  };
+  colorSchemeSexo = {
+    domain: ['#BF4065', '#007bff']
+  };
+  showLabels = true;
+
+
 }

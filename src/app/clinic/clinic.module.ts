@@ -24,32 +24,34 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatRadioModule } from '@angular/material/radio';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import {NgxChartsModule} from "@swimlane/ngx-charts";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ClinicRoutingModule,
-    chartjsModule,
-    PerfectScrollbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatDialogModule,
-    NgApexchartsModule,
-    MatPaginatorModule,
-    MatSnackBarModule,
-    MatFormFieldModule,
-    MatSortModule,
-    MatTabsModule,
-    MatMenuModule,
-    MatDatepickerModule,
-    MatTableModule,
-    MatSelectModule,
-    MatCheckboxModule,
-    MatInputModule,
-    MatTooltipModule,
-    MatRadioModule,
-    DragDropModule,
-  ],
+    imports: [
+        CommonModule,
+        ClinicRoutingModule,
+        chartjsModule,
+        PerfectScrollbarModule,
+        MatIconModule,
+        MatButtonModule,
+        MatDialogModule,
+        NgApexchartsModule,
+        MatPaginatorModule,
+        MatSnackBarModule,
+        MatFormFieldModule,
+        MatSortModule,
+        MatTabsModule,
+        MatMenuModule,
+        MatDatepickerModule,
+        MatTableModule,
+        MatSelectModule,
+        MatCheckboxModule,
+        MatInputModule,
+        MatTooltipModule,
+        MatRadioModule,
+        DragDropModule,
+        NgxChartsModule,
+    ],
   declarations: [DashboardComponent]
 })
 export class ClinicModule { }

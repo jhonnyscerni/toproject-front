@@ -214,7 +214,7 @@ export class DashboardComponent implements OnInit {
   legendPosition = 'right';
   timeline = true;
   colorScheme = {
-    domain: ['#007bff', '#f9483b', '#ff9800', '#53b958']
+    domain: ['#007bff', '#f9483b', '#ff9800', '#53b958','#BF4065']
   };
   colorSchemeSexo = {
     domain: ['#BF4065', '#007bff']

@@ -6,14 +6,13 @@
     [ngStyle]="{'position' : 'relative', 'max-height' : maxHeight+'px', 'max-width' : maxWidth+'px'}"
     [perfectScrollbar]>
     <div class="rightSetting">
-      <p>GENERAL SETTINGS</p>
+      <p>CONFIGURAÇÕES GERAIS</p>
       <ul class="setting-list list-unstyled m-t-20">
         <li>
           <div class="form-check">
             <div class="form-check m-l-10">
               <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" value="" checked> Save
-                History
+                <input class="form-check-input" type="checkbox" value="" checked> Salvar Histórico
                 <span class="form-check-sign">
                   <span class="check"></span>
                 </span>
@@ -21,56 +20,53 @@
             </div>
           </div>
         </li>
-        <li>
-          <div class="form-check">
-            <div class="form-check m-l-10">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" value="" checked> Show
-                Status
-                <span class="form-check-sign">
-                  <span class="check"></span>
-                </span>
-              </label>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="form-check">
-            <div class="form-check m-l-10">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" value="" checked> Auto
-                Submit Issue
-                <span class="form-check-sign">
-                  <span class="check"></span>
-                </span>
-              </label>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="form-check">
-            <div class="form-check m-l-10">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" value="" checked> Show
-                Status To All
-                <span class="form-check-sign">
-                  <span class="check"></span>
-                </span>
-              </label>
-            </div>
-          </div>
-        </li>
+<!--        <li>-->
+<!--          <div class="form-check">-->
+<!--            <div class="form-check m-l-10">-->
+<!--              <label class="form-check-label">-->
+<!--                <input class="form-check-input" type="checkbox" value="" checked> Mostrar Status-->
+<!--                <span class="form-check-sign">-->
+<!--                  <span class="check"></span>-->
+<!--                </span>-->
+<!--              </label>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--          <div class="form-check">-->
+<!--            <div class="form-check m-l-10">-->
+<!--              <label class="form-check-label">-->
+<!--                <input class="form-check-input" type="checkbox" value="" checked> Envio automático de problema-->
+<!--                <span class="form-check-sign">-->
+<!--                  <span class="check"></span>-->
+<!--                </span>-->
+<!--              </label>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--          <div class="form-check">-->
+<!--            <div class="form-check m-l-10">-->
+<!--              <label class="form-check-label">-->
+<!--                <input class="form-check-input" type="checkbox" value="" checked> Mostrar Status para todos-->
+<!--                <span class="form-check-sign">-->
+<!--                  <span class="check"></span>-->
+<!--                </span>-->
+<!--              </label>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </li>-->
       </ul>
     </div>
     <div class="rightSetting">
-      <p>SIDEBAR MENU COLORS</p>
+      <p>CORES DO MENU DA BARRA LATERAL</p>
       <mat-button-toggle-group class="mt-2" [value]="isDarkSidebar ? 'dark' : 'light'">
         <mat-button-toggle (click)="lightSidebarBtnClick()" value="light">Light</mat-button-toggle>
         <mat-button-toggle (click)="darkSidebarBtnClick()" value="dark">Dark</mat-button-toggle>
       </mat-button-toggle-group>
     </div>
     <div class="rightSetting">
-      <p>THEME COLORS</p>
+      <p>CORES DO TEMA</p>
       <mat-button-toggle-group class="mt-2" [value]="isDarTheme ? 'dark' : 'light'">
         <mat-button-toggle (click)="lightThemeBtnClick()" value="light">Light</mat-button-toggle>
         <mat-button-toggle (click)="darkThemeBtnClick()" value="dark">Dark</mat-button-toggle>
@@ -102,30 +98,30 @@
         </li>
       </ul>
     </div>
-    <div class="rightSetting">
-      <p>Disk Space</p>
-      <div class="sidebar-progress">
-        <div class="progress m-t-20">
-          <div class="progress-bar l-bg-cyan shadow-style width-per-45" role="progressbar" aria-valuenow="45"
-            aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-        <span class="progress-description">
-          <small>26% remaining</small>
-        </span>
-      </div>
-    </div>
-    <div class="rightSetting">
-      <p>Server Load</p>
-      <div class="sidebar-progress">
-        <div class="progress m-t-20">
-          <div class="progress-bar l-bg-orange shadow-style width-per-63" role="progressbar" aria-valuenow="63"
-            aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-        <span class="progress-description">
-          <small>Highly Loaded</small>
-        </span>
-      </div>
-    </div>
+<!--    <div class="rightSetting">-->
+<!--      <p>Espaço em disco</p>-->
+<!--      <div class="sidebar-progress">-->
+<!--        <div class="progress m-t-20">-->
+<!--          <div class="progress-bar l-bg-cyan shadow-style width-per-45" role="progressbar" aria-valuenow="45"-->
+<!--            aria-valuemin="0" aria-valuemax="100"></div>-->
+<!--        </div>-->
+<!--        <span class="progress-description">-->
+<!--          <small>26% restantes</small>-->
+<!--        </span>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="rightSetting">-->
+<!--      <p>Carga do servidor</p>-->
+<!--      <div class="sidebar-progress">-->
+<!--        <div class="progress m-t-20">-->
+<!--          <div class="progress-bar l-bg-orange shadow-style width-per-63" role="progressbar" aria-valuenow="63"-->
+<!--            aria-valuemin="0" aria-valuemax="100"></div>-->
+<!--        </div>-->
+<!--        <span class="progress-description">-->
+<!--          <small>Altamente Carregado</small>-->
+<!--        </span>-->
+<!--      </div>-->
+<!--    </div>-->
   </div>
 </aside>
 <!-- #END# Right Sidebar -->

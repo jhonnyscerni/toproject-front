@@ -24,6 +24,8 @@ export class ClinicaAtendimentoListaComponent implements OnInit {
   atendimentoSelecionado: Atendimento;
   searchForm: FormGroup
   idControl: FormControl
+  nomePacienteControl: FormControl
+  emailPacienteControl:FormControl
 
   // Paginação
   totalElements = 0;
@@ -44,6 +46,8 @@ export class ClinicaAtendimentoListaComponent implements OnInit {
 
   getRequestParams(pageElement, size) {
     let id = this.idControl.value;
+    let nomePacienteControl = this.nomePacienteControl.value;
+    let emailPacienteControl = this.emailPacienteControl.value;
     let params = {};
 
     if (pageElement) {
@@ -58,6 +62,14 @@ export class ClinicaAtendimentoListaComponent implements OnInit {
       params[`id`] = id;
     }
 
+    if (nomePacienteControl && (nomePacienteControl = nomePacienteControl.trim()) !== '') {
+      params[`nomePaciente`] = nomePacienteControl;
+    }
+
+    if (emailPacienteControl && (emailPacienteControl = emailPacienteControl.trim()) !== '') {
+      params[`emailPaciente`] = emailPacienteControl;
+    }
+
     params[`clinicaId`] = this.clinicaId;
 
     return params;
@@ -65,8 +77,12 @@ export class ClinicaAtendimentoListaComponent implements OnInit {
 
   ngOnInit() {
     this.idControl = this.fb.control('')
+    this.nomePacienteControl = this.fb.control('')
+    this.emailPacienteControl = this.fb.control('')
     this.searchForm = this.fb.group({
-      idControl: this.idControl
+      idControl: this.idControl,
+      nomePacienteControl: this.nomePacienteControl,
+      emailPacienteControl: this.emailPacienteControl
     })
     this.onRefresh();
   }

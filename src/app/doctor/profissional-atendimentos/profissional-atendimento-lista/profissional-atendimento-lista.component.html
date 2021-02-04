@@ -36,14 +36,27 @@
                   <div class=" card-body">
                       <form novalidate [formGroup]="searchForm">
                           <div class=" row">
-
-                              <div class=" col-md-5">
-                                  <mat-form-field class="example-full-width" appearance="outline">
-                                      <mat-label>ID</mat-label>
-                                      <input matInput formControlName="idControl">
-                                      <mat-icon matSuffix>face</mat-icon>
-                                  </mat-form-field>
-                              </div>
+                            <div class=" col-md-5">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Nome do Paciente</mat-label>
+                                <input matInput formControlName="nomePacienteControl">
+                                <mat-icon matSuffix>face</mat-icon>
+                              </mat-form-field>
+                            </div>
+                            <div class=" col-sm-12 col-md-5">
+                              <mat-form-field class="example-full-width" appearance="outline">
+                                <mat-label>Email</mat-label>
+                                <input matInput formControlName="emailPacienteControl">
+                                <mat-icon matSuffix>email</mat-icon>
+                              </mat-form-field>
+                            </div>
+<!--                              <div class=" col-md-5">-->
+<!--                                  <mat-form-field class="example-full-width" appearance="outline">-->
+<!--                                      <mat-label>ID</mat-label>-->
+<!--                                      <input matInput formControlName="idControl">-->
+<!--                                      <mat-icon matSuffix>face</mat-icon>-->
+<!--                                  </mat-form-field>-->
+<!--                              </div>-->
 
                               <div class="col-md-2 text-center">
                                   <div>
@@ -78,6 +91,7 @@
                               <tr>
                                   <th>ID</th>
                                   <th>Paciente</th>
+                                  <th>E-mail</th>
                                   <th>Data e Horario da Consulta</th>
                                   <th>Procedimento</th>
                                   <th>Local</th>
@@ -90,7 +104,8 @@
                                                                                                   currentPage: page,
                                                                                                   totalItems: totalElements }">
                                   <td><span class=" text-muted"> {{ atendimento?.id }}</span></td>
-                                  <td><span class=" text-muted"> {{ atendimento?.consulta?.paciente.nome }}</span></td>
+                                  <td><span class=" text-muted"> {{ atendimento?.consulta?.paciente?.nome }}</span></td>
+                                  <td><span class=" text-muted"> {{ atendimento?.consulta?.paciente?.email }}</span></td>
                                   <td><span class=" text-muted"> {{ dateLayout(atendimento?.consulta?.dataHora) }}</span></td>
                                   <td><span class=" text-muted"> {{ atendimento?.consulta?.procedimentoEnum }}</span></td>
                                   <td><span class=" text-muted"> {{ atendimento?.consulta?.localDeAtendimento }}</span></td>

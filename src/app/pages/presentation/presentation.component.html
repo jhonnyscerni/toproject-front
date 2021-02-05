@@ -109,7 +109,7 @@
             <!-- <ul class="navbar-nav align-items-center ml-auto ml-md-0"> -->
 
             <li *ngSwitchCase="true" class="nav-item d-none d-lg-block ml-lg-4">
-              <a class="btn btn-neutral btn-icon" routerLinkActive="active" [routerLink]="['/admin/dashboard/main']">
+              <a class="btn btn-neutral btn-icon" routerLinkActive="active" (click)="onDashboard()">
             <span class="btn-inner--icon">
               <!-- <i class="fas fa-shopping-cart mr-2"></i> -->
               <i class="fas fa-columns mr-2"></i>
@@ -133,7 +133,7 @@
                 <div class=" dropdown-header noti-title">
                   <h6 class="text-overflow m-0">Bem Vindo!</h6>
                 </div>
-                <a routerLinkActive="active" [routerLink]="['/admin/profile']" class="dropdown-item">
+                <a routerLinkActive="active" (click)="onProfile()" class="dropdown-item">
                   <i class="ni ni-single-02"></i> <span>Minha Conta</span>
                 </a>
                 <!-- <a

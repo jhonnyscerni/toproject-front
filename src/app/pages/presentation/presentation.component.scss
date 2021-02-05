@@ -44,11 +44,12 @@
 }
 
 .h1 {
-  font-weight: 400 !important;
+  font-weight: 500 !important;
 }
 
 .bg-gradiente-blue {
-  background: linear-gradient(-45deg, #2196F3 20%, #0D47A1 70%);
+  background: #FFFFFF;
+//  background: linear-gradient(-45deg, #2196F3 20%, #0D47A1 70%);
 }
 
 .btn-cadastro {
@@ -62,7 +63,7 @@
 
 .jss1162 {
   font-size: 48px;
-  font-weight: 700;
+  font-weight: bold;
   line-height: 72px;
 }
 
@@ -134,8 +135,67 @@
 }
 
 .logo-name {
-  color: #FFFFFF;
+  color: #000000;
   font-size: 32px;
   font-weight: 400;
 }
 
+.btn-portal {
+  background: #ea4b67;
+  color: #FFFFFF;
+}
+
+.btn-portal:hover {
+  background: #ea4b67;
+  color: #FFFFFF;
+}
+
+// bg
+
+.group-shape-1, .group-shape-2, .group-shape-3, .group-shape-4 {
+  position: absolute;
+  max-height: 100%;
+  right: auto;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.group-shape-1 {
+  //left: 22vw;
+  //top: 8vw;
+  left: 35vw;
+  bottom: 38vw;
+}
+
+.group-shape-2 {
+  left: 12.2vw;
+  //top: 15vw;
+  bottom: 30vw;
+  animation-name: angry-animation;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+}
+
+.group-shape-3 {
+  left: 10.2vw;
+  //top: 25vw;
+  bottom: 10vw;
+}
+
+.group-shape-4 {
+  left: 40vw;
+  top: auto;
+  bottom: 140px;
+  animation-name: angry-animation;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-delay: 0s;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+}

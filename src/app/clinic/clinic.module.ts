@@ -25,6 +25,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatRadioModule } from '@angular/material/radio';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import {NgxChartsModule} from "@swimlane/ngx-charts";
+import {HttpClientModule} from "@angular/common/http";
+import {SharedModule} from "../shared/shared.module";
+import {ClinicaProfileComponent} from "./clinica-profile/clinica-profile.component";
 
 @NgModule({
     imports: [
@@ -51,7 +54,10 @@ import {NgxChartsModule} from "@swimlane/ngx-charts";
         MatRadioModule,
         DragDropModule,
         NgxChartsModule,
+
+        HttpClientModule,
+        SharedModule,
     ],
-  declarations: [DashboardComponent]
+  declarations: [DashboardComponent, ClinicaProfileComponent]
 })
 export class ClinicModule { }

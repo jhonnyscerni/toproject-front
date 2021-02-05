@@ -1,7 +1,9 @@
-import { Page404Component } from './../authentication/page404/page404.component';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import {Page404Component} from './../authentication/page404/page404.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {ProfissionalProfileComponent} from "./profissional-profile/profissional-profile.component";
+
 const routes: Routes = [
   {
     path: 'dashboard',
@@ -26,6 +28,10 @@ const routes: Routes = [
     path: 'atendimentos',
     loadChildren: () =>
       import('./profissional-atendimentos/profissional-atendimentos.module').then((m) => m.ProfissionalAtendimentosModule),
+  },
+  {
+    path: "profile",
+    component: ProfissionalProfileComponent
   },
   { path: '**', component: Page404Component },
 ];

@@ -1,0 +1,168 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <ul class="breadcrumb breadcrumb-style ">
+            <li class="breadcrumb-item">
+              <h4 class="page-title">Informações do Usuário</h4>
+            </li>
+            <li class="breadcrumb-item bcrumb-1">
+              <a routerLink="/admin/dashboard/main">
+                <i class="fas fa-home"></i> Home</a>
+            </li>
+            <li class="breadcrumb-item bcrumb-2">
+              <a href="#" onClick="return false;">Informações</a>
+            </li>
+            <li class="breadcrumb-item active">Usuario</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Your content goes here  -->
+    <div class="row clearfix">
+      <div class="col-lg-4 col-md-12">
+        <div class="card">
+          <div class="m-b-20">
+            <div class="contact-grid">
+              <div class="profile-header bg-dark">
+                <div class="user-name">{{usuario?.nome}}</div>
+                <!-- <div class="name-center">{{usuario?.email}}</div> -->
+              </div>
+              <img src="assets/images/user/usrbig3.jpg" class="user-img" alt="">
+              <p>
+                {{usuario?.email}}
+                <!-- <br />New York -->
+              </p>
+              <div>
+                <!-- <span class="phone">
+                  <i class="material-icons">phone</i>264-625-2583</span> -->
+              </div>
+              <!-- <div class="row">
+                <div class="col-4">
+                  <h5>564</h5>
+                  <small>Following</small>
+                </div>
+                <div class="col-4">
+                  <h5>18k</h5>
+                  <small>Followers</small>
+                </div>
+                <div class="col-4">
+                  <h5>565</h5>
+                  <small>Post</small>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <mat-tab-group mat-align-tabs="start">
+            <mat-tab label="Informações">
+              <div class="p-4">
+                <p class="text-default">Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has
+                  been the industry's standard dummy text ever since the 1500s, when an unknown
+                  printer
+                  took a galley of type and scrambled it to make a type specimen book. It has
+                  survived
+                  not only five centuries, but also the leap into electronic typesetting, remaining
+                  essentially
+                  unchanged.</p>
+                <small class="text-muted">Endereço de E-email: </small>
+                <p>{{usuario?.email}}</p>
+                <hr>
+                <small class="text-muted">Phone: </small>
+                <p>+91 1234567890</p>
+                <hr>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </div>
+      <div class="col-lg-8 col-md-12">
+        <div class="card">
+          <mat-tab-group>
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon mr-2">settings</mat-icon>
+                Configuração
+              </ng-template>
+              <div class="header">
+                <h2>
+                  <strong>Configuração</strong> de Cadastro</h2>
+              </div>
+              <div class="body">
+                <form novalidate [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
+                  <div class="example-container">
+                    <div class=" form-group">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Nome do Usuário</mat-label>
+                        <input matInput formControlName="nome" required>
+                        <!-- <mat-icon matSuffix>face</mat-icon> -->
+                      </mat-form-field>
+                      <app-error-msg [control]="cadastroForm.get('nome')" label="Nome"></app-error-msg>
+                    </div>
+                    <div class=" form-group">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>E-mail</mat-label>
+                        <input matInput formControlName="email" required>
+                        <!-- <mat-icon matSuffix>face</mat-icon> -->
+                      </mat-form-field>
+                      <app-error-msg [control]="cadastroForm.get('email')" label="Email"></app-error-msg>
+                      <app-campo-control-erro [mostrarErro]="cadastroForm.get('email').status === 'PENDING'"
+                        msgErro="Validando email...">
+                      </app-campo-control-erro>
+                      <!-- <app-campo-control-erro [mostrarErro]="cadastroForm.get('email').status === 'VALID'"
+                                    msgErro="Email válido!">
+                                  </app-campo-control-erro> -->
+                    </div>
+                    <div class=" form-group">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Senha</mat-label>
+                        <input matInput formControlName="senha" [type]="hide ? 'password' : 'text'" required>
+                        <mat-icon matSuffix (click)="hide = !hide">
+                          {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                      </mat-form-field>
+                      <app-error-msg [control]="cadastroForm.get('senha')" label="Senha"></app-error-msg>
+                    </div>
+                    <!-- <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Nome do Usuário</mat-label>
+                        <input matInput formControlName="nome" required>
+                      </mat-form-field>
+                      <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Current Password</mat-label>
+                        <input matInput type="password">
+                      </mat-form-field>
+                      <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>New Password</mat-label>
+                        <input matInput type="password">
+                      </mat-form-field> -->
+                  </div>
+                  <div class="form-group text-right">
+                    <span>
+                      <!-- [disabled]="!cadastroForm.valid" -->
+                      <button class="btn btn-success" id="registrar" [disabled]="!cadastroForm.valid"
+                        type="submit">Alterar
+                      </button>
+                    </span>
+                    <span>
+                      <button class="btn" id="Limpar" (click)="resetar()">Limpar
+                      </button>
+                    </span>
+                    <span>
+                      <!-- [disabled]="!cadastroForm.valid" -->
+                      <button class="btn " id="cancelar" (click)="cancelar()" type="submit">Cancelar
+                      </button>
+                    </span>
+                  </div>
+                </form>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIM CONTENT-->

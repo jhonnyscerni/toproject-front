@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AlertModalService } from 'src/app/shared/services/alert-modal.service';
-import { UsuarioService } from 'src/app/services/usuario.service';
-import { ToastrService } from 'ngx-toastr';
-import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
-import { Location } from '@angular/common';
-import { ProfissionalService } from 'src/app/services/profissional.service';
-import { CustomValidators } from 'ng2-validation';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {FormBuilder, FormControl, Validators} from '@angular/forms';
+import {ToastrService} from 'ngx-toastr';
+import {BaseFormComponent} from 'src/app/shared/base-form/base-form.component';
+import {Location} from '@angular/common';
+import {ProfissionalService} from 'src/app/services/profissional.service';
+import {CustomValidators} from 'ng2-validation';
 import {ClinicaService} from "../../services/clinica.service";
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',

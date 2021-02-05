@@ -1,16 +1,10 @@
-import { DOCUMENT } from '@angular/common';
-import {
-  Component,
-  Inject,
-  ElementRef,
-  OnInit,
-  Renderer2,
-  AfterViewInit,
-} from '@angular/core';
-import { Router } from '@angular/router';
-import { ConfigService } from 'src/app/config/config.service';
-import { RightSidebarService } from 'src/app/core/service/rightsidebar.service';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import {DOCUMENT} from '@angular/common';
+import {AfterViewInit, Component, ElementRef, Inject, OnInit, Renderer2,} from '@angular/core';
+import {Router} from '@angular/router';
+import {ConfigService} from 'src/app/config/config.service';
+import {RightSidebarService} from 'src/app/core/service/rightsidebar.service';
+import {AuthService} from 'src/app/shared/services/auth.service';
+
 const document: any = window.document;
 
 @Component({
@@ -24,6 +18,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   homePage: string;
   profile: string;
   isNavbarCollapsed = true;
+
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
@@ -32,7 +27,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     private configService: ConfigService,
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) {
+  }
+
   notifications: any[] = [
     {
       userImg: 'assets/images/user/user1.jpg',
@@ -77,6 +74,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       message: 'kindly help me for code.',
     },
   ];
+
   ngOnInit() {
     this.config = this.configService.configData;
     const userRole = this.authService.getGrupo();
@@ -91,7 +89,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       this.profile = 'patient/profile'
     } else if (userRole === 'User') {
       this.homePage = 'user/dashboard';
-      this.profile = 'user/patient'
+      this.profile = 'user/profile'
+    } else if (userRole === 'Clinic') {
+      this.homePage = 'clinic/dashboard';
+      this.profile = 'clinic/profile'
     } else {
       this.homePage = 'admin/dashboard/main';
     }
@@ -145,6 +146,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       }
     }
   }
+
   callFullscreen() {
     if (
       !document.fullscreenElement &&
@@ -173,6 +175,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       }
     }
   }
+
   mobileMenuSidebarOpen(event: any, className: string) {
     const hasClass = event.target.classList.contains(className);
     if (hasClass) {
@@ -181,6 +184,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       this.renderer.addClass(this.document.body, className);
     }
   }
+
   callSidemenuCollapse() {
     const hasClass = this.document.body.classList.contains('side-closed');
     if (hasClass) {
@@ -191,12 +195,14 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       this.renderer.addClass(this.document.body, 'submenu-closed');
     }
   }
+
   public toggleRightSidebar(): void {
     this.dataService.changeMsg(
       (this.dataService.currentStatus._isScalar = !this.dataService
         .currentStatus._isScalar)
     );
   }
+
   logout() {
     this.authService.logout().subscribe((res) => {
       if (!res.success) {

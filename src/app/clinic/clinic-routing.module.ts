@@ -1,7 +1,9 @@
-import { DashboardComponent } from './../clinic/dashboard/dashboard.component';
-import { Page404Component } from './../authentication/page404/page404.component';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {ClinicaProfileComponent} from "./clinica-profile/clinica-profile.component";
+import {Page404Component} from "../authentication/page404/page404.component";
+import {DashboardComponent} from "./dashboard/dashboard.component";
+
 const routes: Routes = [
   {
     path: 'dashboard',
@@ -26,6 +28,10 @@ const routes: Routes = [
     path: 'atendimentos',
     loadChildren: () =>
       import('./clinica-atendimentos/clinica-atendimentos.module').then((m) => m.ClinicaAtendimentosModule),
+  },
+  {
+    path: "profile",
+    component: ClinicaProfileComponent
   },
   { path: '**', component: Page404Component },
 ];

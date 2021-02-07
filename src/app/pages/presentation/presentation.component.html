@@ -110,12 +110,12 @@
             <!-- <ul class="navbar-nav align-items-center ml-auto ml-md-0"> -->
 
             <li *ngSwitchCase="true" class="nav-item d-none d-lg-block ml-lg-4">
-              <a class="btn btn-neutral btn-icon" routerLinkActive="active" (click)="onDashboard()">
+              <a class="btn btn-portal btn-icon" routerLinkActive="active" (click)="onDashboard()">
             <span class="btn-inner--icon">
               <!-- <i class="fas fa-shopping-cart mr-2"></i> -->
-              <i class="fas fa-columns mr-2"></i>
+              <i class="fas fa-columns mr-2 text-white"></i>
             </span>
-                <span class="nav-link-inner--text">PAINEL</span>
+                <span class="nav-link-inner--text text-white">PAINEL</span>
               </a>
             </li>
 
@@ -126,7 +126,7 @@
                 <img alt="Image placeholder" src="assets/img/theme/team-4.jpg"/>
               </span>
                   <div class="media-body ml-2 d-none d-lg-block">
-                    <span class="mb-0 text-sm  font-weight-bold">{{user}}</span>
+                    <span class="mb-0 text-sm font-weight-bold" style="color: #0c0c0c !important;">{{user}}</span>
                   </div>
                 </div>
               </a>

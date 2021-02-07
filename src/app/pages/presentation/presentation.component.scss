@@ -34,6 +34,16 @@
   margin-left: 0 !important;
 }
 
+.media {
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
+}
+
+.navbar-horizontal {
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
+}
+
 .btn
 {
   font-weight: 500 !important;
@@ -212,8 +222,7 @@
 
 .box.has-style1 {
   //background: rgba(27, 170, 160, 0.1);
-  background: #E5E6E8;
-  border: #d2d2d2 1px solid !important;
+  background: #c6efef;
   //background: #EF5CA4;
   transition: .25s ease-in-out;
 }
@@ -221,10 +230,8 @@
 .box.has-style2 {
 
   //background: rgba(27, 170, 160, 0.1);
-  //background: #d1ecfc;
+  background: #c3e6fa;
   //background: #F24423;
-  background: #E5E6E8;
-  border: #d2d2d2 1px solid !important;
   transition: .25s ease-in-out;
 }
 
@@ -232,9 +239,7 @@
   //73 68 165
   // 239 92 164
   //background: rgba(239, 92, 164, 0.4);
-  //background: #cfe9ef;
-  background: #E5E6E8;
-  border: #d2d2d2 1px solid !important;
+  background: #cfe9ef;
   transition: .25s ease-in-out;
 }
 

@@ -58,8 +58,8 @@
 }
 
 .bg-gradiente-blue {
-  background: #FFFFFF;
-//  background: linear-gradient(-45deg, #2196F3 20%, #0D47A1 70%);
+//  background: #FFFFFF;
+  background: linear-gradient(-45deg, #2196F3 20%, #0D47A1 70%);
 }
 
 .btn-cadastro {
@@ -73,7 +73,7 @@
 
 .jss1162 {
   font-size: 48px;
-  font-weight: bold;
+  font-weight: 500 !important;
   line-height: 72px;
 }
 
@@ -145,7 +145,8 @@
 }
 
 .logo-name {
-  color: #000000;
+  //color: #000000;
+  color: #FFFFFF;
   font-size: 32px;
   font-weight: 400;
 }

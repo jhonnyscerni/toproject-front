@@ -20,7 +20,94 @@
       </div>
     </div>
     <div class="row clearfix">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        <div class="card">
+          <div class="m-b-20">
+            <div class="contact-grid">
+              <div class="profile-header">
+                <div class="user-name">{{consulta?.paciente?.nome}}</div>
+                <!-- <div class="name-center">{{paciente?.email}}</div> -->
+              </div>
+              <img src="assets/images/user/default-avatar.png" class="user-img" alt="">
+              <div>
+                <small class="text-muted">Endereço de E-mail: </small>
+                <p>{{consulta?.paciente?.email}}</p>
+                <!-- <hr> -->
+                <small class="text-muted">Telefone: </small>
+                <p>{{consulta?.paciente?.telefone}}</p>
+                <!-- <hr> -->
+              </div>
+              <div class="container-auth-form-btn">
+                <button mat-flat-button color="primary" (click)="cadastroPaciente(consulta.paciente.id)" type="submit">
+                  Visualizar Cadastro Completo
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <mat-tab-group mat-align-tabs="start">
+            <mat-tab label="Dados">
+              <div class="p-4">
+                <!-- <p class="text-default">Lorem Ipsum is simply dummy text of the printing and
+                typesetting industry. Lorem Ipsum has
+                been the industry's standard dummy text ever since the 1500s, when an unknown
+                printer
+                took a galley of type and scrambled it to make a type specimen book. It has
+                survived
+                not only five centuries, but also the leap into electronic typesetting, remaining
+                essentially
+                unchanged.</p> -->
+                <small class="text-muted">Endereço: </small>
+                <p>{{consulta?.paciente?.logradouro}}</p>
+                <hr>
+                <small class="text-muted">Cidade: </small>
+                <p>{{consulta?.paciente?.cidade.nome}}</p>
+                <hr>
+                <small class="text-muted">Bairro: </small>
+                <p>{{consulta?.paciente?.bairro}}</p>
+                <hr>
+                <small class="text-muted">Estado: </small>
+                <p>{{consulta?.paciente?.cidade.estado.sigla}}</p>
+                <hr>
+              </div>
+            </mat-tab>
+            <!-- <mat-tab label="Skills">
+            <ul class="list-unstyled p-4">
+              <li>
+                <div>OPD</div>
+                <div class="progress skill-progress m-b-20">
+                  <div class="progress-bar l-bg-green width-per-45" role="progressbar" aria-valuenow="45"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </li>
+              <li>
+                <div>Operations</div>
+                <div class="progress skill-progress m-b-20">
+                  <div class="progress-bar l-bg-orange width-per-38" role="progressbar" aria-valuenow="38"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </li>
+              <li>
+                <div>Patient Visit</div>
+                <div class="progress skill-progress m-b-20">
+                  <div class="progress-bar l-bg-cyan width-per-39" role="progressbar" aria-valuenow="39"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </li>
+              <li>
+                <div>RND</div>
+                <div class="progress skill-progress m-b-20">
+                  <div class="progress-bar l-bg-purple width-per-70" role="progressbar" aria-valuenow="70"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </li>
+            </ul>
+          </mat-tab> -->
+          </mat-tab-group>
+        </div>
+      </div>
+      <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
         <div class="card">
           <div class="header">
             <h2><strong></strong> Atendimento</h2>
@@ -34,7 +121,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <mat-form-field class="example-full-width"
-                      appearance="outline">
+                                    appearance="outline">
                       <mat-label>Objetivo da Sessão</mat-label>
                       <input matInput formControlName="objetivoSessao" required>
                       <!-- <mat-icon matSuffix>face</mat-icon> -->
@@ -51,8 +138,8 @@
                 <div class="col-md-12">
                   <!-- <input matInput formControlName="descreveSessao" required> -->
                   <editor formControlName="descreveSessao" required
-                    apiKey="lc38wwzvplbno36h6mh35uwdt3f3bgh7mjsh5a0m0tdmzd4l"
-                    [init]="{
+                          apiKey="lc38wwzvplbno36h6mh35uwdt3f3bgh7mjsh5a0m0tdmzd4l"
+                          [init]="{
                     height: 500,
                     menubar: false,
                     plugins: [
@@ -68,7 +155,7 @@
                     }"></editor>
                   <!-- <mat-icon matSuffix>face</mat-icon> -->
                   <app-error-msg [control]="cadastroForm.get('descreveSessao')"
-                    label="Descrever a Sessão"></app-error-msg>
+                                 label="Descrever a Sessão"></app-error-msg>
                 </div>
               </div>
 
@@ -76,8 +163,8 @@
                 <span>
                   <!-- [disabled]="!cadastroForm.valid" -->
                   <button class="btn btn-success" id="registrar"
-                    [disabled]="!cadastroForm.valid"
-                    type="submit">Registrar
+                          [disabled]="!cadastroForm.valid"
+                          type="submit">Registrar
                   </button>
                 </span>
                 <span>
@@ -86,8 +173,8 @@
                 </span>
                 <span>
                   <!-- [disabled]="!cadastroForm.valid" -->
-                  <button class="btn"id="cancelar" (click)="cancelar()"
-                    type="submit">Cancelar
+                  <button class="btn" id="cancelar" (click)="cancelar()"
+                          type="submit">Cancelar
                   </button>
                 </span>
               </div>

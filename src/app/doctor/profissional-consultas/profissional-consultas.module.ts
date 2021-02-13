@@ -18,32 +18,34 @@ import { NgBrazil } from 'ng-brazil';
 import { TextMaskModule } from 'angular2-text-mask';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatTabsModule} from "@angular/material/tabs";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    BsDropdownModule.forRoot(),
-    ProgressbarModule.forRoot(),
-    TooltipModule.forRoot(),
-    RouterModule.forChild(profissionalConsultasRoutes),
-    NgxPaginationModule,
+    imports: [
+        CommonModule,
+        BsDropdownModule.forRoot(),
+        ProgressbarModule.forRoot(),
+        TooltipModule.forRoot(),
+        RouterModule.forChild(profissionalConsultasRoutes),
+        NgxPaginationModule,
 
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    SharedModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        SharedModule,
 
-    MatSelectModule,
+        MatSelectModule,
 
-    MatFormFieldModule,
-    NgBrazil,
-    TextMaskModule,
+        MatFormFieldModule,
+        NgBrazil,
+        TextMaskModule,
 
-    OwlDateTimeModule,
-    OwlNativeDateTimeModule,
-    EditorModule,
-    MatAutocompleteModule
-  ],
+        OwlDateTimeModule,
+        OwlNativeDateTimeModule,
+        EditorModule,
+        MatAutocompleteModule,
+        MatTabsModule
+    ],
   declarations: [ProfissionalConsultasComponent, ProfissionalConsultaFormComponent, ProfissionalConsultaListaComponent, ProfissionalAtendimentoAtenderComponent],
   exports: [ProfissionalConsultasComponent, ProfissionalConsultaFormComponent, ProfissionalConsultaListaComponent, ProfissionalAtendimentoAtenderComponent],
 })

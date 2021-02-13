@@ -44,8 +44,7 @@
   margin-top: 0 !important;
 }
 
-.btn
-{
+.btn {
   font-weight: 500 !important;
 }
 
@@ -58,7 +57,7 @@
 }
 
 .bg-gradiente-blue {
-//  background: #FFFFFF;
+  //  background: #FFFFFF;
   background: linear-gradient(-45deg, #2196F3 20%, #0D47A1 70%);
 }
 
@@ -120,6 +119,7 @@
   max-width: 100%;
   margin-top: auto;
 }
+
 .logo-brand {
   float: left;
   height: auto !important;
@@ -129,18 +129,20 @@
   text-align: center;
   width: 100%;
 }
+
 .logo-brand span {
   line-height: 32px;
   padding-left: 10px;
   padding-top: 5px;
   float: left;
 }
+
 .logo-brand img {
   float: left;
   vertical-align: top;
 }
 
-.auth-wrapper{
+.auth-wrapper {
   margin-top: 40px;
 }
 
@@ -151,15 +153,20 @@
   font-weight: 400;
 }
 
-.logo-mobile{
+.logo-mobile {
   color: #000000;
   font-size: 24px;
-  float:left;
+  float: left;
   margin-left: 5px;
 }
 
-.img-mobile{
+.img-mobile {
   float: left;
+}
+
+.sair {
+  color: red;
+  padding-right: 20px;
 }
 
 .btn-portal {

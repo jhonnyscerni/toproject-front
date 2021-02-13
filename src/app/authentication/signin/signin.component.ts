@@ -26,6 +26,7 @@ export class SigninComponent extends BaseFormComponent implements OnInit {
     super();
   }
   ngOnInit() {
+    this.authService.logout();
     this.cadastroForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required, ]]

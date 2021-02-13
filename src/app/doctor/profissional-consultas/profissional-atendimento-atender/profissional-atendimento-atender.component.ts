@@ -73,5 +73,9 @@ export class ProfissionalAtendimentoAtenderComponent extends BaseFormComponent i
     this.router.navigate(['/user/consultas/lista'], { relativeTo: this.route });
   }
 
+  cadastroPaciente(id){
+    this.router.navigate(['/user/pacientes/editar', id], { relativeTo: this.route });
+  }
+
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {
   ChartComponent,
   ApexAxisChartSeries,
@@ -18,6 +18,11 @@ import {
 import {AuthService} from "../../shared/services/auth.service";
 import {Paciente} from "../../models/paciente";
 import {PacienteService} from "../../services/paciente.service";
+import {Atendimento} from "../../models/atendimento";
+import {Consulta} from "../../models/consulta";
+import {ConsultaService} from "../../services/consulta.service";
+import * as Moment from "moment";
+
 export type areaChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
@@ -66,10 +71,11 @@ export type radialChartOptions = {
   colors: string[];
   plotOptions: ApexPlotOptions;
 };
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.sass'],
+  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
   @ViewChild('chart') chart: ChartComponent;
@@ -79,16 +85,46 @@ export class DashboardComponent implements OnInit {
   public performanceRateChartOptions: Partial<performanceRateChartOptions>;
 
   paciente: Paciente;
+  // Paginação
+  totalElements = 0;
+  page = 1;
+  pageElement = 0;
+  size = 10
+  atendimento: Atendimento
+
+  consultas: Consulta[];
+  errorMessage: string;
+
 
   constructor(
     private authService: AuthService,
-    private pacienteService: PacienteService
-  ) {}
+    private pacienteService: PacienteService,
+    private consultaService: ConsultaService
+  ) {
+  }
+  pacienteLogado = this.authService.getUsuarioIdAutenticado();
+
+  getRequestParams(pageElement, size) {
+    let params = {};
+
+    if (pageElement) {
+      params[`page`] = pageElement;
+    }
+
+    if (size) {
+      params[`size`] = size;
+    }
+
+    params[`paciente`] = this.pacienteLogado;
+
+    return params;
+  }
+
+
   ngOnInit() {
 
     this.pacienteService.loadByID(
-      this.authService.getUsuarioIdAutenticado()).subscribe(value =>
-      {
+      this.authService.getUsuarioIdAutenticado()).subscribe(value => {
         this.paciente = value
       }
     );
@@ -96,7 +132,36 @@ export class DashboardComponent implements OnInit {
     this.chart2();
     this.chart3();
     this.chart4();
+    this.onRefresh();
   }
+
+  handlePageChange(event) {
+    this.page = event;
+    this.pageElement = this.page - 1
+    this.onRefresh();
+  }
+
+  onRefresh() {
+    const params = this.getRequestParams(this.pageElement, this.size);
+
+    this.consultaService.listSearchPage(params)
+      .subscribe(
+        consultas => {
+          this.consultas = consultas.content
+          this.totalElements = consultas.totalElements
+          this.pageElement = consultas.number
+          this.size = consultas.size
+        },
+        error => this.errorMessage
+      );
+  }
+
+  public dateLayout(dt: any): String {
+    //return Moment(dt).format('dddd, DD [de] MMMM [de] YYYY [às] HH:mm:ss');
+    return Moment(dt).format('DD/MM/YYYY [às] HH:mm:ss');
+  }
+
+
   private chart1() {
     this.areaChartOptions = {
       series: [
@@ -151,6 +216,7 @@ export class DashboardComponent implements OnInit {
       },
     };
   }
+
   private chart2() {
     this.radialChartOptions = {
       series: [44, 55, 67],
@@ -239,6 +305,7 @@ export class DashboardComponent implements OnInit {
       },
     };
   }
+
   private chart4() {
     this.performanceRateChartOptions = {
       series: [

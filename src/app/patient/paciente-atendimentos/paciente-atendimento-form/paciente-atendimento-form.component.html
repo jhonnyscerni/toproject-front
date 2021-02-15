@@ -30,21 +30,29 @@
                   <h6 class="font-14">
                     <strong class="weight-500"> Nome :</strong> {{atendimento?.consulta?.profissional?.nome}}
                   </h6>
+                  <h6 class="font-14">
+                    <strong class="weight-500"> Formação Academica
+                      :</strong> {{atendimento?.consulta?.profissional?.formacaoAcademica}}
+                  </h6>
+                  <h6 class="font-14">
+                    <strong class="weight-500"> Telefone :</strong> {{atendimento?.consulta?.profissional?.telefone}}
+                  </h6>
                 </div>
-<!--                <div class="ml-xl-3"><h2>$1,17,289</h2><h4 class="font-weight-light col-green">Total Income</h4>-->
-<!--                  <p class="mb-2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget-->
-<!--                    dolor. </p></div>-->
-<!--                <div class="ml-xl-3"><h2>$1,17,289</h2><h4 class="font-weight-light col-orange">Total Expense</h4>-->
-<!--                  <p class="mb-2"> Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. </p>-->
-<!--                </div>-->
+                <!--                <div class="ml-xl-3"><h2>$1,17,289</h2><h4 class="font-weight-light col-green">Total Income</h4>-->
+                <!--                  <p class="mb-2">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget-->
+                <!--                    dolor. </p></div>-->
+                <!--                <div class="ml-xl-3"><h2>$1,17,289</h2><h4 class="font-weight-light col-orange">Total Expense</h4>-->
+                <!--                  <p class="mb-2"> Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. </p>-->
+                <!--                </div>-->
               </div>
               <div class="col-md-12 col-xl-4">
-                <div class="row">
                   <div>
-                    <h6 class="font-14 mb-2">
+                    <h6 class="font-14">
                       <strong class="weight-500"> E-mail :</strong> {{atendimento?.consulta?.profissional?.email}}
                     </h6>
-                  </div>
+                    <h6 class="font-14">
+                      <strong class="weight-500"> Celular :</strong> {{atendimento?.consulta?.profissional?.celular}}
+                    </h6>
                 </div>
               </div>
             </div>
@@ -64,15 +72,15 @@
 
                 <div class="col-md-6">
                   <div class="form-group">
-                    <mat-form-field class="example-full-width"
-                                    appearance="outline">
-                      <mat-label>Objetivo da Sessão</mat-label>
-                      <input matInput formControlName="objetivoSessao" required>
+<!--                    <mat-form-field class="example-full-width"-->
+<!--                                    appearance="outline">-->
+                      <mat-label class="font-bold">Objetivo da Sessão</mat-label>
+                      <div>{{atendimento?.objetivoSessao}}</div>
                       <!-- <mat-icon matSuffix>face</mat-icon> -->
-                    </mat-form-field>
-                    <app-error-msg
-                      [control]="cadastroForm.get('objetivoSessao')"
-                      label="Objetivo da Sessão"></app-error-msg>
+<!--                    </mat-form-field>-->
+<!--                    <app-error-msg-->
+<!--                      [control]="cadastroForm.get('objetivoSessao')"-->
+<!--                      label="Objetivo da Sessão"></app-error-msg>-->
                   </div>
                 </div>
 
@@ -80,50 +88,32 @@
 
               <div class="row">
                 <div class="col-md-12">
-                  <!-- <input matInput formControlName="descreveSessao" required> -->
-                  <editor formControlName="descreveSessao" required
-                          apiKey="lc38wwzvplbno36h6mh35uwdt3f3bgh7mjsh5a0m0tdmzd4l"
-                          [init]="{
-                    height: 500,
-                    menubar: false,
-                    plugins: [
-                    'advlist autolink lists link image charmap print preview
-                    anchor',
-                    'searchreplace visualblocks code fullscreen',
-                    'insertdatetime media table paste code help wordcount'
-                    ],
-                    toolbar:
-                    'undo redo | formatselect | bold italic backcolor | \
-                    alignleft aligncenter alignright alignjustify | \
-                    bullist numlist outdent indent | removeformat | help'
-                    }"></editor>
-                  <!-- <mat-icon matSuffix>face</mat-icon> -->
-                  <app-error-msg [control]="cadastroForm.get('descreveSessao')"
-                                 label="Descrever a Sessão"></app-error-msg>
+                  <mat-label class="font-bold">Descrição da Sessão</mat-label>
+                  <div>{{atendimento?.descreveSessao}}</div>
                 </div>
               </div>
 
-              <div class="form-group text-right">
-                <span>
-                  <!-- [disabled]="!cadastroForm.valid" -->
-                  <button class="btn btn-success" id="registrar"
-                          [disabled]="!cadastroForm.valid"
-                          type="submit">Registrar
-                  </button>
-                </span>
-                <span>
-                  <button class="btn" id="cancelar" (click)="resetar()">Limpar
-                  </button>
-                </span>
-                <span>
-                  <!-- [disabled]="!cadastroForm.valid" -->
-                  <button class="btn" id="cancelar" (click)="cancelar()"
-                          type="submit">Cancelar
-                  </button>
-                </span>
-              </div>
+<!--              <div class="form-group text-right">-->
+<!--                <span>-->
+<!--                  &lt;!&ndash; [disabled]="!cadastroForm.valid" &ndash;&gt;-->
+<!--                  <button class="btn btn-success" id="registrar"-->
+<!--                          [disabled]="!cadastroForm.valid"-->
+<!--                          type="submit">Registrar-->
+<!--                  </button>-->
+<!--                </span>-->
+<!--                <span>-->
+<!--                  <button class="btn" id="cancelar" (click)="resetar()">Limpar-->
+<!--                  </button>-->
+<!--                </span>-->
+<!--                <span>-->
+<!--                  &lt;!&ndash; [disabled]="!cadastroForm.valid" &ndash;&gt;-->
+<!--                  <button class="btn" id="cancelar" (click)="cancelar()"-->
+<!--                          type="submit">Cancelar-->
+<!--                  </button>-->
+<!--                </span>-->
+<!--              </div>-->
 
-              <app-form-debug [form]="cadastroForm"></app-form-debug>
+<!--              <app-form-debug [form]="cadastroForm"></app-form-debug>-->
             </form>
 
           </div>

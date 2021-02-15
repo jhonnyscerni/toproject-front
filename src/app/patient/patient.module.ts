@@ -18,6 +18,7 @@ import { MatRadioModule } from '@angular/material/radio';
 
 import { PatientRoutingModule } from './patient-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -27,6 +28,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     NgxEchartsModule.forRoot({
       echarts: () => import('echarts'),
     }),
+    NgxPaginationModule,
     PerfectScrollbarModule,
     MatIconModule,
     MatButtonModule,

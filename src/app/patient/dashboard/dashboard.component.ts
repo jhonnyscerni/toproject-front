@@ -15,6 +15,9 @@ import {
   ApexGrid,
   ApexTitleSubtitle,
 } from 'ng-apexcharts';
+import {AuthService} from "../../shared/services/auth.service";
+import {Paciente} from "../../models/paciente";
+import {PacienteService} from "../../services/paciente.service";
 export type areaChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
@@ -75,8 +78,20 @@ export class DashboardComponent implements OnInit {
   public restRateChartOptions: Partial<restRateChartOptions>;
   public performanceRateChartOptions: Partial<performanceRateChartOptions>;
 
-  constructor() {}
+  paciente: Paciente;
+
+  constructor(
+    private authService: AuthService,
+    private pacienteService: PacienteService
+  ) {}
   ngOnInit() {
+
+    this.pacienteService.loadByID(
+      this.authService.getUsuarioIdAutenticado()).subscribe(value =>
+      {
+        this.paciente = value
+      }
+    );
     this.chart1();
     this.chart2();
     this.chart3();

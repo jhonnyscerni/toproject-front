@@ -80,11 +80,11 @@ export class ProfissionalConsultaFormComponent extends BaseFormComponent impleme
         id: [this.profissional]
       }),
       dataHora: [''],
-      localDeAtendimento: ['', [Validators.required]],
+      localDeAtendimento: [''],
       procedimentoEnum: ['', [Validators.required]],
-      statusConsultaEnum: [''],
+      statusConsultaEnum: ['', [Validators.required]],
       convenioEnum: ['', [Validators.required]],
-      observacoes: ['', [Validators.required]],
+      observacoes: [''],
     });
   }
 

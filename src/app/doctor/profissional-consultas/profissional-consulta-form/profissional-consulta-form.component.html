@@ -35,7 +35,7 @@
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>Procedimento</mat-label>
-                    <mat-select formControlName="procedimentoEnum">
+                    <mat-select formControlName="procedimentoEnum" required>
                       <mat-option *ngFor="let procedimento of
                         keys(procedimentoEnum)" [value]="procedimento">
                         {{procedimentoEnum[procedimento]}}
@@ -49,7 +49,7 @@
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>Status</mat-label>
-                    <mat-select formControlName="statusConsultaEnum">
+                    <mat-select formControlName="statusConsultaEnum" required>
                       <mat-option *ngFor="let status of
                         keys(statusConsultaEnum)" [value]="status">
                         {{statusConsultaEnum[status]}}
@@ -86,7 +86,7 @@
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>Convenio</mat-label>
-                    <mat-select formControlName="convenioEnum">
+                    <mat-select formControlName="convenioEnum" required>
                       <mat-option *ngFor="let convenio of keys(convenioEnum)" [value]="convenio">
                         {{convenioEnum[convenio]}}
                       </mat-option>

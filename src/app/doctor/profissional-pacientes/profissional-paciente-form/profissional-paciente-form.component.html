@@ -125,7 +125,7 @@
                         <mat-form-field class="example-full-width"
                           appearance="outline">
                           <mat-label>E-mail</mat-label>
-                          <input matInput formControlName="email" required>
+                          <input matInput formControlName="email">
                           <!-- <mat-icon matSuffix>face</mat-icon> -->
                         </mat-form-field>
                         <app-error-msg [control]="cadastroForm.get('email')"
@@ -140,7 +140,7 @@
                           appearance="outline">
                           <mat-label>Senha</mat-label>
                           <input matInput formControlName="senha" [type]="hide ?
-                            'password' : 'text'" required>
+                            'password' : 'text'">
                           <mat-icon matSuffix (click)="hide= !hide">
                             {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                         </mat-form-field>
@@ -169,7 +169,7 @@
                           appearance="outline">
                           <mat-label>Cpf</mat-label>
                           <input type="text" matInput formControlName="cpf"
-                            [textMask]="{mask: MASKS.cpf.textMask}" required>
+                            [textMask]="{mask: MASKS.cpf.textMask}">
                         </mat-form-field>
                         <app-error-msg [control]="cadastroForm.get('cpf')"
                           label="CPF"></app-error-msg>
@@ -212,7 +212,7 @@
                           <mat-label>Celular</mat-label>
                           <input type="text" matInput formControlName="celular"
                             [textMask]="{mask: MASKS.telefone.textMaskFunction}"
-                            required>
+                            >
                         </mat-form-field>
                         <app-error-msg [control]="cadastroForm.get('celular')"
                           label="Celular"></app-error-msg>
@@ -222,7 +222,7 @@
                           appearance="outline">
                           <mat-label>Dt. de Nascimento</mat-label>
                           <input matInput [matDatepicker]="picker"
-                            formControlName="dtNascimento" required>
+                            formControlName="dtNascimento" >
                           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                           <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
@@ -246,7 +246,7 @@
                           <input type="text" matInput formControlName="cep"
                             [textMask]="{mask: MASKS.cep.textMask}"
                             [ngClass]="{'is-invalid':verificaValidTouched('cep')
-                            }" (blur)="buscarCep($event.target.value)" required>
+                            }" (blur)="buscarCep($event.target.value)">
                           <!-- <mat-icon matSuffix>face</mat-icon> -->
                         </mat-form-field>
                         <app-error-msg [control]="cadastroForm.get('cep')"
@@ -257,7 +257,7 @@
                         <mat-form-field class="example-full-width"
                           appearance="outline">
                           <mat-label>Logradouro</mat-label>
-                          <input matInput formControlName="logradouro" required>
+                          <input matInput formControlName="logradouro">
                           <!-- <mat-icon matSuffix>face</mat-icon> -->
                         </mat-form-field>
                         <app-error-msg
@@ -271,7 +271,7 @@
                           <mat-label>Número</mat-label>
                           <input matInput formControlName="numero"
                             [ngClass]="{'is-invalid':verificaValidTouched('numero')
-                            }" required>
+                            }" >
                           <!-- <mat-icon matSuffix>face</mat-icon> -->
                         </mat-form-field>
                         <app-error-msg [control]="cadastroForm.get('numero')"
@@ -297,7 +297,7 @@
                           <mat-label>Bairro</mat-label>
                           <input matInput formControlName="bairro"
                             [ngClass]="{'is-invalid':verificaValidTouched('bairro')
-                            }" required>
+                            }">
                           <!-- <mat-icon matSuffix>face</mat-icon> -->
                         </mat-form-field>
                         <app-error-msg [control]="cadastroForm.get('bairro')"
@@ -315,7 +315,7 @@
                             <mat-label>Estado</mat-label>
                             <mat-select formControlName="id"
                               (valueChange)="buscarCidadesEstado($event)"
-                              required>
+                              >
                               <mat-option *ngFor="let estado of estados"
                                 [value]="estado.id">{{ estado.nome }}</mat-option>
                             </mat-select>
@@ -330,7 +330,7 @@
                             <mat-label>Cidade</mat-label>
 
                             <mat-select formControlName="id"
-                              [compareWith]="compareFn" required>
+                              [compareWith]="compareFn">
                               <mat-option *ngFor="let cidade of cidades"
                                 [value]="cidade.id">{{ cidade.nome }}</mat-option>
                             </mat-select>

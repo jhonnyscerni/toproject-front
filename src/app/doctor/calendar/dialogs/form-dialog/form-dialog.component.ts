@@ -97,11 +97,11 @@ export class FormDialogComponent extends BaseFormComponent {
         id: [this.profissional]
       }),
       dataHora: [''],
-      localDeAtendimento: ['', [Validators.required]],
+      localDeAtendimento: [''],
       procedimentoEnum: ['', [Validators.required]],
-      statusConsultaEnum: [''],
+      statusConsultaEnum: ['', [Validators.required]],
       convenioEnum: ['', [Validators.required]],
-      observacoes: ['', [Validators.required]],
+      observacoes: [''],
       className : [this.className]
     });
   }
@@ -226,13 +226,13 @@ export class FormDialogComponent extends BaseFormComponent {
   getClassNameValue(status) {
     if (status === "CONFIRMADO")
        this.className = "fc-event-warning"
-    else if (status === "AGENDADO")
+    else if (status == "AGENDADO")
     this.className = "fc-event-primary"
-    else if (status === "CANCELADO")
+    else if (status == "CANCELADO")
       this.className = "fc-event-danger"
-    else if (status === "REAGENDADO")
+    else if (status == "REAGENDADO")
       this.className = "fc-event-info"
-      else if (status = "FINALIZADO")
+      else if (status == "FINALIZADO")
       this.className = "fc-event-success"
 
 

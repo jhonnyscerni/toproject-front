@@ -1,3 +1,5 @@
 export enum procedimentoEnum {
-  CONSULTA = "Consulta"
+  CONSULTA = "Consulta",
+  SESSAO = "Sessão",
+  AVALIACAO = "Avaliação",
 }

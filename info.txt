@@ -1,0 +1,9 @@
+  - cd /home/jhonnyscerni/Documentos/workspace-angular/toproject-front/dist/
+  - tar -zcvf ltr.tar.gz ltr/
+  - scp -P65002 ltr.tar.gz  u113651129@213.190.6.127:~/public_html/
+  - ssh -p 65002 u113651129@213.190.6.127
+  - cd ~/public_html/
+  - tar xzvf ltr.tar.gz
+  - mv ltr/* ~/public_html/
+  - rm -R ltr.tar.gz
+  - rm -R ltr

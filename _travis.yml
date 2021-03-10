@@ -1,0 +1,23 @@
+sudo: required
+dist: bionic
+language: node_js
+node_js:
+  - '10.19.0'
+services: docker
+before_install:
+  - sudo apt-get update
+  - echo "We are in the Docker folder!!!"
+script:
+  - echo "OK Here we GO!"
+  - docker-compose build
+before_deploy:
+  - echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
+deploy:
+  provider: script
+  script:
+    docker tag toproject-front:latest jhonnyscerni/toproject-front:$TRAVIS_JOB_ID;
+    docker push jhonnyscerni/toproject-front:$TRAVIS_JOB_ID;
+  on:
+    branch: master
+notifications:
+  email: false

@@ -4,6 +4,10 @@ import {Router} from '@angular/router';
 import {ConfigService} from 'src/app/config/config.service';
 import {RightSidebarService} from 'src/app/core/service/rightsidebar.service';
 import {AuthService} from 'src/app/shared/services/auth.service';
+import {environment} from "../../../environments/environment";
+import {Role} from "../../core/models/role";
+import {Profissional} from "../../models/profissional";
+import {ProfissionalService} from "../../services/profissional.service";
 
 const document: any = window.document;
 
@@ -18,6 +22,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   homePage: string;
   profile: string;
   isNavbarCollapsed = true;
+  profissional: Profissional;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -26,7 +31,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     private dataService: RightSidebarService,
     private configService: ConfigService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private profissionalService: ProfissionalService
   ) {
   }
 
@@ -79,7 +85,22 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     this.config = this.configService.configData;
     const userRole = this.authService.getGrupo();
     // this.userImg = this.authService.getUsuarioAutenticado();
-    this.userImg = "assets/images/user/user-1.jpg"
+    const userId = this.authService.getUsuarioIdAutenticado();
+
+
+    if (userRole === Role.User) {
+      const profissional$ = this.profissionalService.loadByID(userId);
+      profissional$.subscribe(profissional => {
+        this.profissional = profissional;
+        if (this.profissional.fotoPerfil) {
+          this.userImg = `${environment.imagensUrl}/${this.profissional.fotoPerfil.nomeArquivo}`
+        } else {
+          this.userImg = "assets/images/user/user-1.jpg";
+        }
+      });
+    } else {
+      this.userImg = "assets/images/user/user-1.jpg";
+    }
 
     if (userRole === 'Admin') {
       this.homePage = 'admin/dashboard/main';

@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'http://localhost:8080',
-  imagensUrl: 'http://localhost:8080',
+  imagensUrl: 'assets/foto-perfil-local',
   clientId: 'projeto-web',
   clientSecret: 'web123',
   obterTokenUrl: '/oauth/token'

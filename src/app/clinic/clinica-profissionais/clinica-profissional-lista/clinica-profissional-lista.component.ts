@@ -7,6 +7,7 @@ import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
 import { tap, map, filter, distinctUntilChanged, debounceTime, switchMap, take } from 'rxjs/operators';
 import { Profissional } from '../../../models/profissional';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import {environment} from "../../../../environments/environment";
 @Component({
   selector: 'app-clinica-profissional-lista',
   templateUrl: './clinica-profissional-lista.component.html',
@@ -39,6 +40,7 @@ export class ClinicaProfissionalListaComponent implements OnInit {
     private authService: AuthService) {
   }
   usuarioId = this.authService.getUsuarioIdAutenticado();
+  userImg: string;
 
   getRequestParams(pageElement, size) {
     // tslint:disable-next-line:prefer-const
@@ -68,7 +70,7 @@ export class ClinicaProfissionalListaComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.userImg = `${environment.imagensUrl}`;
     this.nomeControl = this.fb.control('')
     this.emailControl = this.fb.control('')
     this.searchForm = this.fb.group({

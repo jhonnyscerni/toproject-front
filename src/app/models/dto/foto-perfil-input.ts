@@ -1,8 +1,8 @@
-import {Cidade} from './cidade';
-import {Grupo} from './grupo';
-import {FotoPerfil} from "./foto-perfil";
+import {Grupo} from "../grupo";
+import {Cidade} from "../cidade";
 
-export class Profissional {
+export class FotoPerfilInput {
+
   id?: number;
   nome?: string;
   email?: string;
@@ -24,5 +24,5 @@ export class Profissional {
   bairro?: string;
   cidade?: Cidade;
   clinicaId?: number;
-  fotoPerfil?: FotoPerfil;
+  arquivo?: File;
 }

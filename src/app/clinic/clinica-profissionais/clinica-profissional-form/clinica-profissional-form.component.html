@@ -29,6 +29,27 @@
 
             <!-- Add content here -->
             <form novalidate [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="user-panel mb-md-5">
+                    <h6 class="align-center">Imagem do Perfil</h6>
+                    <div class="image">
+                      <img *ngIf="userImg == null" src="assets/images/user/user-1.jpg" class="img-circle user-img-circle" alt="User Image"/>
+                      <img *ngIf="userImg" src="{{userImg}}" class="img-circle user-img-circle" alt="User Image" />
+                    </div>
+                  </div>
+                  <h6>Escolha outra imagem para substituir a Atual</h6>
+                  <div class="form-group">
+                    <mat-form-field class="example-full-width">
+                      <ngx-mat-file-input name="arquivo" (change)="onFileSelect($event)"
+                                          placeholder="Selecione uma imagem para Perfil (PNG/JPG)"></ngx-mat-file-input>
+                      <mat-icon matSuffix>folder</mat-icon>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+
               <div class=" row">
 
                 <div class=" col-md-6">
@@ -51,7 +72,7 @@
                     </mat-form-field>
                     <app-error-msg [control]="cadastroForm.get('email')" label="Email"></app-error-msg>
                     <app-campo-control-erro [mostrarErro]="cadastroForm.get('email').status === 'PENDING'"
-                      msgErro="Validando email...">
+                                            msgErro="Validando email...">
                     </app-campo-control-erro>
                     <!-- <app-campo-control-erro [mostrarErro]="cadastroForm.get('email').status === 'VALID'"
                           msgErro="Email válido!">
@@ -88,13 +109,14 @@
                       </mat-form-field>
                   </div>
                 </div> -->
+
               </div>
 
               <div class="form-group text-right">
                 <span>
                   <!-- [disabled]="!cadastroForm.valid" -->
                   <button class="btn btn-success" id="registrar" [disabled]="!cadastroForm.valid"
-                    type="submit">Registrar
+                          type="submit">Registrar
                   </button>
                 </span>
                 <span>
@@ -108,7 +130,7 @@
                 </span>
               </div>
 
-<!--              <app-form-debug [form]="cadastroForm"></app-form-debug>-->
+              <!--              <app-form-debug [form]="cadastroForm"></app-form-debug>-->
             </form>
 
           </div>

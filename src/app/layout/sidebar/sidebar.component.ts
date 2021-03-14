@@ -1,5 +1,5 @@
-import { Router, NavigationEnd } from '@angular/router';
-import { DOCUMENT } from '@angular/common';
+import {Router, NavigationEnd} from '@angular/router';
+import {DOCUMENT} from '@angular/common';
 import {
   Component,
   Inject,
@@ -9,10 +9,14 @@ import {
   HostListener,
   OnDestroy,
 } from '@angular/core';
-import { ROUTES } from './sidebar-items';
+import {ROUTES} from './sidebar-items';
 // import { AuthService } from 'src/app/core/service/auth.service';
-import { Role } from 'src/app/core/models/role';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import {Role} from 'src/app/core/models/role';
+import {AuthService} from 'src/app/shared/services/auth.service';
+import {ProfissionalService} from "../../services/profissional.service";
+import {Profissional} from "../../models/profissional";
+import {environment} from "../../../environments/environment";
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -33,12 +37,16 @@ export class SidebarComponent implements OnInit, OnDestroy {
   headerHeight = 60;
   currentRoute: string;
   routerObj = null;
+  profissional: Profissional;
+
+
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private renderer: Renderer2,
     public elementRef: ElementRef,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private profissionalService: ProfissionalService
   ) {
     const body = this.elementRef.nativeElement.closest('body');
     this.routerObj = this.router.events.subscribe((event) => {
@@ -61,17 +69,20 @@ export class SidebarComponent implements OnInit, OnDestroy {
       }
     });
   }
+
   @HostListener('window:resize', ['$event'])
   windowResizecall(event) {
     this.setMenuHeight();
     this.checkStatuForResize(false);
   }
+
   @HostListener('document:mousedown', ['$event'])
   onGlobalClick(event): void {
     if (!this.elementRef.nativeElement.contains(event.target)) {
       this.renderer.removeClass(this.document.body, 'overlay-open');
     }
   }
+
   callLevel1Toggle(event: any, element: any) {
     if (element === this.level1Menu) {
       this.level1Menu = '0';
@@ -85,6 +96,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
       this.renderer.addClass(event.target, 'toggled');
     }
   }
+
   callLevel2Toggle(event: any, element: any) {
     if (element === this.level2Menu) {
       this.level2Menu = '0';
@@ -92,6 +104,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
       this.level2Menu = element;
     }
   }
+
   callLevel3Toggle(event: any, element: any) {
     if (element === this.level3Menu) {
       this.level3Menu = '0';
@@ -99,18 +112,34 @@ export class SidebarComponent implements OnInit, OnDestroy {
       this.level3Menu = element;
     }
   }
+
   ngOnInit() {
     if (this.authService.isAuthenticated) {
       const userRole = this.authService.getGrupo();
+      const userId = this.authService.getUsuarioIdAutenticado();
+
       this.userFullName =
         this.authService.getUsuarioAutenticado();
-         +
-         ' ' +
-         "Ultimo Nome"
+      +
+        ' ' +
+      "Ultimo Nome"
       //   this.authService.currentUserValue.lastName;
-       //this.userImg = this.authService.currentUserValue.img;
-       this.userImg = "assets/images/user/user-1.jpg";
+      //this.userImg = this.authService.currentUserValue.img;
 
+      if (userRole === Role.User) {
+        const profissional$ = this.profissionalService.loadByID(userId);
+        profissional$.subscribe(profissional => {
+          this.profissional = profissional;
+          if (this.profissional.fotoPerfil) {
+            this.userImg = `${environment.imagensUrl}/${this.profissional.fotoPerfil.nomeArquivo}`
+          } else {
+            this.userImg = "assets/images/user/user-1.jpg";
+          }
+        });
+      } else {
+        console.log("entro3");
+        this.userImg = "assets/images/user/user-1.jpg";
+      }
       this.sidebarItems = ROUTES.filter(
         (x) => x.role.indexOf(userRole) !== -1 || x.role.indexOf('All') !== -1
       );
@@ -131,24 +160,29 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.initLeftSidebar();
     this.bodyTag = this.document.body;
   }
+
   ngOnDestroy() {
     this.routerObj.unsubscribe();
   }
+
   initLeftSidebar() {
     const _this = this;
     // Set menu height
     _this.setMenuHeight();
     _this.checkStatuForResize(true);
   }
+
   setMenuHeight() {
     this.innerHeight = window.innerHeight;
     const height = this.innerHeight - this.headerHeight;
     this.listMaxHeight = height + '';
     this.listMaxWidth = '500px';
   }
+
   isOpen() {
     return this.bodyTag.classList.contains('overlay-open');
   }
+
   checkStatuForResize(firstTime) {
     if (window.innerWidth < 1170) {
       this.renderer.addClass(this.document.body, 'ls-closed');
@@ -156,6 +190,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
       this.renderer.removeClass(this.document.body, 'ls-closed');
     }
   }
+
   mouseHover(e) {
     const body = this.elementRef.nativeElement.closest('body');
     if (body.classList.contains('submenu-closed')) {
@@ -163,6 +198,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
       this.renderer.removeClass(this.document.body, 'submenu-closed');
     }
   }
+
   mouseOut(e) {
     const body = this.elementRef.nativeElement.closest('body');
     if (body.classList.contains('side-closed-hover')) {

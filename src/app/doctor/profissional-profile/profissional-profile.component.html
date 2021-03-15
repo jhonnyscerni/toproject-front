@@ -21,68 +21,86 @@
     </div>
     <!-- Your content goes here  -->
     <div class="row clearfix">
-      <div class="col-lg-4 col-md-12">
+      <div class="col-lg-3 col-md-12">
         <div class="card">
           <div class="m-b-20">
             <div class="contact-grid">
               <div class="profile-header bg-dark">
                 <div class="user-name">{{usuario?.nome}}</div>
-                <!-- <div class="name-center">{{usuario?.email}}</div> -->
+                <!-- <div class="name-center">{{paciente?.email}}</div> -->
               </div>
-              <!--              <img src="assets/images/user/usrbig3.jpg" class="user-img" alt="">-->
-              <img *ngIf="usuario?.fotoPerfil" src="{{userImg}}" class="user-img" alt="User Image"/>
-              <img *ngIf="usuario?.fotoPerfil == null" src="assets/images/user/user-1.jpg" class="user-img"
-                   alt="User Image"/>
-              <p>
-                {{usuario?.email}}
-                <!-- <br />New York -->
-              </p>
+              <img src="{{userImg}}" class="user-img" alt="">
               <div>
-                <!-- <span class="phone">
-                  <i class="material-icons">phone</i>264-625-2583</span> -->
+                <small class="text-muted">Endereço de E-mail: </small>
+                <p>{{usuario?.email}}</p>
+                <!-- <hr> -->
+                <small class="text-muted">Telefone: </small>
+                <p>{{usuario?.telefone}}</p>
+                <!-- <hr> -->
               </div>
-              <!-- <div class="row">
-                <div class="col-4">
-                  <h5>564</h5>
-                  <small>Following</small>
-                </div>
-                <div class="col-4">
-                  <h5>18k</h5>
-                  <small>Followers</small>
-                </div>
-                <div class="col-4">
-                  <h5>565</h5>
-                  <small>Post</small>
-                </div>
-              </div> -->
             </div>
           </div>
         </div>
         <div class="card">
           <mat-tab-group mat-align-tabs="start">
-            <mat-tab label="Informações">
+            <mat-tab label="Dados">
               <div class="p-4">
-                <!--                <p class="text-default">Lorem Ipsum is simply dummy text of the printing and-->
-                <!--                  typesetting industry. Lorem Ipsum has-->
-                <!--                  been the industry's standard dummy text ever since the 1500s, when an unknown-->
-                <!--                  printer-->
-                <!--                  took a galley of type and scrambled it to make a type specimen book. It has-->
-                <!--                  survived-->
-                <!--                  not only five centuries, but also the leap into electronic typesetting, remaining-->
-                <!--                  essentially-->
-                <!--                  unchanged.</p>-->
-                <small class="text-muted">Endereço de E-email: </small>
-                <p>{{usuario?.email}}</p>
+                <!-- <p class="text-default">Lorem Ipsum is simply dummy text of the printing and
+                typesetting industry. Lorem Ipsum has
+                been the industry's standard dummy text ever since the 1500s, when an unknown
+                printer
+                took a galley of type and scrambled it to make a type specimen book. It has
+                survived
+                not only five centuries, but also the leap into electronic typesetting, remaining
+                essentially
+                unchanged.</p> -->
+                <small class="text-muted">Formação Acadêmica: </small>
+                <p>{{usuario?.formacaoAcademica}}</p>
                 <hr>
-                <small class="text-muted">Phone: </small>
-                <p>+91 1234567890</p>
+                <small class="text-muted">Conselho: </small>
+                <p>{{usuario?.conselho}}</p>
+                <hr>
+                <small class="text-muted">Registro Regional: </small>
+                <p>{{usuario?.registroConselho}}</p>
                 <hr>
               </div>
             </mat-tab>
+            <!-- <mat-tab label="Skills">
+            <ul class="list-unstyled p-4">
+              <li>
+                <div>OPD</div>
+                <div class="progress skill-progress m-b-20">
+                  <div class="progress-bar l-bg-green width-per-45" role="progressbar" aria-valuenow="45"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </li>
+              <li>
+                <div>Operations</div>
+                <div class="progress skill-progress m-b-20">
+                  <div class="progress-bar l-bg-orange width-per-38" role="progressbar" aria-valuenow="38"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </li>
+              <li>
+                <div>Patient Visit</div>
+                <div class="progress skill-progress m-b-20">
+                  <div class="progress-bar l-bg-cyan width-per-39" role="progressbar" aria-valuenow="39"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </li>
+              <li>
+                <div>RND</div>
+                <div class="progress skill-progress m-b-20">
+                  <div class="progress-bar l-bg-purple width-per-70" role="progressbar" aria-valuenow="70"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </li>
+            </ul>
+          </mat-tab> -->
           </mat-tab-group>
         </div>
       </div>
-      <div class="col-lg-8 col-md-12">
+      <div class="col-lg-9 col-md-12">
         <div class="card">
           <mat-tab-group>
             <mat-tab>
@@ -151,24 +169,129 @@
                       </mat-form-field>
                       <app-error-msg [control]="cadastroForm.get('senha')" label="Senha"></app-error-msg>
                     </div>
-                    <!-- <mat-form-field class="example-full-width" appearance="fill">
-                        <mat-label>Nome do Usuário</mat-label>
-                        <input matInput formControlName="nome" required>
+                    <h5>
+                      <strong>Informações</strong> Profissionais</h5>
+
+                    <div class=" form-group">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Formação Acadêmica</mat-label>
+                        <input matInput formControlName="formacaoAcademica">
+                        <!-- <mat-icon matSuffix>face</mat-icon> -->
                       </mat-form-field>
-                      <mat-form-field class="example-full-width" appearance="fill">
-                        <mat-label>Current Password</mat-label>
-                        <input matInput type="password">
-                      </mat-form-field>
-                      <mat-form-field class="example-full-width" appearance="fill">
-                        <mat-label>New Password</mat-label>
-                        <input matInput type="password">
-                      </mat-form-field> -->
+                      <app-error-msg [control]="cadastroForm.get('formacaoAcademica')"
+                                     label="formacaoAcademica"></app-error-msg>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <mat-form-field class="example-full-width"
+                                        appearance="outline">
+                          <mat-label>Conselho</mat-label>
+                          <mat-select formControlName="conselho">
+                            <mat-option [value]="">Selecione</mat-option>
+                            <mat-option
+                              value="CRAS">CRAS
+                            </mat-option>
+                            <mat-option
+                              [value]="'CRBM'">CRBM
+                            </mat-option>
+                            <mat-option
+                              [value]="'CREFITO'">CREFITO
+                            </mat-option>
+                            <mat-option
+                              [value]="'COREN'">COREN
+                            </mat-option>
+                            <mat-option
+                              [value]="'CRF'">CRF
+                            </mat-option>
+                            <mat-option
+                              [value]="'CRFa'">CRFa
+                            </mat-option>
+                            <mat-option
+                              [value]="'CRM'">CRM
+                            </mat-option>
+                            <mat-option
+                              [value]="'CRMV'">CRMV
+                            </mat-option>
+                            <mat-option
+                              [value]="'CREMEPE'">CREMEPE
+                            </mat-option>
+                            <mat-option
+                              [value]="'CREMEB'">CREMEB
+                            </mat-option>
+                            <mat-option
+                              [value]="'CREMERJ'">CREMERJ
+                            </mat-option>
+                            <mat-option
+                              [value]="'CREMESP'">CREMESP
+                            </mat-option>
+                            <mat-option
+                              [value]="'CRN'">CRN
+                            </mat-option>
+                            <mat-option
+                              [value]="'CRO'">CRO
+                            </mat-option>
+                            <mat-option
+                              [value]="'CRP'">CRP
+                            </mat-option>
+                            <mat-option
+                              [value]="'CRT'">CRT
+                            </mat-option>
+                            <mat-option
+                              [value]="'CRTR'">CRTR
+                            </mat-option>
+                            <mat-option
+                              [value]="'CONTER'">CONTER
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="outline">
+                          <mat-label>Registro Regional</mat-label>
+                          <input matInput formControlName="registroConselho">
+                          <!-- <mat-icon matSuffix>face</mat-icon> -->
+                        </mat-form-field>
+                        <app-error-msg [control]="cadastroForm.get('registroConselho')"
+                                       label="registroConselho"></app-error-msg>
+                      </div>
+
+                    </div>
+
+                    <h5>
+                      <strong>Contato</strong></h5>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <mat-form-field class="example-full-width"
+                                        appearance="outline">
+                          <mat-label>Telefone</mat-label>
+                          <input type="text" matInput formControlName="telefone"
+                                 [textMask]="{mask:
+                            MASKS.telefone.textMaskFunction}">
+                        </mat-form-field>
+                        <app-error-msg [control]="cadastroForm.get('telefone')"
+                                       label="Telefone"></app-error-msg>
+                      </div>
+
+                      <div class="col-md-6">
+                        <mat-form-field class="example-full-width"
+                                        appearance="outline">
+                          <mat-label>Celular</mat-label>
+                          <input type="text" matInput formControlName="celular"
+                                 [textMask]="{mask: MASKS.telefone.textMaskFunction}"
+                          >
+                        </mat-form-field>
+                        <app-error-msg [control]="cadastroForm.get('celular')"
+                                       label="Celular"></app-error-msg>
+                      </div>
+
+                    </div>
                   </div>
                   <div class="form-group text-right">
                     <span>
                       <!-- [disabled]="!cadastroForm.valid" -->
                       <button class="btn btn-success" id="registrar" [disabled]="!cadastroForm.valid"
-                              type="submit">Alterar
+                              type="submit">Registrar
                       </button>
                     </span>
                     <span>

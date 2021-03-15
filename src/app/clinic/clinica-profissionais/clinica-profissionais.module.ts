@@ -14,28 +14,32 @@ import { ClinicaProfissionalListaComponent } from './clinica-profissional-lista/
 import { ClinicaProfissionalFormComponent } from './clinica-profissional-form/clinica-profissional-form.component';
 import { clinicaprofissionaisRoutes } from './clinica-profissionais.routing';
 import {MaterialFileInputModule} from "ngx-material-file-input";
+import {TextMaskModule} from "angular2-text-mask";
+import {MatTabsModule} from "@angular/material/tabs";
 
 
 @NgModule({
-    imports: [
-        CommonModule,
-        BsDropdownModule.forRoot(),
-        ProgressbarModule.forRoot(),
-        TooltipModule.forRoot(),
-        RouterModule.forChild(clinicaprofissionaisRoutes),
-        NgxPaginationModule,
+  imports: [
+    CommonModule,
+    BsDropdownModule.forRoot(),
+    ProgressbarModule.forRoot(),
+    TooltipModule.forRoot(),
+    RouterModule.forChild(clinicaprofissionaisRoutes),
+    NgxPaginationModule,
 
-        FormsModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    SharedModule,
 
-        MatSelectModule,
+    MatSelectModule,
 
-        MatFormFieldModule,
-        MaterialFileInputModule
+    MatFormFieldModule,
+    MaterialFileInputModule,
+    TextMaskModule,
+    MatTabsModule
 
-    ],
+  ],
   declarations: [ClinicaProfissionaisComponent, ClinicaProfissionalListaComponent, ClinicaProfissionalFormComponent],
   exports:[ClinicaProfissionaisComponent, ClinicaProfissionalListaComponent, ClinicaProfissionalFormComponent]
 })

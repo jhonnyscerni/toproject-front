@@ -54,6 +54,11 @@ export class ProfissionalProfileComponent extends BaseFormComponent implements O
       cpf: ['', [NgBrazilValidators.cpf]],
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required]],
+      formacaoAcademica: [''],
+      conselho: [''],
+      registroConselho: [''],
+      telefone: [''],
+      celular: [''],
       grupos: [''],
     });
   }
@@ -71,9 +76,14 @@ export class ProfissionalProfileComponent extends BaseFormComponent implements O
     this.cadastroForm.patchValue({
       id: usuario.id,
       nome: usuario.nome,
-      cpf: usuario.cpf,
       email: usuario.email,
       senha: usuario.senha,
+      cpf: usuario.cpf,
+      formacaoAcademica: usuario.formacaoAcademica,
+      conselho: usuario.conselho,
+      registroConselho: usuario.registroConselho,
+      telefone:  usuario.telefone,
+      celular:  usuario.celular,
       grupos: usuario.grupos
     });
     if (usuario.fotoPerfil) {

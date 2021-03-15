@@ -21,7 +21,7 @@
     </div>
     <!-- Your content goes here  -->
     <div class="row clearfix">
-      <div class="col-lg-4 col-md-12">
+      <div class="col-lg-3 col-md-12">
         <div class="card">
           <div class="m-b-20">
             <div class="contact-grid">
@@ -29,7 +29,7 @@
                 <div class="user-name">{{usuario?.nome}}</div>
                 <!-- <div class="name-center">{{usuario?.email}}</div> -->
               </div>
-              <img src="assets/images/user/usrbig3.jpg" class="user-img" alt="">
+              <img src="assets/images/user/default-avatar.png" class="user-img" alt="">
               <p>
                 {{usuario?.email}}
                 <!-- <br />New York -->
@@ -59,27 +59,27 @@
           <mat-tab-group mat-align-tabs="start">
             <mat-tab label="Informações">
               <div class="p-4">
-                <p class="text-default">Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has
-                  been the industry's standard dummy text ever since the 1500s, when an unknown
-                  printer
-                  took a galley of type and scrambled it to make a type specimen book. It has
-                  survived
-                  not only five centuries, but also the leap into electronic typesetting, remaining
-                  essentially
-                  unchanged.</p>
+<!--                <p class="text-default">Lorem Ipsum is simply dummy text of the printing and-->
+<!--                  typesetting industry. Lorem Ipsum has-->
+<!--                  been the industry's standard dummy text ever since the 1500s, when an unknown-->
+<!--                  printer-->
+<!--                  took a galley of type and scrambled it to make a type specimen book. It has-->
+<!--                  survived-->
+<!--                  not only five centuries, but also the leap into electronic typesetting, remaining-->
+<!--                  essentially-->
+<!--                  unchanged.</p>-->
                 <small class="text-muted">Endereço de E-email: </small>
                 <p>{{usuario?.email}}</p>
                 <hr>
-                <small class="text-muted">Phone: </small>
-                <p>+91 1234567890</p>
-                <hr>
+<!--                <small class="text-muted">Phone: </small>-->
+<!--                <p>+91 1234567890</p>-->
+<!--                <hr>-->
               </div>
             </mat-tab>
           </mat-tab-group>
         </div>
       </div>
-      <div class="col-lg-8 col-md-12">
+      <div class="col-lg-9 col-md-12">
         <div class="card">
           <mat-tab-group>
             <mat-tab>
@@ -142,7 +142,7 @@
                     <span>
                       <!-- [disabled]="!cadastroForm.valid" -->
                       <button class="btn btn-success" id="registrar" [disabled]="!cadastroForm.valid"
-                        type="submit">Alterar
+                        type="submit">Registrar
                       </button>
                     </span>
                     <span>

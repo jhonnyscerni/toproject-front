@@ -9,6 +9,9 @@ import {AlertModalService} from '../../../shared/services/alert-modal.service';
 import {AuthService} from 'src/app/shared/services/auth.service';
 import {FotoPerfilInput} from "../../../models/dto/foto-perfil-input";
 import {environment} from "../../../../environments/environment";
+import { NgBrazilValidators } from 'ng-brazil';
+import { utilsBr } from 'js-brasil';
+import {Profissional} from "../../../models/profissional";
 
 @Component({
   selector: 'app-clinica-profissional-form',
@@ -17,13 +20,16 @@ import {environment} from "../../../../environments/environment";
 })
 export class ClinicaProfissionalFormComponent extends BaseFormComponent implements OnInit {
 
-  profissional: FotoPerfilInput = new FotoPerfilInput();
+  fotoPerfilInput: FotoPerfilInput = new FotoPerfilInput();
   idProfissional: number;
   validarEmail: any;
   hide = true;
+  profissional: Profissional;
 
   arquivo: File;
-  userImg: string;
+  userImg: string = "assets/images/user/user-1.jpg";
+
+  MASKS = utilsBr.MASKS;
 
   constructor(
     private fb: FormBuilder,
@@ -47,6 +53,7 @@ export class ClinicaProfissionalFormComponent extends BaseFormComponent implemen
         const profissional$ = this.profissionalService.loadByID(idProfissional);
         profissional$.subscribe(profissional => {
           //console.log(profissional);
+          this.profissional = profissional;
           this.updateForm(profissional);
         });
       }
@@ -62,8 +69,14 @@ export class ClinicaProfissionalFormComponent extends BaseFormComponent implemen
           Validators.maxLength(250),
         ],
       ],
+      cpf: ['', [NgBrazilValidators.cpf]],
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required]],
+      formacaoAcademica: [''],
+      conselho: [''],
+      registroConselho: [''],
+      telefone: [''],
+      celular: [''],
       clinicaId: this.authService.getUsuarioIdAutenticado()
     });
   }
@@ -74,6 +87,12 @@ export class ClinicaProfissionalFormComponent extends BaseFormComponent implemen
       nome: profissional.nome,
       email: profissional.email,
       senha: profissional.senha,
+      cpf: profissional.cpf,
+      formacaoAcademica: profissional.formacaoAcademica,
+      conselho: profissional.conselho,
+      registroConselho: profissional.registroConselho,
+      telefone:  profissional.telefone,
+      celular:  profissional.celular,
       clinicaId: this.authService.getUsuarioIdAutenticado()
     });
 

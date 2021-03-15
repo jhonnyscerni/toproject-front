@@ -19,123 +19,299 @@
         </div>
       </div>
     </div>
+    <!-- Your content goes here  -->
     <div class="row clearfix">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="col-lg-3 col-md-12">
         <div class="card">
-          <div class="header">
-            <h2><strong></strong> Criar Profissional</h2>
+          <div class="m-b-20">
+            <div class="contact-grid">
+              <div class="profile-header bg-dark">
+                <div class="user-name">{{profissional?.nome}}</div>
+                <!-- <div class="name-center">{{paciente?.email}}</div> -->
+              </div>
+              <img src="{{userImg}}" class="user-img" alt="">
+              <div>
+                <small class="text-muted">Endereço de E-mail: </small>
+                <p>{{profissional?.email}}</p>
+                <!-- <hr> -->
+                <small class="text-muted">Telefone: </small>
+                <p>{{profissional?.telefone}}</p>
+                <!-- <hr> -->
+              </div>
+            </div>
           </div>
-          <div class="body">
+        </div>
+        <div class="card">
+          <mat-tab-group mat-align-tabs="start">
+            <mat-tab label="Dados">
+              <div class="p-4">
+                <!-- <p class="text-default">Lorem Ipsum is simply dummy text of the printing and
+                typesetting industry. Lorem Ipsum has
+                been the industry's standard dummy text ever since the 1500s, when an unknown
+                printer
+                took a galley of type and scrambled it to make a type specimen book. It has
+                survived
+                not only five centuries, but also the leap into electronic typesetting, remaining
+                essentially
+                unchanged.</p> -->
+                <small class="text-muted">Formação Acadêmica: </small>
+                <p>{{profissional?.formacaoAcademica}}</p>
+                <hr>
+                <small class="text-muted">Conselho: </small>
+                <p>{{profissional?.conselho}}</p>
+                <hr>
+                <small class="text-muted">Registro Regional: </small>
+                <p>{{profissional?.registroConselho}}</p>
+                <hr>
+              </div>
+            </mat-tab>
+            <!-- <mat-tab label="Skills">
+            <ul class="list-unstyled p-4">
+              <li>
+                <div>OPD</div>
+                <div class="progress skill-progress m-b-20">
+                  <div class="progress-bar l-bg-green width-per-45" role="progressbar" aria-valuenow="45"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </li>
+              <li>
+                <div>Operations</div>
+                <div class="progress skill-progress m-b-20">
+                  <div class="progress-bar l-bg-orange width-per-38" role="progressbar" aria-valuenow="38"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </li>
+              <li>
+                <div>Patient Visit</div>
+                <div class="progress skill-progress m-b-20">
+                  <div class="progress-bar l-bg-cyan width-per-39" role="progressbar" aria-valuenow="39"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </li>
+              <li>
+                <div>RND</div>
+                <div class="progress skill-progress m-b-20">
+                  <div class="progress-bar l-bg-purple width-per-70" role="progressbar" aria-valuenow="70"
+                    aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </li>
+            </ul>
+          </mat-tab> -->
+          </mat-tab-group>
+        </div>
+      </div>
+      <div class="col-lg-9 col-md-12">
+        <div class="card">
+          <mat-tab-group>
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon mr-2">settings</mat-icon>
+                Configuração
+              </ng-template>
+              <div class="header">
+                <h2>
+                  <strong>Configuração</strong> de Cadastro</h2>
+              </div>
+              <div class="body">
+                <form novalidate [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
+                  <div class="example-container">
 
-            <!-- Add content here -->
-            <form novalidate [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
-
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="user-panel mb-md-5">
-                    <h6 class="align-center">Imagem do Perfil</h6>
-                    <div class="image">
-                      <img *ngIf="userImg == null" src="assets/images/user/user-1.jpg" class="img-circle user-img-circle" alt="User Image"/>
-                      <img *ngIf="userImg" src="{{userImg}}" class="img-circle user-img-circle" alt="User Image" />
+                    <div class="form-group">
+                      <h6>Escolha outra imagem para substituir a Atual</h6>
+                      <mat-form-field class="example-full-width">
+                        <ngx-mat-file-input name="arquivo" (change)="onFileSelect($event)"
+                                            placeholder="Selecione uma imagem para Perfil (PNG/JPG)"></ngx-mat-file-input>
+                        <mat-icon matSuffix>folder</mat-icon>
+                      </mat-form-field>
                     </div>
-                  </div>
-                  <h6>Escolha outra imagem para substituir a Atual</h6>
-                  <div class="form-group">
-                    <mat-form-field class="example-full-width">
-                      <ngx-mat-file-input name="arquivo" (change)="onFileSelect($event)"
-                                          placeholder="Selecione uma imagem para Perfil (PNG/JPG)"></ngx-mat-file-input>
-                      <mat-icon matSuffix>folder</mat-icon>
-                    </mat-form-field>
-                  </div>
-                </div>
-              </div>
-
-              <div class=" row">
-
-                <div class=" col-md-6">
-                  <div class=" form-group">
-                    <mat-form-field class="example-full-width" appearance="outline">
-                      <mat-label>Nome do Profissional</mat-label>
-                      <input matInput formControlName="nome" required>
-                      <!-- <mat-icon matSuffix>face</mat-icon> -->
-                    </mat-form-field>
-                    <app-error-msg [control]="cadastroForm.get('nome')" label="Nome"></app-error-msg>
-                  </div>
-                </div>
-
-                <div class=" col-sm-12 col-md-6">
-                  <div class=" form-group">
-                    <mat-form-field class="example-full-width" appearance="outline">
-                      <mat-label>E-mail</mat-label>
-                      <input matInput formControlName="email" required>
-                      <!-- <mat-icon matSuffix>face</mat-icon> -->
-                    </mat-form-field>
-                    <app-error-msg [control]="cadastroForm.get('email')" label="Email"></app-error-msg>
-                    <app-campo-control-erro [mostrarErro]="cadastroForm.get('email').status === 'PENDING'"
-                                            msgErro="Validando email...">
-                    </app-campo-control-erro>
-                    <!-- <app-campo-control-erro [mostrarErro]="cadastroForm.get('email').status === 'VALID'"
-                          msgErro="Email válido!">
-                        </app-campo-control-erro> -->
-                  </div>
-                </div>
-
-              </div>
 
 
-              <div class=" row">
-                <div class=" col-md-6">
-                  <div class=" form-group">
-                    <mat-form-field class="example-full-width" appearance="outline">
-                      <mat-label>Senha</mat-label>
-                      <input matInput formControlName="senha" [type]="hide ? 'password' : 'text'" required>
-                      <mat-icon matSuffix (click)="hide = !hide">
-                        {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                    </mat-form-field>
-                    <app-error-msg [control]="cadastroForm.get('senha')" label="Senha"></app-error-msg>
-                  </div>
-                </div>
+                    <div class=" form-group">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Nome do Usuário</mat-label>
+                        <input matInput formControlName="nome" required>
+                        <!-- <mat-icon matSuffix>face</mat-icon> -->
+                      </mat-form-field>
+                      <app-error-msg [control]="cadastroForm.get('nome')" label="Nome"></app-error-msg>
+                    </div>
 
-                <!-- <div class=" col-md-6">
-                  <div class="form-group">
-                    <mat-form-field class="example-full-width" appearance="outline">
-                          <mat-label>Grupos</mat-label>
-                          <mat-select formControlName="grupos" required multiple [compareWith]="compareFn">
-                            <mat-option *ngFor="let grupo of grupos" [value]="grupo">
-                              {{grupo.nome}}
+                    <div class=" form-group">
+                      <mat-form-field class="example-full-width"
+                                      appearance="outline">
+                        <mat-label>Cpf</mat-label>
+                        <input type="text" matInput formControlName="cpf"
+                               [textMask]="{mask: MASKS.cpf.textMask}">
+                      </mat-form-field>
+                      <app-error-msg [control]="cadastroForm.get('cpf')"
+                                     label="CPF"></app-error-msg>
+                    </div>
+
+                    <div class=" form-group">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>E-mail</mat-label>
+                        <input matInput formControlName="email" required>
+                        <!-- <mat-icon matSuffix>face</mat-icon> -->
+                      </mat-form-field>
+                      <app-error-msg [control]="cadastroForm.get('email')" label="Email"></app-error-msg>
+                      <app-campo-control-erro [mostrarErro]="cadastroForm.get('email').status === 'PENDING'"
+                                              msgErro="Validando email...">
+                      </app-campo-control-erro>
+                      <!-- <app-campo-control-erro [mostrarErro]="cadastroForm.get('email').status === 'VALID'"
+                                    msgErro="Email válido!">
+                                  </app-campo-control-erro> -->
+                    </div>
+                    <div class=" form-group">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Senha</mat-label>
+                        <input matInput formControlName="senha" [type]="hide ? 'password' : 'text'" required>
+                        <mat-icon matSuffix (click)="hide = !hide">
+                          {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                      </mat-form-field>
+                      <app-error-msg [control]="cadastroForm.get('senha')" label="Senha"></app-error-msg>
+                    </div>
+                    <h5>
+                      <strong>Informações</strong> Profissionais</h5>
+
+                    <div class=" form-group">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Formação Acadêmica</mat-label>
+                        <input matInput formControlName="formacaoAcademica">
+                        <!-- <mat-icon matSuffix>face</mat-icon> -->
+                      </mat-form-field>
+                      <app-error-msg [control]="cadastroForm.get('formacaoAcademica')"
+                                     label="formacaoAcademica"></app-error-msg>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <mat-form-field class="example-full-width"
+                                        appearance="outline">
+                          <mat-label>Conselho</mat-label>
+                          <mat-select formControlName="conselho">
+                            <mat-option [value]="">Selecione</mat-option>
+                            <mat-option
+                              value="CRAS">CRAS
+                            </mat-option>
+                            <mat-option
+                              [value]="'CRBM'">CRBM
+                            </mat-option>
+                            <mat-option
+                              [value]="'CREFITO'">CREFITO
+                            </mat-option>
+                            <mat-option
+                              [value]="'COREN'">COREN
+                            </mat-option>
+                            <mat-option
+                              [value]="'CRF'">CRF
+                            </mat-option>
+                            <mat-option
+                              [value]="'CRFa'">CRFa
+                            </mat-option>
+                            <mat-option
+                              [value]="'CRM'">CRM
+                            </mat-option>
+                            <mat-option
+                              [value]="'CRMV'">CRMV
+                            </mat-option>
+                            <mat-option
+                              [value]="'CREMEPE'">CREMEPE
+                            </mat-option>
+                            <mat-option
+                              [value]="'CREMEB'">CREMEB
+                            </mat-option>
+                            <mat-option
+                              [value]="'CREMERJ'">CREMERJ
+                            </mat-option>
+                            <mat-option
+                              [value]="'CREMESP'">CREMESP
+                            </mat-option>
+                            <mat-option
+                              [value]="'CRN'">CRN
+                            </mat-option>
+                            <mat-option
+                              [value]="'CRO'">CRO
+                            </mat-option>
+                            <mat-option
+                              [value]="'CRP'">CRP
+                            </mat-option>
+                            <mat-option
+                              [value]="'CRT'">CRT
+                            </mat-option>
+                            <mat-option
+                              [value]="'CRTR'">CRTR
+                            </mat-option>
+                            <mat-option
+                              [value]="'CONTER'">CONTER
                             </mat-option>
                           </mat-select>
-                          <mat-icon matSuffix>flag</mat-icon>
-                      </mat-form-field>
+                        </mat-form-field>
+                      </div>
+
+                      <div class="col-md-6">
+                        <mat-form-field class="example-full-width" appearance="outline">
+                          <mat-label>Registro Regional</mat-label>
+                          <input matInput formControlName="registroConselho">
+                          <!-- <mat-icon matSuffix>face</mat-icon> -->
+                        </mat-form-field>
+                        <app-error-msg [control]="cadastroForm.get('registroConselho')"
+                                       label="registroConselho"></app-error-msg>
+                      </div>
+
+                    </div>
+
+                    <h5>
+                      <strong>Contato</strong></h5>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <mat-form-field class="example-full-width"
+                                        appearance="outline">
+                          <mat-label>Telefone</mat-label>
+                          <input type="text" matInput formControlName="telefone"
+                                 [textMask]="{mask:
+                            MASKS.telefone.textMaskFunction}">
+                        </mat-form-field>
+                        <app-error-msg [control]="cadastroForm.get('telefone')"
+                                       label="Telefone"></app-error-msg>
+                      </div>
+
+                      <div class="col-md-6">
+                        <mat-form-field class="example-full-width"
+                                        appearance="outline">
+                          <mat-label>Celular</mat-label>
+                          <input type="text" matInput formControlName="celular"
+                                 [textMask]="{mask: MASKS.telefone.textMaskFunction}"
+                          >
+                        </mat-form-field>
+                        <app-error-msg [control]="cadastroForm.get('celular')"
+                                       label="Celular"></app-error-msg>
+                      </div>
+
+                    </div>
                   </div>
-                </div> -->
-
+                  <div class="form-group text-right">
+                    <span>
+                      <!-- [disabled]="!cadastroForm.valid" -->
+                      <button class="btn btn-success" id="registrar" [disabled]="!cadastroForm.valid"
+                              type="submit">Registrar
+                      </button>
+                    </span>
+                    <span>
+                      <button class="btn" id="Limpar" (click)="resetar()">Limpar
+                      </button>
+                    </span>
+                    <span>
+                      <!-- [disabled]="!cadastroForm.valid" -->
+                      <button class="btn " id="cancelar" (click)="cancelar()" type="submit">Cancelar
+                      </button>
+                    </span>
+                  </div>
+                </form>
               </div>
-
-              <div class="form-group text-right">
-                <span>
-                  <!-- [disabled]="!cadastroForm.valid" -->
-                  <button class="btn btn-success" id="registrar" [disabled]="!cadastroForm.valid"
-                          type="submit">Registrar
-                  </button>
-                </span>
-                <span>
-                  <button class="btn" id="cancelar" (click)="resetar()">Limpar
-                  </button>
-                </span>
-                <span>
-                  <!-- [disabled]="!cadastroForm.valid" -->
-                  <button class="btn " id="cancelar" (click)="cancelar()" type="submit">Cancelar
-                  </button>
-                </span>
-              </div>
-
-              <!--              <app-form-debug [form]="cadastroForm"></app-form-debug>-->
-            </form>
-
-          </div>
+            </mat-tab>
+          </mat-tab-group>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- FIM CONTENT-->

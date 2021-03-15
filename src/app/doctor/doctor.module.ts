@@ -28,6 +28,7 @@ import {NgxChartsModule} from "@swimlane/ngx-charts";
 import {ProfissionalProfileComponent} from "./profissional-profile/profissional-profile.component";
 import {HttpClientModule} from "@angular/common/http";
 import {SharedModule} from "../shared/shared.module";
+import {MaterialFileInputModule} from "ngx-material-file-input";
 
 @NgModule({
   declarations: [DashboardComponent, ProfissionalProfileComponent],
@@ -61,6 +62,7 @@ import {SharedModule} from "../shared/shared.module";
 
         HttpClientModule,
         SharedModule,
+        MaterialFileInputModule,
     ],
 })
 export class UserModule { }

@@ -32,7 +32,7 @@ export class PresentationComponent implements OnInit {
 
   onDashboard() {
     this.tipoUser = this.authService.getGrupo();
-    console.log(this.tipoUser)
+    //console.log(this.tipoUser)
     if (this.tipoUser == 'Admin'){
           this.router.navigate(['/admin/dashboard'], { relativeTo: this.route });
     } else if (this.tipoUser == 'Clinic'){
@@ -46,7 +46,7 @@ export class PresentationComponent implements OnInit {
 
   onProfile() {
     this.tipoUser = this.authService.getGrupo();
-    console.log(this.tipoUser)
+    //console.log(this.tipoUser)
     if (this.tipoUser == 'Admin'){
       this.router.navigate(['/admin/profile'], { relativeTo: this.route });
     } else if (this.tipoUser == 'Clinic'){

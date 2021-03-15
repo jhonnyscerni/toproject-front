@@ -92,10 +92,6 @@ export class ClinicaProfissionalFormComponent extends BaseFormComponent implemen
     let msgSuccess = 'Profissional criado com sucesso!';
     let msgError = 'Erro ao criar profissional, tente novamente!';
 
-
-    console.log(this.cadastroForm.value);
-    console.log(formData);
-
     if (this.cadastroForm.value.id) {
       msgSuccess = 'Profissional atualizado com sucesso!';
       msgError = 'Erro ao atualizar profissional, tente novamente!';
@@ -106,7 +102,7 @@ export class ClinicaProfissionalFormComponent extends BaseFormComponent implemen
         //this.alertService.showAlertSuccess(msgSuccess);
         this.toastr.success(msgSuccess, 'Informação :)')
 
-       // this.location.back();
+        this.location.back();
       },
       error =>
         //this.alertService.showAlertDanger(msgError),

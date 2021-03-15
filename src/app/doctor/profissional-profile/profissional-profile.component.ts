@@ -7,6 +7,7 @@ import {BaseFormComponent} from 'src/app/shared/base-form/base-form.component';
 import {AuthService} from 'src/app/shared/services/auth.service';
 import {Profissional} from "../../models/profissional";
 import {ProfissionalService} from "../../services/profissional.service";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: "app-profissional-profile",
@@ -17,6 +18,8 @@ export class ProfissionalProfileComponent extends BaseFormComponent implements O
   usuario: Profissional = new Profissional()
   idUsuario: number;
   hide = true;
+  userImg: string;
+  arquivo: File;
 
   constructor(
     private authService: AuthService,
@@ -53,7 +56,7 @@ export class ProfissionalProfileComponent extends BaseFormComponent implements O
       .subscribe(usuario => {
         this.usuario = usuario
         this.updateForm(this.usuario);
-        console.log(this.usuario)
+        //console.log(this.usuario)
       })
   }
 
@@ -65,10 +68,18 @@ export class ProfissionalProfileComponent extends BaseFormComponent implements O
       senha: usuario.senha,
       grupos: usuario.grupos
     });
+    if (usuario.fotoPerfil) {
+      this.userImg = `${environment.imagensUrl}/${usuario.fotoPerfil.nomeArquivo}`;
+      console.log(this.userImg)
+    } else {
+      this.userImg = "assets/images/user/user-1.jpg";
+    }
   }
 
   submit() {
-    //console.log('submit');
+    const formData = new FormData();
+    formData.append('arquivo', <File>this.arquivo);
+    formData.append('profissional', new Blob([JSON.stringify(this.cadastroForm.value)], {type: "application/json"}));
 
     let msgSuccess;
     let msgError;
@@ -78,11 +89,10 @@ export class ProfissionalProfileComponent extends BaseFormComponent implements O
       msgError = 'Erro ao atualizar usuario, tente novamente!';
     }
 
-    this.profissionalService.save(this.cadastroForm.value).subscribe(
+    this.profissionalService.saveComFoto(formData, this.cadastroForm.value.id).subscribe(
       success => {
         //this.alertService.showAlertSuccess(msgSuccess);
         this.toastr.success(msgSuccess, 'Informação :)')
-        this.location.back();
       },
       error =>
         //this.alertService.showAlertDanger(msgError),
@@ -92,6 +102,14 @@ export class ProfissionalProfileComponent extends BaseFormComponent implements O
 
   cancelar() {
     this.router.navigate(['/user/dashboard'], {relativeTo: this.route});
+  }
+
+  onFileSelect(event) {
+    if (event.target.files.length > 0) {
+      this.arquivo = event.target.files[0];
+      // const file = event.target.files[0];
+      // this.cadastroForm.get('arquivo').setValue(file);
+    }
   }
 
 }

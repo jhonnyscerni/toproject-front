@@ -45,7 +45,7 @@ export class ProfissionalService extends CrudService<Profissional> {
   }
 
   saveComFoto(record: any, id: any) {
-    console.log("receord------>" + id);
+    //console.log("receord------>" + id);
     if (id) {
       //console.log('update!')
       return this.updateComFoto(record, id);

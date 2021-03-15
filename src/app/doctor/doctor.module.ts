@@ -30,6 +30,9 @@ import {HttpClientModule} from "@angular/common/http";
 import {SharedModule} from "../shared/shared.module";
 import {MaterialFileInputModule} from "ngx-material-file-input";
 
+import { NgBrazil } from 'ng-brazil';
+import { TextMaskModule } from 'angular2-text-mask';
+
 @NgModule({
   declarations: [DashboardComponent, ProfissionalProfileComponent],
     imports: [
@@ -63,6 +66,9 @@ import {MaterialFileInputModule} from "ngx-material-file-input";
         HttpClientModule,
         SharedModule,
         MaterialFileInputModule,
+
+        NgBrazil,
+        TextMaskModule
     ],
 })
 export class UserModule { }

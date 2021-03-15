@@ -8,12 +8,18 @@ import {AuthService} from 'src/app/shared/services/auth.service';
 import {Profissional} from "../../models/profissional";
 import {ProfissionalService} from "../../services/profissional.service";
 import {environment} from "../../../environments/environment";
+import { NgBrazilValidators } from 'ng-brazil';
+import { utilsBr } from 'js-brasil';
+
 
 @Component({
   selector: "app-profissional-profile",
   templateUrl: "profissional-profile.component.html"
 })
 export class ProfissionalProfileComponent extends BaseFormComponent implements OnInit {
+
+
+  MASKS = utilsBr.MASKS;
 
   usuario: Profissional = new Profissional()
   idUsuario: number;
@@ -45,6 +51,7 @@ export class ProfissionalProfileComponent extends BaseFormComponent implements O
           Validators.maxLength(250),
         ],
       ],
+      cpf: ['', [NgBrazilValidators.cpf]],
       email: ['', [Validators.required, Validators.email]],
       senha: ['', [Validators.required]],
       grupos: [''],
@@ -64,6 +71,7 @@ export class ProfissionalProfileComponent extends BaseFormComponent implements O
     this.cadastroForm.patchValue({
       id: usuario.id,
       nome: usuario.nome,
+      cpf: usuario.cpf,
       email: usuario.email,
       senha: usuario.senha,
       grupos: usuario.grupos

@@ -14,6 +14,7 @@
   </div>
   <div mat-dialog-content>
     <form class="register-form m-4" [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
+      <h5>Dados</h5>
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
@@ -112,6 +113,34 @@
           <!-- <app-error-msg [control]="cadastroForm.get('observacoes')" label="Observações"></app-error-msg> -->
         </div>
       </div>
+
+      <h5>Financeiro</h5>
+
+      <div class="row">
+        <div class="col-md-6" formGroupName="formaPagamento">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Forma de Pagamento</mat-label>
+            <mat-select formControlName="id" required >
+              <mat-option *ngFor="let formaPagamento of formaPagamentos" [value]="formaPagamento.id">
+                {{formaPagamento.descricao}}
+              </mat-option>
+            </mat-select>
+            <mat-icon matSuffix>flag</mat-icon>
+          </mat-form-field>
+          <!-- <app-error-msg [control]="cadastroForm.get('paciente')" label="Paciente"></app-error-msg> -->
+        </div>
+
+        <div class="col-md-6">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Valor do Atendimento</mat-label>
+            <input matInput formControlName="valorTotal">
+            <!-- <mat-icon matSuffix>face</mat-icon> -->
+          </mat-form-field>
+          <!-- <app-error-msg [control]="cadastroForm.get('localDeAtendimento')" label="Local de Atendimento">
+          </app-error-msg> -->
+        </div>
+      </div>
+
       <!-- <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
           <mat-form-field class="example-full-width mb-3" appearance="outline">

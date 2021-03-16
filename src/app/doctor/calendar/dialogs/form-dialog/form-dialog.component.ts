@@ -24,6 +24,8 @@ import { ToastrService } from 'ngx-toastr';
 import { AlertModalService } from 'src/app/shared/services/alert-modal.service';
 import { EMPTY } from 'rxjs';
 import {Clinica} from "../../../../models/clinica";
+import {FormaPagamentoService} from "../../../../services/forma-pagamento.service";
+import {FormaPagamento} from "../../../../models/forma-pagamento";
 @Component({
   selector: 'app-form-dialog',
   templateUrl: './form-dialog.component.html',
@@ -35,8 +37,9 @@ export class FormDialogComponent extends BaseFormComponent {
   calendarForm: FormGroup;
   calendar: Consulta;
   showDeleteBtn = false;
-  profissional = Profissional
-  clinica = Clinica
+  profissional = Profissional;
+  clinica = Clinica;
+  formaPagamentos: FormaPagamento[];
 
   statusConsultaEnum = statusConsultaEnum;
   procedimentoEnum =  procedimentoEnum;
@@ -59,10 +62,12 @@ export class FormDialogComponent extends BaseFormComponent {
     private consultaService: ConsultaService,
     private toastr: ToastrService,
     private alertService: AlertModalService,
+    private formaPagamentoService: FormaPagamentoService
   ) {
     super();
     this.profissional = this.authService.getUsuarioIdAutenticado();
     this.carregarPacientes();
+    this.carregarFormaPagamento();
     // Set the defaults
     this.action = data.action;
     if (this.action === 'edit') {
@@ -83,7 +88,7 @@ export class FormDialogComponent extends BaseFormComponent {
       }
 
     } else {
-      this.dialogTitle = 'Novo Compromisso';
+      this.dialogTitle = 'Agendamento';
       this.showDeleteBtn = false;
     }
 
@@ -96,6 +101,10 @@ export class FormDialogComponent extends BaseFormComponent {
       profissional: this.fb.group({
         id: [this.profissional]
       }),
+      formaPagamento: this.fb.group({
+        id: ['', Validators.required]
+      }),
+      valorTotal: [''],
       dataHora: [''],
       localDeAtendimento: [''],
       procedimentoEnum: ['', [Validators.required]],
@@ -117,6 +126,10 @@ export class FormDialogComponent extends BaseFormComponent {
       profissional: {
         id: this.profissional
       },
+      formaPagamento: {
+        id: consulta.formaPagamento.id
+      },
+      valorTotal: consulta.valorTotal,
       dataHora: consulta.dataHora,
       localDeAtendimento: consulta.localDeAtendimento,
       procedimentoEnum: consulta.procedimentoEnum,
@@ -150,6 +163,14 @@ export class FormDialogComponent extends BaseFormComponent {
             this.pacientes = pacientes
           }
     );
+  }
+
+  carregarFormaPagamento() {
+    return this.formaPagamentoService.list()
+      .subscribe(formaPagamento => {
+          this.formaPagamentos = formaPagamento
+        }
+      );
   }
 
   getRequestParamsClinica(clinicaId) {

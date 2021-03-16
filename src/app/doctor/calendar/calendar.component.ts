@@ -114,6 +114,7 @@ export class CalendarComponent extends BaseFormComponent implements OnInit {
   addNewEvent() {
 
     const dialogRef = this.dialog.open(FormDialogComponent, {
+      width: '60%',
       data: {
         calendar: this.calendar,
         action: 'add',

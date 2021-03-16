@@ -1,6 +1,7 @@
 import { Clinica } from './clinica';
 import { Profissional } from './profissional';
 import { Paciente } from './paciente';
+import {FormaPagamento} from "./forma-pagamento";
 export class Consulta {
     id?: number;
     paciente?: Paciente;
@@ -16,6 +17,8 @@ export class Consulta {
     title: string;
     className: string;
     clinica: Clinica;
+    formaPagamento: FormaPagamento;
+    valorTotal: string;
 
     constructor() {
         this.start = this.dataHora

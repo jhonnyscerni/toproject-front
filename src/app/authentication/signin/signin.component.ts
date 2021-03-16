@@ -106,4 +106,15 @@ export class SigninComponent extends BaseFormComponent implements OnInit {
 
   }
 
+  remember(event){
+    if (event.target.checked === true) {
+      localStorage.setItem('email', this.cadastroForm.value.email);
+      localStorage.setItem('senha', this.cadastroForm.value.senha);
+
+    }else{
+      localStorage.email = "";
+      localStorage.senha = "";
+    }
+  }
+
 }

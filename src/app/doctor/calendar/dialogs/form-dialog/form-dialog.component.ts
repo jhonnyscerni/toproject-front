@@ -24,8 +24,6 @@ import { ToastrService } from 'ngx-toastr';
 import { AlertModalService } from 'src/app/shared/services/alert-modal.service';
 import { EMPTY } from 'rxjs';
 import {Clinica} from "../../../../models/clinica";
-import {FormaPagamentoService} from "../../../../services/forma-pagamento.service";
-import {FormaPagamento} from "../../../../models/forma-pagamento";
 @Component({
   selector: 'app-form-dialog',
   templateUrl: './form-dialog.component.html',
@@ -37,9 +35,8 @@ export class FormDialogComponent extends BaseFormComponent {
   calendarForm: FormGroup;
   calendar: Consulta;
   showDeleteBtn = false;
-  profissional = Profissional;
-  clinica = Clinica;
-  formaPagamentos: FormaPagamento[];
+  profissional = Profissional
+  clinica = Clinica
 
   statusConsultaEnum = statusConsultaEnum;
   procedimentoEnum =  procedimentoEnum;
@@ -62,12 +59,10 @@ export class FormDialogComponent extends BaseFormComponent {
     private consultaService: ConsultaService,
     private toastr: ToastrService,
     private alertService: AlertModalService,
-    private formaPagamentoService: FormaPagamentoService
   ) {
     super();
     this.profissional = this.authService.getUsuarioIdAutenticado();
     this.carregarPacientes();
-    this.carregarFormaPagamento();
     // Set the defaults
     this.action = data.action;
     if (this.action === 'edit') {
@@ -76,7 +71,7 @@ export class FormDialogComponent extends BaseFormComponent {
       this.showDeleteBtn = true;
       const idConsulta = data.calendar.id
 
-        if (idConsulta) {
+      if (idConsulta) {
         const consulta$ = this.consultaService.loadByID(idConsulta);
         consulta$.subscribe(consulta => {
           if (consulta.clinica.id != null){
@@ -88,7 +83,7 @@ export class FormDialogComponent extends BaseFormComponent {
       }
 
     } else {
-      this.dialogTitle = 'Agendamento';
+      this.dialogTitle = 'Novo Compromisso';
       this.showDeleteBtn = false;
     }
 
@@ -101,10 +96,6 @@ export class FormDialogComponent extends BaseFormComponent {
       profissional: this.fb.group({
         id: [this.profissional]
       }),
-      formaPagamento: this.fb.group({
-        id: ['', Validators.required]
-      }),
-      valorTotal: [''],
       dataHora: [''],
       localDeAtendimento: [''],
       procedimentoEnum: ['', [Validators.required]],
@@ -126,10 +117,6 @@ export class FormDialogComponent extends BaseFormComponent {
       profissional: {
         id: this.profissional
       },
-      formaPagamento: {
-        id: consulta.formaPagamento.id
-      },
-      valorTotal: consulta.valorTotal,
       dataHora: consulta.dataHora,
       localDeAtendimento: consulta.localDeAtendimento,
       procedimentoEnum: consulta.procedimentoEnum,
@@ -160,15 +147,7 @@ export class FormDialogComponent extends BaseFormComponent {
     const params = this.getRequestParams();
     return this.pacienteService.listSearchList(params)
       .subscribe(pacientes => {
-            this.pacientes = pacientes
-          }
-    );
-  }
-
-  carregarFormaPagamento() {
-    return this.formaPagamentoService.list()
-      .subscribe(formaPagamento => {
-          this.formaPagamentos = formaPagamento
+          this.pacientes = pacientes
         }
       );
   }
@@ -186,7 +165,7 @@ export class FormDialogComponent extends BaseFormComponent {
     return this.pacienteService.listSearchList(params)
       .subscribe(pacientes => {
           this.pacientes = pacientes
-        //console.log(this.pacientes)
+          //console.log(this.pacientes)
         }
       );
   }
@@ -246,14 +225,14 @@ export class FormDialogComponent extends BaseFormComponent {
 
   getClassNameValue(status) {
     if (status === "CONFIRMADO")
-       this.className = "fc-event-warning"
+      this.className = "fc-event-warning"
     else if (status == "AGENDADO")
-    this.className = "fc-event-primary"
+      this.className = "fc-event-primary"
     else if (status == "CANCELADO")
       this.className = "fc-event-danger"
     else if (status == "REAGENDADO")
       this.className = "fc-event-info"
-      else if (status == "FINALIZADO")
+    else if (status == "FINALIZADO")
       this.className = "fc-event-success"
 
 

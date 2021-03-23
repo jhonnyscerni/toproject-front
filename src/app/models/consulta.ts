@@ -17,8 +17,8 @@ export class Consulta {
     title: string;
     className: string;
     clinica: Clinica;
-    formaPagamento: FormaPagamento;
-    valorTotal: string;
+    // formaPagamento: FormaPagamento;
+    // valorTotal: string;
 
     constructor() {
         this.start = this.dataHora

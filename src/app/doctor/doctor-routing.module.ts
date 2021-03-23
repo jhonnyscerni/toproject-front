@@ -30,6 +30,11 @@ const routes: Routes = [
       import('./profissional-atendimentos/profissional-atendimentos.module').then((m) => m.ProfissionalAtendimentosModule),
   },
   {
+    path: 'lancamentos',
+    loadChildren: () =>
+      import('./profissional-lancamentos/profissional-lancamentos.module').then((m) => m.ProfissionalLancamentosModule),
+  },
+  {
     path: "profile",
     component: ProfissionalProfileComponent
   },

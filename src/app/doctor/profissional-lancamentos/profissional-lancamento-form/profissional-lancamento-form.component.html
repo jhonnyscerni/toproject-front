@@ -1,0 +1,123 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <ul class="breadcrumb breadcrumb-style">
+            <li class="breadcrumb-item">
+              <h4 class="page-title">Criar Lançamento Financeiro</h4>
+            </li>
+            <li class="breadcrumb-item bcrumb-1">
+              <a routerLink="/admin/dashboard/main">
+                <i class="fas fa-home"></i> Home</a>
+            </li>
+            <li class="breadcrumb-item bcrumb-2">
+              <a href="#" onClick="return false;">Lançamentos</a>
+            </li>
+            <li class="breadcrumb-item active">Criar Lançamentos Financeiros</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="card">
+          <div class="header">
+            <h2>
+              <strong></strong> Criar Lançamentos Financeiros
+            </h2>
+          </div>
+          <div class="body">
+
+            <!-- Add content here -->
+            <form novalidate [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col-md-6" formGroupName="categoria">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Categoria do Lançamento</mat-label>
+                    <mat-select formControlName="id" required>
+                      <mat-option *ngFor="let categoriaLancamento of categoriasLancamento" [value]="categoriaLancamento.id">
+                        {{categoriaLancamento.nomeCategoriaLanc}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-icon matSuffix>flag</mat-icon>
+                  </mat-form-field>
+                  <!-- <app-error-msg [control]="cadastroForm.get('paciente')" label="Paciente"></app-error-msg> -->
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Descrição</mat-label>
+                    <input matInput formControlName="descricao">
+                    <!-- <mat-icon matSuffix>face</mat-icon> -->
+                  </mat-form-field>
+                  <app-error-msg [control]="cadastroForm.get('descricao')" label="Descrição">
+                  </app-error-msg>
+                </div>
+
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width"
+                                  appearance="outline">
+                    <mat-label>Dt. de Lançamento</mat-label>
+                    <input matInput [matDatepicker]="picker"
+                           formControlName="dtLancamento" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                  <app-error-msg
+                    [control]="cadastroForm.get('dtLancamento')"
+                    label="Data de Lançamento"></app-error-msg>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6" formGroupName="formaPagamento">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Forma de Pagamento</mat-label>
+                    <mat-select formControlName="id" required>
+                      <mat-option *ngFor="let formaPagamento of formaPagamentos" [value]="formaPagamento.id">
+                        {{formaPagamento.descricao}}
+                      </mat-option>
+                    </mat-select>
+                    <mat-icon matSuffix>flag</mat-icon>
+                  </mat-form-field>
+                  <!-- <app-error-msg [control]="cadastroForm.get('paciente')" label="Paciente"></app-error-msg> -->
+                </div>
+
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Valor do Atendimento</mat-label>
+                    <input matInput formControlName="valorTotal">
+                    <!-- <mat-icon matSuffix>face</mat-icon> -->
+                  </mat-form-field>
+                  <!-- <app-error-msg [control]="cadastroForm.get('localDeAtendimento')" label="Local de Atendimento">
+                  </app-error-msg> -->
+                </div>
+              </div>
+              <div class="form-group text-right">
+                <span>
+                  <!-- [disabled]="!cadastroForm.valid" -->
+                  <button class="btn btn-success" id="registrar" [disabled]="!cadastroForm.valid"
+                          type="submit">Registrar
+                  </button>
+                </span>
+                <span>
+                  <button class="btn" id="limpar" (click)="resetar()">Limpar
+                  </button>
+                </span>
+                <span>
+                  <!-- [disabled]="!cadastroForm.valid" -->
+                  <button class="btn" id="cancelar" (click)="cancelar()" type="submit">Cancelar
+                  </button>
+                </span>
+              </div>
+
+              <!--              <app-form-debug [form]="cadastroForm"></app-form-debug>-->
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

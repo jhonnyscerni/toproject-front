@@ -14,8 +14,6 @@ import { ConsultaService } from 'src/app/services/consulta.service';
 import { ProfissionalService } from 'src/app/services/profissional.service';
 import { Location } from '@angular/common';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import {FormaPagamento} from "../../../models/forma-pagamento";
-import {FormaPagamentoService} from "../../../services/forma-pagamento.service";
 
 @Component({
   selector: 'app-profissional-consulta-form',
@@ -30,7 +28,6 @@ export class ProfissionalConsultaFormComponent extends BaseFormComponent impleme
   validarEmail: any;
   hide = true;
   pacientes: Paciente[];
-  formaPagamentos: FormaPagamento[];
 
   statusConsultaEnum = statusConsultaEnum;
   procedimentoEnum =  procedimentoEnum;
@@ -49,8 +46,7 @@ export class ProfissionalConsultaFormComponent extends BaseFormComponent impleme
     private toastr: ToastrService,
     private pacienteService: PacienteService,
     private profissionalService: ProfissionalService,
-    private authService: AuthService,
-    private formaPagamentoService: FormaPagamentoService
+    private authService: AuthService
   ) {
     super();
     // this.keys(this.statusConsultaEnum)
@@ -60,7 +56,7 @@ export class ProfissionalConsultaFormComponent extends BaseFormComponent impleme
 
   ngOnInit() {
     this.carregarPacientes();
-    this.carregarFormaPagamento();
+
     this.route.params.subscribe((params: any) => {
       const idConsulta = params['idConsulta'];
       if (idConsulta) {
@@ -83,10 +79,6 @@ export class ProfissionalConsultaFormComponent extends BaseFormComponent impleme
       profissional: this.fb.group({
         id: [this.profissional]
       }),
-      formaPagamento: this.fb.group({
-        id: ['', Validators.required]
-      }),
-      valorTotal: [''],
       dataHora: [''],
       localDeAtendimento: [''],
       procedimentoEnum: ['', [Validators.required]],
@@ -106,10 +98,6 @@ export class ProfissionalConsultaFormComponent extends BaseFormComponent impleme
       profissional: {
         id: this.profissional
       },
-      formaPagamento: {
-        id: consulta.formaPagamento.id
-      },
-      valorTotal: consulta.valorTotal,
       dataHora: consulta.dataHora,
       localDeAtendimento: consulta.localDeAtendimento,
       procedimentoEnum: consulta.procedimentoEnum,
@@ -132,15 +120,7 @@ export class ProfissionalConsultaFormComponent extends BaseFormComponent impleme
     const params = this.getRequestParams();
     return this.pacienteService.listSearchList(params)
       .subscribe(pacientes => {
-            this.pacientes = pacientes
-          }
-        );
-  }
-
-  carregarFormaPagamento() {
-    return this.formaPagamentoService.list()
-      .subscribe(formaPagamento => {
-          this.formaPagamentos = formaPagamento
+          this.pacientes = pacientes
         }
       );
   }

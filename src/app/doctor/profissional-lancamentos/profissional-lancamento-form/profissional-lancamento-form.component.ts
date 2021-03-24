@@ -1,14 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BaseFormComponent} from "../../../shared/base-form/base-form.component";
 import {Profissional} from "../../../models/profissional";
-import {Consulta} from "../../../models/consulta";
-import {Paciente} from "../../../models/paciente";
 import {Lancamento} from "../../../models/lancamento";
 import {FormaPagamento} from "../../../models/forma-pagamento";
 import {FormBuilder, Validators} from "@angular/forms";
 import {Location} from "@angular/common";
 import {ActivatedRoute, Router} from "@angular/router";
-import {ConsultaService} from "../../../services/consulta.service";
 import {ToastrService} from "ngx-toastr";
 import {PacienteService} from "../../../services/paciente.service";
 import {ProfissionalService} from "../../../services/profissional.service";
@@ -18,12 +15,19 @@ import {LancamentoService} from "../../../services/lancamento.service";
 import {CategoriaLancamentoService} from "../../../services/categoria-lancamento.service";
 import {CategoriaLancamento} from "../../../models/categoria-lancamento";
 
+import { NgBrazilValidators } from 'ng-brazil';
+import {utilsBr} from 'js-brasil';
+import {CurrencyUtils} from "../../../shared/utils/currency-utils";
+
+
 @Component({
   selector: 'app-profissinal-lancamento-form',
   templateUrl: './profissional-lancamento-form.component.html',
   styleUrls: ['./profissional-lancamento-form.component.scss']
 })
 export class ProfissionalLancamentoFormComponent extends BaseFormComponent implements OnInit {
+
+  MASKS = utilsBr.MASKS;
 
   profissional: Profissional;
   lancamento: Lancamento;
@@ -80,6 +84,7 @@ export class ProfissionalLancamentoFormComponent extends BaseFormComponent imple
       descricao: [''],
       dtLancamento: [''],
       valorTotal: ['', Validators.required],
+      profissionalId: [this.profissional]
     });
   }
 
@@ -96,6 +101,7 @@ export class ProfissionalLancamentoFormComponent extends BaseFormComponent imple
       descricao: lancamento.descricao,
       dtLancamento: lancamento.dtLancamento,
       valorTotal: lancamento.valorTotal,
+      profissionalId: this.profissional
     });
   }
 
@@ -116,6 +122,8 @@ export class ProfissionalLancamentoFormComponent extends BaseFormComponent imple
       msgSuccess = 'Lançamento atualizado com sucesso!';
       msgError = 'Erro ao atualizar Lançamento, tente novamente!';
     }
+
+    this.cadastroForm.value.valorTotal = CurrencyUtils.StringParaDecimal(this.cadastroForm.value.valorTotal);
 
     this.lancamentoService.save(this.cadastroForm.value).subscribe(
       success => {

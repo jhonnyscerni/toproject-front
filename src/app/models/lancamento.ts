@@ -11,5 +11,7 @@ export class Lancamento {
   categoria?: CategoriaLancamento;
   dtLancamento?: Date;
   consulta?: Consulta;
+  profissionalId?: number;
+  clinicaId?: number;
 
 }

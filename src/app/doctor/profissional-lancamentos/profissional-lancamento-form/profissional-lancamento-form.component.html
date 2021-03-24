@@ -87,7 +87,7 @@
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width" appearance="outline">
                     <mat-label>Valor do Atendimento</mat-label>
-                    <input matInput formControlName="valorTotal">
+                    <input matInput formControlName="valorTotal" [textMask]="{mask: MASKS.number.textMask}">
                     <!-- <mat-icon matSuffix>face</mat-icon> -->
                   </mat-form-field>
                   <!-- <app-error-msg [control]="cadastroForm.get('localDeAtendimento')" label="Local de Atendimento">

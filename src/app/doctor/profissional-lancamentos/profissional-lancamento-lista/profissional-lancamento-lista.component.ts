@@ -77,7 +77,7 @@ export class ProfissionalLancamentoListaComponent implements OnInit {
       params[`dataFim`] = Moment(dataFimControl).format('YYYY-MM-DDThh:mm:ssZ');
     }
 
-    // params[`profissional`] = this.profissional;
+     params[`profissionalId`] = this.profissional;
 
     return params;
   }

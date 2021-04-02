@@ -19,30 +19,35 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from "ng-pick-datetime";
 import { CalendarComponent } from "./calendar.component";
 import { FormDialogComponent as calFormComponent } from "./dialogs/form-dialog/form-dialog.component";
 import { CalendarService } from "./calendar.service";
+import {SharedModule} from "../../shared/shared.module";
+import {TextMaskModule} from "angular2-text-mask";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    CalendarRoutingModule,
-    FullCalendarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatSelectModule,
-    MatCheckboxModule,
-    MatInputModule,
-    MatDialogModule,
-    MatTooltipModule,
-    MatDatepickerModule,
-    MatSnackBarModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatRadioModule,
-    MatMenuModule,
-    OwlDateTimeModule,
-    OwlNativeDateTimeModule,
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        CalendarRoutingModule,
+        FullCalendarModule,
+        MatButtonModule,
+        MatIconModule,
+        MatSelectModule,
+        MatCheckboxModule,
+        MatInputModule,
+        MatDialogModule,
+        MatTooltipModule,
+        MatDatepickerModule,
+        MatSnackBarModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatRadioModule,
+        MatMenuModule,
+        OwlDateTimeModule,
+        OwlNativeDateTimeModule,
+        SharedModule,
+        TextMaskModule
+
+    ],
   declarations: [CalendarComponent, calFormComponent],
   providers: [CalendarService],
 })

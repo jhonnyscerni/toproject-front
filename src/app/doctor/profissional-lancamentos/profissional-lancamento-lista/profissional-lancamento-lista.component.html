@@ -99,6 +99,7 @@
                 <th>ID</th>
                 <th>Valor</th>
                 <th>Forma de Pagamento</th>
+                <th>Paciente</th>
                 <th>Data Lançamento</th>
                 <th></th>
               </tr>
@@ -114,6 +115,8 @@
                   lancamento?.valorTotal | currencyBrazil }}</span></td>
                 <td><span class="text-muted"> {{
                   lancamento?.formaPagamento.descricao }}</span></td>
+                <td><span class="text-muted"> {{
+                  lancamento?.consulta?.paciente?.nome }}</span></td>
                 <td><span class="text-muted"> {{
                   dateLayout(lancamento?.dtLancamento) }}</span></td>
                 <td class="table-actions">

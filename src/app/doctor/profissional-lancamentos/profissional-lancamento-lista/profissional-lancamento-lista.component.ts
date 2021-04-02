@@ -156,7 +156,7 @@ export class ProfissionalLancamentoListaComponent implements OnInit {
 
   public dateLayout(dt: any): String {
     //return Moment(dt).format('dddd, DD [de] MMMM [de] YYYY [às] HH:mm:ss');
-    return Moment(dt).format('DD/MM/YYYY [às] HH:mm:ss');
+    return Moment(dt).format('DD/MM/YYYY');
   }
 
 

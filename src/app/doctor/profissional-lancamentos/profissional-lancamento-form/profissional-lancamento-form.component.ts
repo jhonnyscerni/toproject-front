@@ -84,7 +84,10 @@ export class ProfissionalLancamentoFormComponent extends BaseFormComponent imple
       descricao: [''],
       dtLancamento: [''],
       valorTotal: ['', Validators.required],
-      profissionalId: [this.profissional]
+      profissionalId: [this.profissional],
+      consulta: this.fb.group({
+        id: ['']
+      }),
     });
   }
 
@@ -101,7 +104,10 @@ export class ProfissionalLancamentoFormComponent extends BaseFormComponent imple
       descricao: lancamento.descricao,
       dtLancamento: lancamento.dtLancamento,
       valorTotal: lancamento.valorTotal,
-      profissionalId: this.profissional
+      profissionalId: this.profissional,
+      consulta: {
+        id: lancamento.consulta.id
+      },
     });
   }
 

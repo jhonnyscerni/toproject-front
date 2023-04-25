@@ -58,13 +58,13 @@
                   <p>{{paciente?.logradouro}}</p>
                   <hr>
                   <small class="text-muted">Cidade: </small>
-                  <p>{{paciente?.cidade.nome}}</p>
+                  <p>{{paciente?.cidade?.nome}}</p>
                   <hr>
                   <small class="text-muted">Bairro: </small>
                   <p>{{paciente?.bairro}}</p>
                   <hr>
                   <small class="text-muted">Estado: </small>
-                  <p>{{paciente?.cidade.estado.sigla}}</p>
+                  <p>{{paciente?.cidade?.estado?.sigla}}</p>
                   <hr>
                 </div>
               </mat-tab>
@@ -125,7 +125,7 @@
                         <mat-form-field class="example-full-width"
                           appearance="outline">
                           <mat-label>E-mail</mat-label>
-                          <input matInput formControlName="email">
+                          <input matInput formControlName="email" >
                           <!-- <mat-icon matSuffix>face</mat-icon> -->
                         </mat-form-field>
                         <app-error-msg [control]="cadastroForm.get('email')"

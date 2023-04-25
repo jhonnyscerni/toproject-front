@@ -205,6 +205,7 @@
   >table td {
     color: #666;
     text-align: right;
+    height: 3.5em !important;
   }
 }
 
@@ -274,6 +275,7 @@ tr:first-child>td>.fc-day-grid-event {
 .fc-time-grid-event .fc-content {
   color: #ffffff;
   text-align: left;
+  padding: 5px;
 }
 
 .fc-list-item {

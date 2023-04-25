@@ -1,4 +1,5 @@
-import { formatDate } from '@angular/common';
+import {formatDate} from '@angular/common';
+
 export class Calendar {
     id: number;
     title: string;

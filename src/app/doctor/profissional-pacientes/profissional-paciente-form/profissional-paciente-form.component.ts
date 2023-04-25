@@ -111,13 +111,14 @@ export class ProfissionalPacienteFormComponent extends BaseFormComponent impleme
 
   updateForm(paciente) {
 
-    this.cidadeService.loadByNomeESiglaEstado(paciente.cidade.nome, paciente.cidade.estado.sigla)
+    this.cidadeService.loadByNomeESiglaEstado(
+      paciente.cidade == null ? "OUTROS" :  paciente.cidade.nome, 
+      paciente.cidade == null ? "OUTROS": paciente.cidade.estado.sigla)
       .subscribe(cidade => {
         this.cidade = cidade
         this.cidades = []
         this.cidades.push(this.cidade)
         //2021-01-27T03:00:00.000Z
-        //console.log(paciente)
         this.cadastroForm.patchValue({
           id: paciente.id,
           nome: paciente.nome,

@@ -114,13 +114,12 @@ export class FormDialogComponent extends BaseFormComponent {
 
         const consulta$ = this.consultaService.loadByID(idConsulta);
         consulta$.subscribe(consulta => {
-          console.log(consulta.id)
+          console.log(consulta)
           this.cadastroFormLancamento.patchValue({
             consulta: {
               id: consulta.id
             },
           });
-          console.log(this.cadastroFormLancamento)
           if (consulta.clinica.id != null){
             this.carregarPacientesClinica(consulta.clinica.id);
             this.cadastroForm.controls['paciente'].disable();
@@ -131,8 +130,7 @@ export class FormDialogComponent extends BaseFormComponent {
         console.log("LANCAMENTO: "+idConsulta)
         const lancamento$ = this.lancamentoService.loadByIdConsulta(idConsulta);
         lancamento$.subscribe(lancamento => {
-          console.log("LANCAMENTO: "+lancamento.id)
-          if (lancamento.id != null) {
+          if (lancamento != null) {
             this.updateFormLancamento(lancamento);
 
           }
@@ -166,7 +164,7 @@ export class FormDialogComponent extends BaseFormComponent {
   }
 
   updateForm(consulta) {
-
+    console.log("UPDATE:"+ consulta.paciente.id)
     this.cadastroForm.patchValue({
       id: consulta.id,
       title: consulta.title,

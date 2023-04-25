@@ -1,3 +1,4 @@
+senha: Jscernih4
 cd /home/jhonnyscerni/Documentos/workspace-angular/toproject-front/dist/
 tar -zcvf ltr.tar.gz ltr/
 scp -P65002 ltr.tar.gz  u113651129@213.190.6.127:~/public_html/
